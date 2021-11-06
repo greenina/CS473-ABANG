@@ -1,11 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home";
+import Main from "./Pages/Main";
+import Chat from "./Pages/Chat";
+import OurPage from "./Pages/OurPage";
+import Vote from "./Pages/Vote";
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" elemenet={<Home/>} />
+        <Route path="/main"elemenet={<Main/>} />
+        <Route path="/chat" elemenet={<Chat/>}/>
+        <Route path="/ourpage" elemenet={<OurPage/>} />
+        <Route path="/vote" elemenet={<Vote/>} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
