@@ -3,6 +3,7 @@ import { db, firebase, firebaseApp } from '../firebase';
 import { Route,Link } from 'react-router-dom';
 
 const Introduce = () => {
+    const groupRef = db.collection('group');
     const [introduce, setIntroduce]=useState("");
     const onIntroduceChange=(e) => {
         setIntroduce(e.target.value)
@@ -14,7 +15,7 @@ const Introduce = () => {
         height:"36px"
     }
     const submit = () => {
-        db.collection('group').doc("TYZx1EeaMbEhdrAFLm1U").set({groupIntroduce:introduce});
+        groupRef.doc("groupB").set({info:{groupIntroduce:introduce}});
     }
     return<div style={introduceBox}>
         <input type="text" style={introduceBox} value={introduce} onChange={e=>onIntroduceChange(e)} placeholder='Introduce your group!'/>

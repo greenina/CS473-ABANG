@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {useRouter,useState} from 'next/router';
 import {Route,Link} from 'react-router-dom';
 import { db } from '../firebase';
-import Ourpage_Edit from './Ourpage_edit';
 import Bucket from '../component/bucket';
 import Hash from '../component/hash';
 
@@ -15,20 +14,20 @@ class Ourpage extends Component {
     
     componentDidMount(){
         db.collection("group")
-        .doc("AS1zBlE3y3bwl245puoG")
+        .doc("groupB")
         .get()
         .then(doc => {
             this.setState({
-                groupname : doc.data().groupName,
+                //groupname : doc.data().info.groupName,
             })
         });
 
         db.collection("group")
-        .doc("TYZx1EeaMbEhdrAFLm1U")
+        .doc("groupB")
         .get()
         .then(doc => {
             this.setState({
-                introduce : doc.data().groupIntroduce ,
+                //introduce : doc.data().info.groupIntroduce ,
             })
         });
 

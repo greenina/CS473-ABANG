@@ -11,6 +11,7 @@ const firebaseConfig = {
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
+firebase.firestore().enablePersistence();
 const db = firebaseApp.firestore();
 //const settings = {timestampsInSnapshots : true};
 //firestore.settings(settings);

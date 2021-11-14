@@ -5,7 +5,7 @@ import Main from "./Pages/Main";
 import Chat from "./Pages/Chat";
 import OurPage from "./Pages/OurPage";
 import Vote from "./Pages/Vote";
-import Ourpage_Edit from './Pages/Ourpage_edit';
+import Ourpage_Edit from './Pages/Ourpage_edit copy';
 import Bucket from './component/bucket';
 
 

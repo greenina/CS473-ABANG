@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import {db} from '../firebase';
+import { arrayUnion, updateDoc } from "firebase/firestore";
 class ToDoForm extends Component {
     state = {
-      text: '',
-      number: 1,
-      docId: ''
+      // text: '',
+      // number: 1,
+      // docId: ''
+      cart : 0,
+      isDone : false, 
+      isLock : true, 
+      text: " "
     };
     handleChange = (e) => {
       this.setState({
@@ -19,16 +24,7 @@ class ToDoForm extends Component {
       });
     };
     submit =  () => {
-      db.collection('wishes').add({
-        wishText :this.state.text,
-        wishNumber : this.state.number,
-      })//docId 추가하기
-      .then(docRef => {
-        db.collection('wishes').doc(docRef.id).set({
-          docId : docRef.id
-        },{merge:true})
-      })
-      this.state.number = this.state.number +1 
+      updateDoc(db.collection('group').doc('groupB'), {bucket: arrayUnion({cart:0, isDone:false, isLock:true, text:this.state.text})});
     }
     render() {
       const { text } = this.state;
