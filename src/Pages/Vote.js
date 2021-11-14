@@ -1,10 +1,15 @@
 import React from "react";
+import VoteBox from '../Components/Votebox'
 
 
-const Vote = () => {
+const Vote = () =>{
   return (
-    <div>This is Vote</div>
-  );
-};
+    <div>
+      <VoteBox/>
+      <VoteBox/>
+      <VoteBox/>
+    </div>
+  )
+}
 
 export default Vote;
