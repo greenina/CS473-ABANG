@@ -1,5 +1,7 @@
+import { useState } from "react";
 import React from "react";
-import VoteBox from '../Components/Votebox'
+import VoteBox from "../Components/VoteBox";
+import MakeVote from "../Components/MakeVote";
 
 
 const Vote = () =>{
@@ -8,6 +10,7 @@ const Vote = () =>{
       <VoteBox/>
       <VoteBox/>
       <VoteBox/>
+      <MakeVote/>
     </div>
   )
 }
