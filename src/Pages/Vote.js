@@ -1,10 +1,16 @@
+import { useState } from "react";
 import React from "react";
+import VoteBox from "../Components/VoteBox";
 
 
-const Vote = () => {
+const Vote = () =>{
   return (
-    <div>This is Vote</div>
-  );
-};
+    <div>
+      <VoteBox/>
+      <VoteBox/>
+      <VoteBox/>
+    </div>
+  )
+}
 
 export default Vote;
