@@ -10,7 +10,7 @@ class ToDoInfo extends Component {
         cart : 0,
         isDone : false, //true : checked
         isLock : true,  // true: locked
-        text: "jeonga",
+        text: "",
         toggle : false,
         style : {
             margin : '10px', 
@@ -20,94 +20,118 @@ class ToDoInfo extends Component {
           padding: '25px',
           margin: '15px',
           backgroundColor: 'white'
-        }, 
-        checktoggle : false // true: check
+        }
     };
 
     handleChange = (e) => {
         this.setState({
-            [e.target.name]:e.target.value, 
+            [e.target.name]:e.target.value 
         });
+        
     };
     
     handleRemove = () => {
+        const {cart, isDone, isLock, text} = this.state;
         const { data, onRemove } = this.props;
-        console.log(data);
+        //console.log(data);
         onRemove(data.id);
-        updateDoc(db.collection('group').doc('groupB'), {bucket: arrayRemove({cart:data.cart, isDone: data.isDone, isLock: data.isLock, text:data.text})});
+        console.log("handleRemove: cart, isDone, isLock, text, 아랫줄은 data.전자들");
+        console.log(cart, isDone, isLock, text); 
+        console.log(data.cart, data.isDone, data.isLock, data.text);
+        updateDoc(db.collection('group').doc('groupB'), {bucket: arrayRemove({cart:cart, isDone: data.isDone, isLock: isLock, text:data.text})});
       };
-    //handleToggleChange method : false -> true(수정 버튼 클릭)
-    //true -> false (적용 버튼 클릭)
+
+
     handleToggleChange = () => {
         const { toggle, text } = this.state;
         const { data, onUpdate } = this.props;
-        // false -> true
-        if (!toggle) {
+        const docRef = db.collection('group').doc('groupB');
+        var index = 0;
+        //console.log(data.text);
+        //console.log(text);
+        if (!toggle) { //toggle is false 일 때 --> 수정 버튼 
           this.setState({
-            text  : data.text,
+            text  : data.text, //data.text가 현재 데이터 (현재 데이터 & 적용 버튼 view)
             toggle: true,
           });
-        } else {
+
+        } else { // 적용 버튼 --> 이때 데이터 업로드 해야 
           onUpdate(data.id, { text: text });
           this.setState({
             toggle: false,
           });
-        }
-        // true -> false
-      };
-      handleLockToggleChange = () => {
-        const { isLock } = this.state;
-        const { data } = this.props;
-        const docRef = db.collection('group').doc('groupB');
-        
-        var index = 0; 
-        // false -> true
-        //if (!isLock) {
-        if(true){
-          this.setState({
-            isLock: !isLock
-          });
-          console.log(data.text);
           
           docRef.get()
-          .then(function(querySnapshot){
-            if(querySnapshot.exists){
-              var length = querySnapshot.data().bucket.length;
-              //console.log(length);
-              for(var i=0; i<length; i++){
-                if(querySnapshot.data().bucket[i].text==data.text){
-                  console.log(querySnapshot.data().bucket[i]);
-                  console.log(data.text);
-                  index = i;
-                  //console.log(index);
-                  //docSnap.bucket[index].isLock=false;
-                  const docSnap =  getDoc(docRef).then( function(dbData){
-                    //console.log(dbData.data());
-                    const curData = dbData.data();
-                    curData.bucket[index].isLock = !dbData.data().bucket[index].isLock;
-                    docRef.set(curData, {merge:true});
-                    }
-                  );
-                  
-                  
-                  //docRef.set({bucket:{index:{cart:data.cart, isDone:data.isDone, isLock:!data.isLock, text:data.text}}},{merge:true});
-                  //updateDoc(db.collection('group').doc('groupB'), {bucket:{index:{cart:0, isDone:false, isLock:false, text:this.state.text}}});
+        .then(function(querySnapshot){
+          if(querySnapshot.exists){
+            var length = querySnapshot.data().bucket.length;
+            for(var i=0; i<length; i++){
+              if(querySnapshot.data().bucket[i].text==data.text){
+                index = i;
+                const docSnap =  getDoc(docRef).then(function(dbData){
+                  const curData = dbData.data();
+                  curData.bucket[index].text = text;
+                  docRef.set(curData, {merge:true});
+                  //updateDoc(db.collection('group').doc('groupB'), {bucket: arrayUnion({cart:0, isDone:false, isLock:true, text:this.state.text})});
+                  }
+                );
                 }
               }
           
             }
           }
           )
+        }
 
-          //updateDoc(db.collection('group').doc('groupB').data().bucket, {isLock:true});
-        } 
       };
+
+
+      handleLockToggleChange = () => {
+        const { isLock } = this.state;
+        const { data } = this.props;
+        const docRef = db.collection('group').doc('groupB');
+        
+        var index = 0; 
+        //console.log(data.isLock);
+        this.setState(
+          {isLock:!isLock}
+        )
+        data.isLock = !data.isLock
+        console.log(data.isLock);
+        
+        docRef.get()
+        .then(function(querySnapshot){
+          if(querySnapshot.exists){
+            var length = querySnapshot.data().bucket.length;
+            for(var i=0; i<length; i++){
+              if(querySnapshot.data().bucket[i].text==data.text){
+                index = i;
+                const docSnap =  getDoc(docRef).then( function(dbData){
+                  const curData = dbData.data();
+                  curData.bucket[index].isLock = !dbData.data().bucket[index].isLock;
+                  docRef.set(curData, {merge:true});
+                  }
+                );
+                }
+              }
+          
+            }
+          }
+          )
+      };
+
       handleCheckToggleChange = () => {
-        const { checktoggle } = this.state;
+        const { isDone } = this.state;
+        const { data } = this.props;
+        const docRef = db.collection('group').doc('groupB');
+
+        var index = 0; 
         // false -> true
-        if (!checktoggle) {
+        data.isDone = !data.isDone;
+        console.log(isDone);
+        if (!isDone) { //isDone is false --> 체크 안된 상태 
           this.setState({
-            checktoggle: true,
+            isDone : !isDone, //change false to true
             boxstyle : {
               border: '1px solid black',
               padding: '25px',
@@ -117,7 +141,7 @@ class ToDoInfo extends Component {
           });
         } else {
           this.setState({
-            checktoggle: false,
+            isDone: !isDone,
             boxstyle : {
               border: '1px solid black',
               padding: '25px',
@@ -126,7 +150,27 @@ class ToDoInfo extends Component {
             }
           });
         }
-        // true -> false
+        console.log(isDone);
+
+        docRef.get()
+        .then(function(querySnapshot){
+          if(querySnapshot.exists){
+            var length = querySnapshot.data().bucket.length;
+            for(var i=0; i<length; i++){
+              if(querySnapshot.data().bucket[i].text==data.text){
+                index = i;
+                const docSnap =  getDoc(docRef).then(function(dbData){
+                  const curData = dbData.data();
+                  //console.log(curData);
+                  curData.bucket[index].isDone = !isDone; 
+                  docRef.set(curData, {merge:true});
+                  }
+                );
+                }
+              }
+            }
+          }
+          )
       };
       
 
@@ -137,16 +181,16 @@ class ToDoInfo extends Component {
     return (
       <div>
         <li style={this.state.boxstyle}>
-        <input type="checkbox" id="unchecked" onClick={this.handleCheckToggleChange}/>
+        <input type="checkbox" id="unchecked" onClick={this.handleCheckToggleChange}/> 
         {toggle ? (
           <input
             style={this.state.style}
             onChange={this.handleChange}
-            value={text}
+            value={text} 
             name="text"
-          ></input>
-        ) : (
-          <span style={this.state.style}>{data.text}</span>
+          ></input> 
+        ) : ( 
+          <span style={this.state.style}>{data.text}</span> 
         )}
         <button onClick={this.handleToggleChange}>{toggle ? '적용' : '수정'}</button>
         <button onClick={this.handleRemove}>삭제</button>
