@@ -1,15 +1,3 @@
-:root {
-    --lightgreen: #F1FFE6;
-    --green: #B8E0AF;
-    --yellow: #E5E6B2;
-    --purple: #C9BFDC;
-    --gray: #EEEEEE;
-    --turquoise: #63A990;
-    --blue: #7CA7B5;
-    --browntext: #787939;
-    --purpletext: #7D6C9E;
-}
-
 .main {
     width: 100%;
 }

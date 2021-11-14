@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-// import PhotoUploader from "./PhotoUploader";
-// import PictureList from "./PictureList";
+import "./MemoryForm.css"
+
+import PhotoUploader from "./PhotoUploader";
+import PictureList from "./PictureList";
 
 export default function MemoryForm({
+  wish,
   memory,
   onSubmit,
   pictures,
+  urls,
+  progress,
   removePicture,
   onSubmitPictures,
+  handleChange,
+  handleUpload,
 }) {
 console.log(memory);
+const { bid, id } = useParams();
 const [title, setTitle] = useState(memory.title);
 const [date, setDate] = useState(memory.date);
 const [text, setText] = useState(memory.text);
@@ -34,10 +43,12 @@ const handleTextChange = (event) => {
 //   };
 
 const handleSubmit = () => {
+  console.log(pictures)
     onSubmit({
         title,
         date,
         text,
+        pictures,
         // comments,
     });
 };
@@ -46,31 +57,41 @@ const inputRef = React.useRef();
 
 
 return (
-    <div>
-      Memory
+    <div className="form-container">
+      <div>{ wish }</div>
 
       <div>
         <div>
             <input
                 type="text"
-              onChange={handleTitleChange}
-              id="title"
-              label="Title"
-              variant="outlined"
-              value={title}
-              defaultValue={memory.title}
-              inputRef={inputRef} 
+                onChange={handleTitleChange}
+                id="title"
+                label="Title"
+                variant="outlined"
+                value={title}
+                defaultValue={memory.title}
+                inputRef={inputRef} 
             />
 
-          {/* <div>
-            <Typography
-              style={{ marginBottom: "10px", display: "inline-block" }}
-            >
+            <input
+                type="date"
+                onChange={handleDateChange}
+                id="date"
+                label="Date"
+                variant="outlined"
+                value={date}
+                defaultValue={memory.date}
+                inputRef={inputRef} 
+            />
+
+          <div>
               Pictures
-            </Typography>
             <PhotoUploader
+              urls={urls}
+              progress={progress}
               onSubmit={onSubmitPictures}
-              addHashtag={addHashtagBySuggestion}
+              handleChange={handleChange}
+              handleUpload={handleUpload}
             />
 
             <PictureList
@@ -78,7 +99,7 @@ return (
               removePicture={removePicture}
               isEditing
             />
-          </div> */}
+          </div>
 
           {/* <TextField
             onChange={handleDateChange}
@@ -103,7 +124,7 @@ return (
 
           <Link
             onClick={handleSubmit}
-            to="/bucket"
+            to={`/bucket/${bid}/memory/${id}`}
           >
             Save
           </Link>

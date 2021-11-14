@@ -10,7 +10,7 @@ import Chat from "./Pages/Chat";
 import OurPage from "./Pages/OurPage";
 import Vote from "./Pages/Vote";
 
-import db from "./firebase";
+import { db, storage } from "./firebase";
 
 
 const App = () => {
@@ -34,16 +34,17 @@ const App = () => {
         />
 
         <Route 
-          path="/memory/:id" 
+          path="/bucket/:bid/memory/:id" 
           element={<MemoryView 
             memoryRef={db.collection(memoryRef)} 
           />} 
         />
         <Route 
-          path="/memory/edit/:id" 
+          path="/bucket/:bid/memory/:id/edit" 
           element={<MemoryEdit
+            bucketRef={db.collection(bucketRef)}
             memoryRef={db.collection(memoryRef)}
-            storageRef={db.collection('/photos')}
+            storageRef={storage.ref('/photos')}
           />} 
         />
 
