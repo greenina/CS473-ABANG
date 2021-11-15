@@ -8,6 +8,7 @@ import PhotoUploader from "./PhotoUploader";
 import PictureList from "./PictureList";
 
 export default function MemoryForm({
+  newId,
   wish,
   memory,
   onSubmit,
@@ -19,7 +20,7 @@ export default function MemoryForm({
   handleChange,
   handleUpload,
 }) {
-console.log(memory);
+// console.log(memory);
 const { bid, id } = useParams();
 const [title, setTitle] = useState(memory.title);
 const [date, setDate] = useState(memory.date);
@@ -48,7 +49,7 @@ const handleSubmit = () => {
         title,
         date,
         text,
-        pictures,
+        // pictures,
         // comments,
     });
 };
@@ -85,13 +86,9 @@ return (
             />
 
           <div>
-              Pictures
+            Pictures
             <PhotoUploader
-              urls={urls}
-              progress={progress}
               onSubmit={onSubmitPictures}
-              handleChange={handleChange}
-              handleUpload={handleUpload}
             />
 
             <PictureList
@@ -124,7 +121,7 @@ return (
 
           <Link
             onClick={handleSubmit}
-            to={`/bucket/${bid}/memory/${id}`}
+            to={`/bucket/${bid}/memory/${id ? id : newId}`}
           >
             Save
           </Link>

@@ -9,6 +9,8 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import { db } from "../firebase";
 import { ImageList } from "@material-ui/core";
 
+import { arrayUnion, updateDoc } from "firebase/firestore"
+
 async function uploadImageFile(files, storageRef) {
     if (!files) return null;
     const promises = files.map((file) => {
@@ -80,29 +82,18 @@ async function uploadImageFile(files, storageRef) {
     // return downloadURLs;
 }
 
-const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
-    const { bid, id } = useParams();
+const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
+    const { bid } = useParams();
+    const [newId, setNewId] = useState(null);
     const [wish, setWish] = useState(null);
-    const [memory, setMemory] = useState(null);
+    const [memory, setMemory] = useState({
+        text: "", title: "", date: "", pictures: []
+    });
     const [pictures, setPictures] = useState([]);
     const [urls, setUrl] = useState(null);
     const [pictureLoading, setPictureLoading] = useState(false);
     const [pictureFiles, setPictureFiles] = useState(false);
     const [progress, setProgress] = useState(0);
-
-    useEffect(() => {
-        if(!bucketRef) return;
-        bucketRef.doc(bid).get().then((snapshot) => {
-            // setWish(snapshot.data().wishText);
-        });
-    }, [bucketRef]);
-
-    useEffect(() => {
-        if(!memoryRef) return;
-        memoryRef.doc(id).get().then((snapshot) => {
-            setMemory(snapshot.data());
-        });
-    }, [memoryRef]);
 
     useEffect(() => {
         async function fetchPicture() {
@@ -169,8 +160,12 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
             pictures: pictures,
             // comments,
         };
-        console.log(newMemory)
-        memoryRef.doc(id).set(newMemory);
+        console.log(newMemory, memoryRef)
+        memoryRef.add(newMemory).then(snapshot => {
+            updateDoc(bucketRef.doc(bid), {memories: arrayUnion(snapshot)})
+            setNewId(snapshot.id)
+            console.log(snapshot)
+        })
     };
 
     const onSubmitPictures = (selected) => {
@@ -200,9 +195,10 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
                 onSubmitPictures={onSubmitPictures}
                 handleChange={handleChange}
                 handleUpload={handleUpload}
+                newId={newId}
             />
         </div>
     );
 };
 
-export default MemoryEdit;
+export default MemoryAdd;
