@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {useRouter,useState} from 'next/router';
 import {Route,Link} from 'react-router-dom';
 import { db } from '../firebase';
 import Bucket from '../component/bucket';

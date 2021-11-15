@@ -1,27 +1,28 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import {useState} from 'react'
 import ToDoInfo from './ToDoInfo';
+import {db} from '../firebase'
+import { arrayUnion, updateDoc } from "firebase/firestore";
 
-class ToDoList extends Component {
-  state = {
-    style: {
-      border: '1px solid black',
-      padding: '25px',
-      margin: '15px',
-    },
-  };
-  render(){
-    const { data, onUpdate, onRemove } = this.props;
-
-    return (
-      <div>
+const ToDoList = (props) =>{
+  
+  useEffect(()=>{
+    db.collection('group').doc('groupB').get().then(
+      doc =>{
+        const buckets = doc.data().bucket
+        console.log("buckets",buckets)
+      }
+    )
+  })
+  return(
+    <div>
         <ul>
-          {data.map((data) => (
-              <ToDoInfo data={data} onUpdate={onUpdate} onRemove={onRemove} />
+          {props.data.map((data) => (
+              <ToDoInfo data={data} onUpdate={props.onUpdate} onRemove={props.onRemove} />
           ))}
         </ul>
       </div>
-    );
-  }  
+  )
 }
 
 export default ToDoList;
