@@ -5,19 +5,22 @@ import {db} from '../firebase'
 import { arrayUnion, updateDoc } from "firebase/firestore";
 
 const ToDoList = (props) =>{
-  
+  const [bucket, setBucket] = useState([])
   useEffect(()=>{
     db.collection('group').doc('groupB').get().then(
       doc =>{
-        const buckets = doc.data().bucket
-        console.log("buckets",buckets)
+        console.log("doc",doc.data)
+        if(doc.exists){
+          const buckets = doc.data().bucket
+        setBucket(buckets)
+        }
       }
     )
-  })
+  },[])
   return(
     <div>
         <ul>
-          {props.data.map((data) => (
+          {bucket.map((data) => (
               <ToDoInfo data={data} onUpdate={props.onUpdate} onRemove={props.onRemove} />
           ))}
         </ul>

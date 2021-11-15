@@ -37,8 +37,9 @@ class Bucket extends Component {
   };
   handleRemove = (id) => {
     const { toDoList } = this.state;
+    toDoList[id] = "null"
     this.setState({
-      toDoList: toDoList.filter((data) => data.id !== id),
+      toDoList: toDoList
     });
   };
   render(){
