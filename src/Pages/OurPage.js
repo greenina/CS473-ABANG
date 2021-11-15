@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Route,Link} from 'react-router-dom';
 import { db } from '../firebase';
-import Bucket from '../component/bucket';
+import Bucket_Edit from '../component/bucket.js';
 import Hash from '../component/hash';
+import DisplayImage from '../component/DisplayImage';
 
 class Ourpage extends Component {
     //get firestore data
@@ -17,7 +18,7 @@ class Ourpage extends Component {
         .get()
         .then(doc => {
             this.setState({
-                //groupname : doc.data().info.groupName,
+                groupname : doc.data().info.groupName,
             })
         });
 
@@ -26,7 +27,7 @@ class Ourpage extends Component {
         .get()
         .then(doc => {
             this.setState({
-                //introduce : doc.data().info.groupIntroduce ,
+                introduce : doc.data().info.groupIntroduce ,
             })
         });
 
@@ -34,6 +35,7 @@ class Ourpage extends Component {
     render(){
         return(
             <div>
+            <DisplayImage/>
             <div><h2>Ourpage</h2></div>
             <h6>Group Name</h6>
             <h4>{this.state.groupname}</h4>
@@ -41,7 +43,7 @@ class Ourpage extends Component {
             <h4>{this.state.introduce}</h4>
             <button><Link to = "/ourpage/edit">edit</Link></button>
             <Hash/>
-            <Bucket/>
+            <button><Link to = "/ourpage/bucket"> bucket edit </Link></button>
             </div>
         )
     }

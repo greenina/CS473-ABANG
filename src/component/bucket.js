@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ToDoForm from './ToDoForm';
-import ToDoList from './/ToDoList';
+import ToDoList from './ToDoList';
 
-class Bucket extends Component {
+class Bucket_Edit extends Component {
   id = 4;
   state = {
     toDoList: []
@@ -55,4 +55,4 @@ class Bucket extends Component {
   
 }
 
-export default Bucket;
+export default Bucket_Edit;
