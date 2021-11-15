@@ -6,7 +6,8 @@ import Chat from "./Pages/Chat";
 import OurPage from "./Pages/OurPage";
 import Vote from "./Pages/Vote";
 import Ourpage_Edit from './Pages/Ourpage_edit copy';
-import Bucket from './component/bucket';
+import Bucket_Edit from "./component/bucket";
+import Bucketdata from "./component/bucketdata";
 
 
 
@@ -18,9 +19,9 @@ const App = () => {
         <Route path="/main"element={<Main/>} />
         <Route path="/chat" element={<Chat/>}/>
         <Route path="/ourpage" element={<OurPage/>} />
-        <Route path="/ourpage/bucket" element={<Ourpage_Edit/>} />
-        <Route path="/ourpage/edit" element={<Ourpage_Edit/>} />
-        <Route path="/ourpage/bucket" element={<Bucket/>} />
+        <Route path="/ourpage/edit" element={<Ourpage_Edit/>} /> //Ourpage_edit copy
+        <Route path="/ourpage/bucket" element={<Bucket_Edit/>} />
+        <Route path="/ourpage/bucketdata" element={<Bucketdata/>} />
         <Route path="/vote" element={<Vote/>} />
       </Routes>
     </BrowserRouter>

@@ -50,7 +50,7 @@ function GroupInfo(){
                 }
             }
         })
-        docRef.set({info:{groupName:groupname, groupIntroduce:introduce}});
+        docRef.set({info:{groupName:groupname, groupIntroduce:introduce}},{merge:true});
     }
    
     

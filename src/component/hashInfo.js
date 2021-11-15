@@ -2,6 +2,7 @@ import React, { Component , useEffect} from 'react';
 import '../App.css';
 import {db} from '../firebase';
 import HashForm from './hashForm';
+import { arrayRemove, updateDoc } from "firebase/firestore";
 
 
 class HashInfo extends Component {
@@ -33,6 +34,7 @@ class HashInfo extends Component {
     handleRemove = () => {
         const { data, onRemove } = this.props;
         onRemove(data.id);
+        updateDoc(db.collection('group').doc('groupB'), {hash: arrayRemove({text:data.text})});
       };
     //handleToggleChange method : false -> true(수정 버튼 클릭)
     //true -> false (적용 버튼 클릭)

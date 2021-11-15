@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {db} from '../firebase';
+import { arrayUnion, updateDoc } from "firebase/firestore";
+
 class HashForm extends Component {
     state = {
       text: ''
@@ -17,9 +19,7 @@ class HashForm extends Component {
       });
     };
     submit =  () => {
-      db.collection('hash').add({
-        hashName :this.state.text
-      })
+      updateDoc(db.collection('group').doc('groupB'), {hash : arrayUnion({text:this.state.text})});
     }
     render() {
       const { text } = this.state;

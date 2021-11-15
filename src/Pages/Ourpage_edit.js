@@ -17,7 +17,7 @@ class Ourpage_Edit extends Component {
                 <br/>
                 <br/>
                 <br/>
-                <Link to = "../ourpage"><button>Done </button></Link>
+                <Link to = "../ourpage"><button> Done </button></Link>
                 
             </div>
         )
