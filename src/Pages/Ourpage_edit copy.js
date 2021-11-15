@@ -1,5 +1,4 @@
 import React, {Component, useState} from 'react';
-import {useRouter} from 'next/router';
 import {Route,Link} from 'react-router-dom';
 import {db} from '../firebase';
 import {doc, getDoc} from "firebase/firestore";
