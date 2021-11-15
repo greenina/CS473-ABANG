@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import '../styles/chatDesign.css';
+import SpeedDial from '../styles/speedDial';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
@@ -7,6 +8,9 @@ import 'firebase/compat/auth';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+
+// import { SpeedDial } from '@mui/material';
+
 
 firebase.initializeApp({
   apiKey: "AIzaSyD0gBx7wsHSs0i2mNfFuOzimTNMvBrOzko",
@@ -74,17 +78,23 @@ function ChatRoom() {
 
   return (
     <>
-    <div style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#EAF6F4", maxWidth: "20vw", width:"20vw", height:"80vh", maxHeight:"80vh",}}>
-      <div style={{padding:"10px"}}>
+    <div>
+    <div style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#EAF6F4", maxWidth: "20vw", width:"20vw", height:"80vh"}}>
+      <div style={{position:"fixed", top:"10vh", right:"40vw", padding:5}}>
+      <SpeedDial />
+      </div>
+      <div style={{padding:"10px", overflow:"auto"}}>
         {messages && messages.map(msg => <ChatMessage key = {msg.id} message = {msg}/>)}
       </div>
       <div style={{backgroundColor:"#EBEDD0"}}>
-      <form onSubmit = {sendMessage} style={{padding:"10px", height:"20px", display:"flex", alignItems:"center"}}>
-        <input style={{width:"80%", marginRight:"5%", borderColor:"white", borderRadius:"6px",borderWidth:0, boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25)  "}} value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
-        <button type = "submit"  style={{width:"auto", backgroundColor:"#FFFEDB", color:"#829B89",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}>Send</button>
-      </form>
+      
+        <form onSubmit = {sendMessage} style={{padding:"10px", height:"20px", display:"flex", alignItems:"center"}}>
+          <input style={{width:"80%", marginRight:"5%", borderColor:"white", borderRadius:"6px",borderWidth:0, boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25)  "}} value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
+          <button type = "submit"  style={{width:"auto", backgroundColor:"#FFFEDB", color:"#829B89",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}>Send</button>
+        </form>
       </div>
       </div>
+    </div>
     </>
   )
 }
