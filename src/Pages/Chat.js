@@ -56,6 +56,7 @@ function SignOut() {
 }
 
 function ChatRoom() {
+  //const groupBelongTo = firestore.collection('group').whereField('friends', isEqual)  
   const messagesRef = firestore.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(25);
 
