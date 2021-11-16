@@ -9,10 +9,11 @@ const ToDoList = (props) =>{
   const getInfo = () =>{
     db.collection('group').doc('groupB').get().then(
       doc =>{
-        console.log("doc",doc.data)
+        console.log("doc",doc.data())
         if(doc.exists){
           const buckets = doc.data().bucket
-        setBucket(buckets)
+          console.log("BUCKET",buckets)
+          setBucket(buckets)
         }
       }
     )

@@ -5,7 +5,9 @@ import {doc, getDoc} from "firebase/firestore";
 import { arrayRemove, updateDoc } from "firebase/firestore";
 const ToDoInfo = (props) =>{
 
-
+  useEffect(()=>{
+    console.log("props!!",props.data)
+  },[])
   const [lock, setLock] = useState(props.data.isLock)
   const [todo, setTodo] = useState(props.data.text)
   const [toggle, setToggle] = useState(false)
