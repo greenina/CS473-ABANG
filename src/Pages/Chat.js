@@ -1,16 +1,18 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import '../styles/chatDesign.css';
 import SpeedDial from '../styles/speedDial';
 
 import firebase from 'firebase/compat/app';
+//import firebase  from 'firebase/firebase-config';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import { getAuth } from "firebase/auth";
 
+import { getDatabase, ref, onValue } from 'firebase/database';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-// import { SpeedDial } from '@mui/material';
-
+//import { getDatabase, ref, set } from "firebase/database";
 
 firebase.initializeApp({
   apiKey: "AIzaSyD0gBx7wsHSs0i2mNfFuOzimTNMvBrOzko",
@@ -27,37 +29,37 @@ const firestore = firebase.firestore();
 function Chat() {
 
   const [user] = useAuthState(auth);
-
+  //const { uid, photoURL } = auth.currentUser;
   return (
     <div className="Chat">
       <header>    
       </header>
       <section>
-        {user ? <ChatRoom /> : <SignIn />}
+        {<ChatRoom />}
       </section>
     </div>
   );
 }
-
-function SignIn() {
-  const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-  }
-  return (
-    <button onClick = {signInWithGoogle}>Sign in with google.</button>
-  )
-}
-
-function SignOut() {
-  return auth.currentUser && (
-    <button onClick = {() => auth.signOut()}>Sign Out</button>
-  )
-}
-
 function ChatRoom() {
-  //const groupBelongTo = firestore.collection('group').whereField('friends', isEqual)  
-  const messagesRef = firestore.collection('messages');
+  const db = firestore.collection('group');
+  const[whichGroup, setGroup] = useState('')
+  //var whichGroup = '';
+  db.get().then(snapshot => {
+    snapshot.forEach(s => {
+      (s.data().friends.map((obj) => {
+        if (obj.email == auth.currentUser.email) {
+          whichGroup = s.id;
+          //console.log(whichGroup);
+        }
+      }))
+    })
+  });
+//collection ('group')
+/*while (whichGroup == '') {
+  console.log('loop');
+};*/
+  console.log('ok');
+  const messagesRef = firestore.collection(`group/groupB/messages`);
   const query = messagesRef.orderBy('createdAt').limit(25);
 
   const [messages] = useCollectionData(query, {idField: 'id'});
@@ -65,16 +67,16 @@ function ChatRoom() {
   const [formValue, setFormValue] = useState('');
 
   const sendMessage = async(e) => {
-    e.preventDefault();
-    const { uid, photoURL } = auth.currentUser;
-    await messagesRef.add({
-      text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
-      photoURL 
-    })
+  e.preventDefault();
+  const { uid, photoURL } = auth.currentUser;
+  await messagesRef.add({
+  text: formValue,
+  createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+  uid,
+  photoURL 
+  })
 
-    setFormValue('');
+  setFormValue('');
   }
 
   return (
