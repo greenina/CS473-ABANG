@@ -4,8 +4,6 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 import 'firebase/compat/auth';
 
-
-
 const firebaseConfig = {
   apiKey: "AIzaSyD0gBx7wsHSs0i2mNfFuOzimTNMvBrOzko",
   authDomain: "abang-803aa.firebaseapp.com",
@@ -23,7 +21,6 @@ const db = firebaseApp.firestore();
 const storage = firebase.storage();
 
 function SignIn() {
-  console.log('login page..');
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);

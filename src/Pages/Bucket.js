@@ -64,7 +64,7 @@ const Bucket = ({ bucketRef }) => {
         //     setArr(snapshot.data().arr)
         // })
         // updateDoc(bucketRef.doc('EbJhXFg8yQO57LevlIm9'), {arr: arrayUnion({cart:0, isDone:false, isLock:false, test:"hi"})})
-        updateDoc(db.collection('group').doc('groupB'), {bucket: arrayUnion({cart:0, isDone:false, isLock:true, text:"hi"})})
+        updateDoc(db.collection('group').doc('groupA'), {bucket: arrayUnion({cart:0, isDone:false, isLock:true, text:"hi"})})
         // bucketRef.doc('EbJhXFg8yQO57LevlIm9').set({arr: arrayUnion("a")})
     }
 

@@ -3,24 +3,28 @@ import {useState} from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import {db} from '../firebase'
+import {db, auth} from '../firebase'
 import { arrayUnion, updateDoc } from "firebase/firestore";
-import DateTimePicker from 'react-datetime-picker';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const MakeVote = (props)=>{
 
+    const user = useAuthState(auth);
+    // const email = auth.currentUser.email
     const [options, setOptions] = useState([])
     const [checked, setChecked] = useState([])
     const [title, setTitle] = useState("")
     const [users, setUsers] = useState([])
 
     useEffect(()=>{
+        console.log("AUTH",auth)
+        // console.log("USER",auth.currentUser.email)
         db.collection('group')
         .doc('groupA')
         .get()
         .then(doc =>{
-            setOptions(doc.data().buckets.map(i=>i.text))
-            setUsers(doc.data().friends.map(i=>i.name))
+            setOptions(doc.data().bucket.map(i=>i.text))
+            setUsers(doc.data().friends.map(i=>i.email))
         })
     },[])
     useEffect(()=>{
@@ -31,6 +35,7 @@ const MakeVote = (props)=>{
         const newVote = {
             createdAt: Date.now(),
             name:title,
+            // madeBy:email,
             options: options.map(option =>{
                 return {
                 option:option,
@@ -38,25 +43,14 @@ const MakeVote = (props)=>{
                     console.log("user",user)
                     return {
                     comment:"",
-                    uid:user,
+                    email:user,
                     value:0
                     }
                 })
             }
             })
         }
-        // const newVote = {
-        //     createdAt: Date.now(),
-        //     name:title,
-        //     options:[{
-        //         option:"playyyy",
-        //         indiv:[{
-        //             comment:"",
-        //             uid:"inhwa2",
-        //             value:0
-        //         }]
-        //     }]
-        // }
+
         console.log("newvote2",newVote)
         updateDoc(db.collection('group').doc('groupA'), {vote:arrayUnion(newVote)})
     }
@@ -69,7 +63,7 @@ const MakeVote = (props)=>{
         <div>
             <FormGroup>
             {options.map((option,i)=>{
-                const changeChecked = () =>{
+                const changeChecked = () => {
                     var arr = [...checked]
                     arr[i] = !arr[i]
                     setChecked(arr)

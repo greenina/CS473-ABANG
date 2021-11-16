@@ -9,41 +9,74 @@ import { arrayUnion, updateDoc } from "firebase/firestore";
 const VoteBox = (props) => {
   
   const [wishes, setWishes] = useState([])
-  const [checked, setChecked] = useState([false,false,false])
-  const [value, setValue] = useState([0,0,0])
+  const [checked, setChecked] = useState([])
+  const [value, setValue] = useState([])
   const [comment, setComment] = useState([])
+  const voteIndex  = props.index //will have to give by props
+  const email = "kaist.helloworld@gmail.com" //will have to get by auth.currentUser.email
+  const group = "groupA" //will have to get 
+  const [result, setResult] = useState([])
+  const [show, setShow] = useState(false)
+  const [voteName, setVoteName] = useState("")
+
   const Submit = () =>{
     db.collection('group')
-      .doc('groupA')
+      .doc(group)
       .get()
       .then((doc)=>{
         const vote = [...doc.data().vote]
-        vote[0].options.map((i, index)=>{
-          i.indiv[0].value = parseInt(value[index]) //여기서 0 은 해당 friend의 index
-          i.indiv[0].comment = comment[index]
+        vote[voteIndex].options.map((i, index)=>{
+          i.indiv.map((e, j)=>{
+            if(e.email == email){
+              i.indiv[j].value = parseInt(value[index]) 
+              i.indiv[j].comment = comment[index]
+            }
+          })  
         })
         console.log("vote2",vote)
-        updateDoc(db.collection('group').doc('groupA'),{vote:vote})
+        updateDoc(db.collection('group').doc(group),{vote:vote})
       })
   }
   
   useEffect(()=>{
     db.collection('group')
-    .doc('groupA')
+    .doc(group) //should be later changed to props
     .get()
     .then((doc)=>{
-      const wishArr = doc.data().vote[0].options.map(i => i.option)
+      const wishArr = doc.data().vote[voteIndex].options.map(i => i.option)
       setWishes(wishArr)
+      setVoteName(doc.data().vote[voteIndex].name)
   })
   },[])
   useEffect(()=>{
     setChecked(Array(wishes.length).fill(false))
     setValue(Array(wishes.length).fill(0))
+    setResult(Array(wishes.length).fill(0))
     setComment(Array(wishes.length).fill(""))
   }, wishes)
 
+  const getResult = () =>{
+    db.collection('group')
+    .doc(group)
+    .get()
+    .then((doc)=>{
+      const result = doc.data().vote[voteIndex].options.map((option, i)=>{
+        var sum = 0
+        option.indiv.map((indi, j)=>{
+          console.log("value",indi.value)
+          sum+=indi.value
+        })
+        return sum
+      })
+      setResult(result)
+      console.log("RES",result)
+    })
+    setShow(true)
+  }
+
   return (
     <div>
+      <h1>{voteName}</h1>
       <FormGroup>
         {wishes.map((wish, i)=>{
           const changeChecked = () =>{
@@ -53,15 +86,19 @@ const VoteBox = (props) => {
           }
 
           const submitValue = (e) =>{
+            console.log("values1",value)
             var arr = [...value]
             arr[i] = parseInt(e.target.value)
-            setValue(arr)
+            setValue(Array.from(arr, item => typeof item === 'undefined' ? 0 : item))
+            console.log("values2",value)
           }
           const submitComment = (e) =>{
+            console.log("comment1",comment)
+            console.log("SUBMITCOMMENT")
             var arr = [...comment]
             arr[i] = e.target.value
-            console.log("arr",arr)
-            setComment(arr)
+            setComment(Array.from(arr, item => typeof item === 'undefined' ? 0 : item))
+            console.log("comment2",comment)
           }
           return (
             <div>
@@ -79,6 +116,8 @@ const VoteBox = (props) => {
         })}
       </FormGroup>
       <button  onClick={Submit}>VOTE</button>
+      <button  onClick={getResult}>RESULT</button>
+      <div>{result}</div>
     </div>
   );
 };

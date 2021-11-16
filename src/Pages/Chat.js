@@ -5,14 +5,9 @@ import SpeedDial from '../styles/speedDial';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import {auth, db, SignIn} from '../firebase'
-
-// import { SpeedDial } from '@mui/material';
-
-
 
 
 function Chat() {
@@ -32,7 +27,7 @@ function Chat() {
 
 
 function ChatRoom() {
-  //const groupBelongTo = firestore.collection('group').whereField('friends', isEqual)  
+  //const groupAelongTo = firestore.collection('group').whereField('friends', isEqual)  
   const messagesRef = db.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(25);
 

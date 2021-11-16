@@ -4,8 +4,8 @@ import { arrayUnion, updateDoc } from "firebase/firestore";
 
 const ToDoForm = () =>{
 
-
-  const docRef = db.collection('group').doc('groupB');
+  const group = 'groupA'
+  const docRef = db.collection('group').doc(group);
 
   const [todo, setTodo] = useState()
   const [todo2, setTodo2] = useState()
@@ -30,7 +30,7 @@ const ToDoForm = () =>{
     <div>
       <form>
         <input value={todo} name="text" placeholder="..입력" onChange={handleChange}></input>
-        {/* <input value={todo2} name="text" placeholder="..입력" onChange={handleChange2}></input> */}
+        <input value={todo2} name="text" placeholder="..입력" onChange={handleChange2}></input>
         <button onClick={submit}>추가</button>
       </form>
     </div>

@@ -15,7 +15,7 @@ const Introduce = () => {
         height:"36px"
     }
     const submit = () => {
-        groupRef.doc("groupB").set({info:{groupIntroduce:introduce}});
+        groupRef.doc("groupA").set({info:{groupIntroduce:introduce}});
     }
     return<div style={introduceBox}>
         <input type="text" style={introduceBox} value={introduce} onChange={e=>onIntroduceChange(e)} placeholder='Introduce your group!'/>

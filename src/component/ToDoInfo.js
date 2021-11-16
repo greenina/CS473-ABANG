@@ -23,7 +23,7 @@ const ToDoInfo = (props) =>{
         margin: '15px',
         backgroundColor: 'white'
       }
-  const docRef = db.collection('group').doc('groupB');
+  const docRef = db.collection('group').doc('groupA');
   const style = { margin : '10px'}
 
   const handleToggleChange = () => {
@@ -42,7 +42,7 @@ const ToDoInfo = (props) =>{
                   const curData = dbData.data();
                   curData.bucket[index].text = todo;
                   docRef.set(curData, {merge:true});
-                  //updateDoc(db.collection('group').doc('groupB'), {bucket: arrayUnion({cart:0, isDone:false, isLock:true, text:this.state.text})});
+                  //updateDoc(db.collection('group').doc('groupA'), {bucket: arrayUnion({cart:0, isDone:false, isLock:true, text:this.state.text})});
                   }
                 );
                 }
