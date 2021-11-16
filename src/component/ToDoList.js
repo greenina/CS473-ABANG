@@ -6,7 +6,7 @@ import { arrayUnion, updateDoc } from "firebase/firestore";
 
 const ToDoList = (props) =>{
   const [bucket, setBucket] = useState([])
-  useEffect(()=>{
+  const getInfo = () =>{
     db.collection('group').doc('groupB').get().then(
       doc =>{
         console.log("doc",doc.data)
@@ -16,12 +16,15 @@ const ToDoList = (props) =>{
         }
       }
     )
+  }
+  useEffect(()=>{
+    getInfo()
   },[])
   return(
     <div>
         <ul>
           {bucket.map((data) => (
-              <ToDoInfo data={data} onUpdate={props.onUpdate} onRemove={props.onRemove} />
+              <ToDoInfo data={data} onUpdate={props.onUpdate} onRemove={props.onRemove} refresh = {getInfo} />
           ))}
         </ul>
       </div>

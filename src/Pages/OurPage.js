@@ -4,6 +4,7 @@ import { db } from '../firebase';
 import Bucket_Edit from '../component/bucket.js';
 import Hash from '../component/hash';
 import DisplayImage from '../component/DisplayImage';
+import Bucket from '../component/bucket'
 
 const Ourpage = () =>{
     const [name, setName] = useState("")
@@ -33,6 +34,7 @@ const Ourpage = () =>{
             <button><Link to = "/ourpage/edit">edit</Link></button>
             <Hash/>
             <button><Link to = "/ourpage/bucket"> bucket edit </Link></button>
+            <Bucket/>
             </div>
     )
 }

@@ -74,6 +74,7 @@ const ToDoInfo = (props) =>{
         const newBucket = doc.data().bucket.filter(e => e.text != todo)
         console.log("BUCKET",newBucket)
         updateDoc(docRef, {bucket: newBucket});
+        props.refresh()
       }
     })
     

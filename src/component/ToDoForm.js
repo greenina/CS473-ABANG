@@ -4,12 +4,16 @@ import { arrayUnion, updateDoc } from "firebase/firestore";
 
 const ToDoForm = () =>{
 
+
+  const docRef = db.collection('group').doc('groupB')
+
   const [todo, setTodo] = useState()
   const handleChange = (e) =>{
     setTodo(e.target.value)
   }
+
   const submit =  () => {
-      updateDoc(db.collection('group').doc('groupB'), {bucket: arrayUnion({cart:0, isDone:false, isLock:true, text:todo})});
+    updateDoc(db.collection('group').doc('groupB'), {bucket: arrayUnion({cart:0, isDone:false, isLock:true, text:todo})});
   } 
 
   return (
