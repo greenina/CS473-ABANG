@@ -84,18 +84,11 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
     const { bid, id } = useParams();
     const [wish, setWish] = useState(null);
     const [memory, setMemory] = useState(null);
-    const [pictures, setPictures] = useState([]);
+    const [pictures, setPictures] = useState(null);
     const [urls, setUrl] = useState(null);
     const [pictureLoading, setPictureLoading] = useState(false);
     const [pictureFiles, setPictureFiles] = useState(false);
     const [progress, setProgress] = useState(0);
-
-    useEffect(() => {
-        if(!bucketRef) return;
-        bucketRef.doc(bid).get().then((snapshot) => {
-            // setWish(snapshot.data().wishText);
-        });
-    }, [bucketRef]);
 
     useEffect(() => {
         if(!memoryRef) return;
@@ -103,6 +96,11 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
             setMemory(snapshot.data());
         });
     }, [memoryRef]);
+
+    useEffect(() => {
+        if(!memory) return;
+        setPictures(memory.pictures);
+    }, [memory]);
 
     useEffect(() => {
         async function fetchPicture() {
@@ -122,7 +120,7 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
     }, [pictureLoading, pictureFiles, storageRef])
 
     const handleChange = (e) => {
-        console.log(e.target.files)
+        // console.log(e.target.files)
         if(e.target.files) {
             setPictures(e.target.files);
         }
@@ -131,7 +129,6 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
     const handleUpload = () => {
         const promises = []
         if(!pictures) return
-        console.log(pictures)
         for(var i=0; i<pictures.length; i++) {
             const image = pictures[i]
             const uploadTask = db.ref(`images/${image.name}`).put(image);
@@ -160,7 +157,7 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
             .catch((err) => console.log(err))
     }
 
-    const onSubmit = ({ title, date, text, comments }) => {
+    const onSubmit = async ({ title, date, text, comments }) => {
         const newMemory = {
             ...memory,
             title,
@@ -169,16 +166,17 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
             pictures: pictures,
             // comments,
         };
-        console.log(newMemory)
-        memoryRef.doc(id).set(newMemory);
+        // console.log(newMemory)
+        await memoryRef.doc(id).set(newMemory);
+        await window.location.replace(`/bucket/${bid}/memory/${id}`)
     };
 
     const onSubmitPictures = (selected) => {
         const loadings = selected.map(item => 'loading')
         setPictureLoading(true)
         setPictureFiles(selected)
-        console.log(selected, pictures)
-        setPictures([...pictures, ...loadings])
+        if(!pictures) setPictures([...loadings])
+        else setPictures([...pictures, ...loadings])
     };
         
     const removePicture = (pic) => {
@@ -190,6 +188,7 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
     return (
         <div className="memory">
             <MemoryForm
+                id={id}
                 wish={wish}
                 memory={memory}
                 onSubmit={onSubmit}

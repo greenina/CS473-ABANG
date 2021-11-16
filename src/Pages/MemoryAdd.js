@@ -113,7 +113,7 @@ const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
     }, [pictureLoading, pictureFiles, storageRef])
 
     const handleChange = (e) => {
-        console.log(e.target.files)
+        // console.log(e.target.files)
         if(e.target.files) {
             setPictures(e.target.files);
         }
@@ -122,7 +122,6 @@ const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
     const handleUpload = () => {
         const promises = []
         if(!pictures) return
-        console.log(pictures)
         for(var i=0; i<pictures.length; i++) {
             const image = pictures[i]
             const uploadTask = db.ref(`images/${image.name}`).put(image);
@@ -160,11 +159,9 @@ const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
             pictures: pictures,
             // comments,
         };
-        console.log(newMemory, memoryRef)
         memoryRef.add(newMemory).then(snapshot => {
             updateDoc(bucketRef.doc(bid), {memories: arrayUnion(snapshot)})
-            setNewId(snapshot.id)
-            console.log(snapshot)
+            window.location.href = `/bucket/${bid}/memory/${snapshot.id}`
         })
     };
 
@@ -172,7 +169,6 @@ const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
         const loadings = selected.map(item => 'loading')
         setPictureLoading(true)
         setPictureFiles(selected)
-        console.log(selected, pictures)
         setPictures([...pictures, ...loadings])
     };
         
@@ -180,11 +176,16 @@ const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
         setPictures(pictures.filter((item) => item !== pic));
     };
 
+    const getNewId = () => {
+        return newId;
+    }
+
     if(!memory) return null;
 
     return (
         <div className="memory">
             <MemoryForm
+                id={newId}
                 wish={wish}
                 memory={memory}
                 onSubmit={onSubmit}
@@ -195,7 +196,7 @@ const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
                 onSubmitPictures={onSubmitPictures}
                 handleChange={handleChange}
                 handleUpload={handleUpload}
-                newId={newId}
+                getNewId={getNewId}
             />
         </div>
     );
