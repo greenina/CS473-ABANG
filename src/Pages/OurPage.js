@@ -33,17 +33,22 @@ class Ourpage extends Component {
 
     }
     render(){
+        const inarrange ={
+            display : "flex", 
+            flexDirection: "column", 
+            alignItems:"center"
+        }
         return(
             <div>
+            <div style ={inarrange}>
             <DisplayImage/>
-            <div><h2>Ourpage</h2></div>
-            <h6>Group Name</h6>
-            <h4>{this.state.groupname}</h4>
-            <h6>Introduce our group</h6>
+            <img src = "/img/groupNameBox.png" style = {{position: 'relative',top:'-35px',left:'-36px'}}/> 
+            <h4 style = {{position: 'relative', 'z-index':'1', top:'-95px',left:'-36px'}}>{this.state.groupname}</h4>
             <h4>{this.state.introduce}</h4>
             <button><Link to = "/ourpage/edit">edit</Link></button>
             <Hash/>
             <button><Link to = "/ourpage/bucket"> bucket edit </Link></button>
+            </div>
             </div>
         )
     }
