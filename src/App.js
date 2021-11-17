@@ -13,6 +13,7 @@ import Vote from "./Pages/Vote";
 import Ourpage_Edit from './Pages/Ourpage_edit copy';
 import Bucket_Edit from "./component/bucket";
 import Bucketdata from "./component/bucketdata";
+import MakeVote from './Pages/MakeVote'
 
 import { db, storage } from "./firebase";
 
@@ -65,6 +66,7 @@ const App = () => {
         <Route path="/ourpage/bucket" element={<Bucket_Edit/>} />
         <Route path="/ourpage/bucketdata" element={<Bucketdata/>} />
         <Route path="/vote" element={<Vote/>} />
+        <Route path="/makevote" element={<MakeVote/>} />
       </Routes>
     </BrowserRouter>
   );

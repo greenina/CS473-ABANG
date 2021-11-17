@@ -4,8 +4,8 @@ import { arrayUnion, updateDoc } from "firebase/firestore";
 
 const ToDoForm = () =>{
 
-
-  const docRef = db.collection('group').doc('groupB');
+  const group = 'groupA'
+  const docRef = db.collection('group').doc(group);
 
   const [todo, setTodo] = useState()
   const [todo2, setTodo2] = useState()

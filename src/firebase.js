@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
+import 'firebase/compat/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyD0gBx7wsHSs0i2mNfFuOzimTNMvBrOzko",
@@ -13,7 +14,28 @@ const firebaseConfig = {
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
+firebase.firestore().enablePersistence();
+const auth = firebase.auth();
 const db = firebaseApp.firestore();
 const storage = firebase.storage();
 
-export {db, firebaseApp, firebase, storage};
+function SignIn() {
+  const signInWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
+  }
+  console.log('provider');
+  return (
+    <button onClick = {signInWithGoogle}>Sign in with google.</button>
+  )
+}
+
+function SignOut() {
+  return auth.currentUser && (
+    <button onClick = {() => auth.signOut()}>Sign Out</button>
+  )
+}
+
+export {db, firebaseApp, firebase, storage, auth, SignIn, SignOut};
+
+
