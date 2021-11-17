@@ -91,8 +91,9 @@ const VoteBox = (props) => {
   }
 
   return (
-    <div id="vote_box">
-      <h1 id="vote_title">{voteName}</h1>
+    <div style={{width:"654px", height:"1036px"}}>
+    <div id="vote_box" style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#F4CCCC"}}>
+      <h1 id="vote_title" style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#F4CCCC",color:"#DC8484",textAlign:"center"}}>{voteName}</h1>
       <FormGroup>
         {wishes.map((wish, i)=>{
           const changeChecked = () =>{
@@ -117,7 +118,7 @@ const VoteBox = (props) => {
             console.log("comment2",comment)
           }
           return (
-            <div>
+            <div style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#F2E1E1",color:"#E7A1A1"}}>
               <FormControlLabel 
                 control=
                 {<Checkbox 
@@ -126,15 +127,19 @@ const VoteBox = (props) => {
                 />} 
                 label={wish} />
               {checked[i]?<div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>:<div></div>}
-              <input onChange = {submitComment}/>
+              <div style={{width:"5vw",margin: "15px 15px 15px 15px"}}><input onChange = {submitComment}/></div>
             </div>
           )
         })}
       </FormGroup>
-      <button  onClick={Submit}>VOTE</button>
-      <button  onClick={getResult}>RESULT</button>
-      
+      <div style={{float:"left"}}>
+      <button  onClick={Submit} style={{width:"10vw",height:"auto",backgroundColor:"#EAAEAE", color:"#FDFCF7",borderWidth:0,
+      boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px", padding:5, margin: "15px 15px 15px 15px", justifyContent:"center"}}>VOTE</button>
+      <button  onClick={getResult} style={{width:"10vw", height:"auto",backgroundColor:"#EAAEAE", color:"#FDFCF7",borderWidth:0,
+      boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px", padding:5, margin: "15px 15px 15px 15px", justifyContent:"center"}}>RESULT</button>
+      </div>
       <div>{result}</div>
+    </div>
     </div>
   );
 };

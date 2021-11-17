@@ -1,7 +1,22 @@
-#vote_title{
-
+input[type=range] { 
+    overflow: hidden;
+    width:600px; 
+    -webkit-appearance: none; 
+    background-color:#E0E0E0; 
 }
-/* #vote_box{
-    background-color: #F4CCCC;
-    height: 80%;
-} */
+
+input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    height: 1px;
+    width: 1px;
+    border-radius: 1px;
+    background:#EDF4C0;
+    box-shadow: -650px 0 0 650px #EDF4C0;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+    height: 10px;
+    -webkit-appearance: none;
+    color: #011412;
+  }
+
