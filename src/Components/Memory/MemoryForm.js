@@ -27,7 +27,7 @@ const { bid } = useParams();
 const [title, setTitle] = useState(memory.title);
 const [date, setDate] = useState(memory.date);
 const [text, setText] = useState(memory.text);
-const [comments, setComments] = useState(memory.comments);
+const [comments, setComments] = useState(memory.comments ? memory.comments : []);
 
 const [comment, setComment] = useState(memory.comments && memory.comments.find(x => x.name === user) ? memory.comments.find(x => x.name === user).comment : "");
 
@@ -43,6 +43,7 @@ useEffect(() => {
     }
   }))
   if(!exists) setComments([...comments, { name: user, comment: "" }])
+  console.log(comment)
 }, [comment])
 
 const handleTitleChange = (event) => {

@@ -22,66 +22,6 @@ async function uploadImageFile(files, storageRef) {
 
     const downloadURLs = await Promise.all(promises);
     return downloadURLs;
-
-
-
-    // if (!files) return null;
-    // const promises = files.map((file) => {
-    //     console.log(file)
-    //     const ref = storageRef.child(`photos${file.name}`);
-    //     console.log(ref)
-    //     const storage = getStorage();
-    //     const metadata = {
-    //         contentType: 'image/jpeg'
-    //     };
-    //     // const imgRef = ref(storage, 'images/' + file.name);
-    //     const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-    //     uploadTask.on('state_changed',
-    //         (snapshot) => {
-    //         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    //         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //         console.log('Upload is ' + progress + '% done');
-    //         switch (snapshot.state) {
-    //             case 'paused':
-    //             console.log('Upload is paused');
-    //             break;
-    //             case 'running':
-    //             console.log('Upload is running');
-    //             break;
-    //         }
-    //         }, 
-    //         (error) => {
-    //         // A full list of error codes is available at
-    //         // https://firebase.google.com/docs/storage/web/handle-errors
-    //         switch (error.code) {
-    //             case 'storage/unauthorized':
-    //             // User doesn't have permission to access the object
-    //             break;
-    //             case 'storage/canceled':
-    //             // User canceled the upload
-    //             break;
-        
-    //             // ...
-        
-    //             case 'storage/unknown':
-    //             // Unknown error occurred, inspect error.serverResponse
-    //             break;
-    //         }
-    //         }, 
-    //         () => {
-    //         // Upload completed successfully, now we can get the download URL
-    //         return getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //             console.log('File available at', downloadURL);
-    //         });
-    //     })
-
-
-        // console.log(ref)
-        // return ref.set(file).then(() => ref.getDownloadURL());
-    // });
-
-    // const downloadURLs = await Promise.all(promises);
-    // return downloadURLs;
 }
 
 const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
@@ -124,7 +64,7 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
     }, [pictureLoading, pictureFiles, storageRef])
 
     const handleChange = (e) => {
-        // console.log(e.target.files)
+        console.log(e.target.files)
         if(e.target.files) {
             setPictures(e.target.files);
         }
@@ -170,7 +110,7 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
             pictures: pictures,
             comments,
         };
-        // console.log(newMemory)
+        console.log(newMemory)
         await memoryRef.doc(id).set(newMemory);
         await window.location.replace(`/bucket/${bid}/memory/${id}`)
     };

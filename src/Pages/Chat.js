@@ -1,10 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 
 
-const Chat = () => {
+
+
+function Chat() {
+
+
   return (
-    <div>This is Chat</div>
+    <div className="Chat">
+      This is Chat
+    </div>
   );
-};
+}
+
+
 
 export default Chat;

@@ -10,12 +10,13 @@ import MemoryEdit from "./Pages/MemoryEdit";
 import Chat from "./Pages/Chat";
 import OurPage from "./Pages/OurPage";
 import Vote from "./Pages/Vote";
+import Ourpage_Edit from './Pages/Ourpage_edit copy';
+import Bucket_Edit from "./component/bucket";
+import Bucketdata from "./component/bucketdata";
 
 import { db, storage } from "./firebase";
 
-
 const App = () => {
-
   const [bucketRef, setBucketRef] = useState('bucket');
   const [memoryRef, setMemoryRef] = useState('memories');
   // db.collection('wishes').doc('0zcwkyqNN2MFDtY7IRyi').onSnapshot(snapshot => console.log(snapshot))
@@ -60,6 +61,9 @@ const App = () => {
 
         <Route path="/chat" element={<Chat/>}/>
         <Route path="/ourpage" element={<OurPage/>} />
+        <Route path="/ourpage/edit" element={<Ourpage_Edit/>} /> //Ourpage_edit copy
+        <Route path="/ourpage/bucket" element={<Bucket_Edit/>} />
+        <Route path="/ourpage/bucketdata" element={<Bucketdata/>} />
         <Route path="/vote" element={<Vote/>} />
       </Routes>
     </BrowserRouter>
