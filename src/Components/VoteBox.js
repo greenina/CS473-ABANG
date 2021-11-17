@@ -40,8 +40,8 @@ const VoteBox = (props) => {
         vote[voteIndex].options.map((i, index)=>{
           i.indiv.map((e, j)=>{
             if(e.email == email){
-              i.indiv[j].value = parseInt(Array.from(value, item => typeof item === 'undefined' ? 0 : item)[index]) 
-              i.indiv[j].comment = Array.from(comment, item => typeof item === 'undefined' ? 0 : item)[index]
+              i.indiv[j].value = parseInt(Array.from(value, item => (typeof item === 'undefined') || isNaN(item) ? 0 : item)[index]) 
+              i.indiv[j].comment = Array.from(comment, item => (typeof item === 'undefined') || isNaN(item) ? "" : item)[index]
             }
           })  
         })
