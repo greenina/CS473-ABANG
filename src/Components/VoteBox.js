@@ -7,6 +7,7 @@ import {db} from '../firebase'
 import { arrayUnion, updateDoc } from "firebase/firestore";
 import { connect } from 'react-redux';
 import './VoteBox.css'
+import {useParams} from 'react-router-dom'
 
 
 const mapStateToProps = state =>({
@@ -14,12 +15,14 @@ const mapStateToProps = state =>({
 })
 
 const VoteBox = (props) => {
+
+  const params = useParams()
   
   const [wishes, setWishes] = useState([])
   const [checked, setChecked] = useState([])
   const [value, setValue] = useState([])
   const [comment, setComment] = useState([])
-  const voteIndex  = props.index //will have to give by props
+  const voteIndex  = params.id //will have to give by props usePrams
   const email = "kaist.helloworld@gmail.com" //will have to get by auth.currentUser.email
   const group = "groupZ" //will have to get 
   const [result, setResult] = useState([])

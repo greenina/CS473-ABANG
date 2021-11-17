@@ -10,6 +10,8 @@ import firebase from 'firebase/compat/app';
 
 const MakeVote = (props)=>{
 
+    const docRef = db.collection('group').doc('groupZ')
+
     const user = useAuthState(auth);
     // const email = auth.currentUser.email
     const [options, setOptions] = useState([])
@@ -17,6 +19,7 @@ const MakeVote = (props)=>{
     const [title, setTitle] = useState("")
     const [users, setUsers] = useState([])
     const [vote, setVote] = useState()
+    const [length, setLength] = useState()
 
     useEffect(()=>{
         console.log("AUTH",auth)
@@ -28,13 +31,14 @@ const MakeVote = (props)=>{
             console.log("DATA",doc.data())
             setOptions(doc.data().bucket.map(i=>i.text))
             setUsers(doc.data().friends.map(i=>i.email))
+            setLength(doc.data().vote.length)
         })
     },[])
     useEffect(()=>{
         setChecked(Array(options.length).fill(false))
     },options)
 
-    const Submit = () => {
+    const Submit = async () => {
         const newVote = {
             createdAt: Date.now(),
             name:title,
@@ -51,19 +55,22 @@ const MakeVote = (props)=>{
                     }
                 })
             }
-            })
+            }),
+            index:length
         }
-        db.collection('message2').add({
+        await db.collection('message2').add({
             isText:false,
             text: newVote,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             email:auth.currentUser.email,
             photoURL: auth.currentUser.photoURL
         })
-        console.log("newvote2",newVote)
 
-        updateDoc(db.collection('group').doc('groupZ'), {vote:arrayUnion(newVote)})
+        await updateDoc(db.collection('group').doc('groupZ'), {vote:arrayUnion(newVote)})
+        window.location.href = "/chat"
+        
     }
+
 
     const submitTitle = (e) =>{
                     setTitle(e.target.value)
