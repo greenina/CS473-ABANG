@@ -20,7 +20,7 @@ const Vote = () =>{
       {Array.from(Array(n).keys()).map(vote =>{
         console.log(Array(n))
         console.log("vote",vote)
-        return <VoteBox index={vote}/>
+        return <VoteBox  index={vote}/>
       })}
       {/* <MakeVote/> */}
     </div>

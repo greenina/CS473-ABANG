@@ -52,6 +52,29 @@ export default function PlaygroundSpeedDial() {
     setHidden(event.target.checked);
   };
 
+  const clickVote = (e) =>{
+    window.location.href="/makevote"
+  }
+  const clickHome = (e) =>{
+    window.location.href="/main"
+  }
+  const clickWishlist = (e) =>{
+    window.location.href="/bucket"
+  }
+
+  const clickHandler = (name) =>{
+    switch(name){
+      case 'Vote':
+        return clickVote
+      case 'Home':
+        return clickHome
+      case 'Wishlist':
+        return clickWishlist
+      default:
+        console.log("not matched")
+    }
+  }
+
   return (
     <div sx={{ height: 330, transform: 'translateZ(0px)', flexGrow: 1 }}>
       <Backdrop open={open} />
@@ -74,7 +97,7 @@ export default function PlaygroundSpeedDial() {
               tooltipTitle={action.name}
               style={{margin:0}}
               tooltipOpen
-              onClick={handleClose}
+              onClick={clickHandler(action.name)}
             />
           ))}
         </StyledSpeedDial>

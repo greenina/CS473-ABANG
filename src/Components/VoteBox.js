@@ -5,6 +5,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import {db} from '../firebase'
 import { arrayUnion, updateDoc } from "firebase/firestore";
+import { connect } from 'react-redux';
+import './VoteBox.css'
+
+
+const mapStateToProps = state =>({
+  email : state.counter.email
+})
 
 const VoteBox = (props) => {
   
@@ -18,6 +25,8 @@ const VoteBox = (props) => {
   const [result, setResult] = useState([])
   const [show, setShow] = useState(false)
   const [voteName, setVoteName] = useState("")
+  const {userEmail} = props
+  console.log("userEmail", userEmail)
 
   const Submit = () =>{
     db.collection('group')
@@ -28,14 +37,18 @@ const VoteBox = (props) => {
         vote[voteIndex].options.map((i, index)=>{
           i.indiv.map((e, j)=>{
             if(e.email == email){
-              i.indiv[j].value = parseInt(value[index]) 
-              i.indiv[j].comment = comment[index]
+              i.indiv[j].value = parseInt(Array.from(value, item => typeof item === 'undefined' ? 0 : item)[index]) 
+              i.indiv[j].comment = Array.from(comment, item => typeof item === 'undefined' ? 0 : item)[index]
             }
           })  
         })
         console.log("vote2",vote)
         updateDoc(db.collection('group').doc(group),{vote:vote})
       })
+  }
+
+  const eventHandler = (e) =>{
+    console.log("HANDLER", e.target.value)
   }
   
   useEffect(()=>{
@@ -68,15 +81,15 @@ const VoteBox = (props) => {
         })
         return sum
       })
-      setResult(result)
-      console.log("RES",result)
+      setResult(result.map(e=>e.toString()+" "))
+      console.log("RES",result.map(e=>e.toString()+" "))
     })
     setShow(true)
   }
 
   return (
-    <div>
-      <h1>{voteName}</h1>
+    <div id="vote_box">
+      <h1 id="vote_title">{voteName}</h1>
       <FormGroup>
         {wishes.map((wish, i)=>{
           const changeChecked = () =>{
@@ -97,7 +110,7 @@ const VoteBox = (props) => {
             console.log("SUBMITCOMMENT")
             var arr = [...comment]
             arr[i] = e.target.value
-            setComment(Array.from(arr, item => typeof item === 'undefined' ? 0 : item))
+            setComment(Array.from(arr, item => typeof item === 'undefined' ? "" : item))
             console.log("comment2",comment)
           }
           return (
@@ -109,7 +122,7 @@ const VoteBox = (props) => {
                   onChange={changeChecked}
                 />} 
                 label={wish} />
-              {checked[i]?<input type="number" onChange={submitValue}/>:<div></div>}
+              {checked[i]?<div><input type="number" onChange={submitValue}/><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>:<div></div>}
               <input onChange = {submitComment}/>
             </div>
           )
@@ -117,9 +130,10 @@ const VoteBox = (props) => {
       </FormGroup>
       <button  onClick={Submit}>VOTE</button>
       <button  onClick={getResult}>RESULT</button>
+      
       <div>{result}</div>
     </div>
   );
 };
 
-export default VoteBox;
+export default connect(mapStateToProps)(VoteBox);
