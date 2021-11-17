@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-
+import {auth} from '../../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth';
 //TBD
-const user = "Shinung"
+
 
 function CommentItem({ name, comment }) {
     return (<div>{name}: <span style={{ fontWeight: "normal" }}>{comment}</span></div>)
@@ -26,7 +27,8 @@ function CommentEdit({ name, comment, handleCommentChange }) {
 
 export default function CommentList({ comments, old_comment, handleCommentChange }) {
     var exists = false
-
+    const user = useAuthState(auth)?auth.currentUser.displayName:"ABANG"
+    console.log("AAAA",auth.currentUser)
     if(!comments && !handleCommentChange) return <div style={{ fontStyle: "italic", fontWeight: "normal" }}>No comments yet!</div>;
 
     return (

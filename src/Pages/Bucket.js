@@ -33,7 +33,7 @@ const BucketItem = ({ bid, item }) => {
     return (
         <div>
             <div>text: { item.data.text }</div>
-            <Link to={`/bucket/${item.data.text}/memory/add`}>Add</Link>
+            <Link to={`/bucket/${item.id}/memory/add`}>Add</Link>
             <MemoryList bucket={item.data.text} memories={item.data.memories} />
         </div>
     );

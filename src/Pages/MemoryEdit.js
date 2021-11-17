@@ -13,6 +13,8 @@ import { ImageList } from "@material-ui/core";
 
 import "../Components/Memory/Memory.css"
 
+const group = "groupB"
+
 async function uploadImageFile(files, storageRef) {
     if (!files) return null;
     const promises = files.map((file) => {
@@ -27,12 +29,17 @@ async function uploadImageFile(files, storageRef) {
 const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
     const { bid, id } = useParams();
     const [wish, setWish] = useState(null);
+    const [bucket, setBucket] = useState(null);
     const [memory, setMemory] = useState(null);
     const [pictures, setPictures] = useState(null);
     const [urls, setUrl] = useState(null);
     const [pictureLoading, setPictureLoading] = useState(false);
     const [pictureFiles, setPictureFiles] = useState(false);
     const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        bucketRef.doc(bid).get().then(s => setBucket(s.data()))
+    }, [bid])
 
     useEffect(() => {
         if(!memoryRef) return;
@@ -128,12 +135,13 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
     };
 
     if(!memory) return null;
+    if(!bucket) return null
 
     return (
         <div className="memory">
             <Link to={`/bucket/${bid}/memory/${id}`} className="close-button"><img src={closeButton} width="100%" /></Link>
             <div className="header">Our Bucket list</div>
-            <div className="memory-bucket">{ bid }</div>
+            <div className="memory-bucket">{ bucket.text }</div>
             <div className="memory-container">
                 <MemoryForm
                     id={id}

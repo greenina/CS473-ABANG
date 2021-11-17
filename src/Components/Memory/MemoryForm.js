@@ -2,13 +2,16 @@ import { NoMeetingRoomSharp } from "@material-ui/icons";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import {auth} from '../../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import PhotoUploader from "./PhotoUploader";
 import PictureList from "./PictureList";
 import CommentList from "./CommentList";
 
 //TBD
-const user = "Shinung"
+
+
 
 export default function MemoryForm({
   id,
@@ -23,6 +26,7 @@ export default function MemoryForm({
   handleUpload,
 }) {
 // console.log(memory);
+const user = useAuthState(auth)?auth.currentUser.displayName:"ABANG"
 const { bid } = useParams();
 const [title, setTitle] = useState(memory.title);
 const [date, setDate] = useState(memory.date);

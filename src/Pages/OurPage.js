@@ -15,11 +15,10 @@ const Ourpage = () =>{
         .doc("groupZ")
         .get()
         .then(doc => {
-            if(doc.exists){
+            if(doc.exists && doc.data().info){
                 setName(doc.data().info.groupName)
                 setIntro(doc.data().info.groupIntroduce)
             }
-            
         });
     },[])
     const inarrange ={

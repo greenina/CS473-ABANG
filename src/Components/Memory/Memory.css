@@ -15,6 +15,109 @@
     margin-bottom: 20px;
 }
 
+.scrolllist-container {
+    text-align: center;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    position: relative;
+    padding: 15px;
+    background-color: var(--paleblue);
+    border-radius: 10px;
+    height: calc(100vh - 140px);
+}
+
+.arrow {
+    height: 20px;
+}
+
+.bucket-container {
+    /* border: solid 1px red; */
+    margin-bottom: 10px;
+    height: calc(100vh - 250px);
+    overflow: scroll;
+    color: var(--browntext);
+    margin: 10px;
+}
+
+.bucket-item {
+    position: relative;
+    background-color: var(--lightgray);
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    margin: 10px 0;
+    padding: 10px;
+    text-align: left;
+    z-index: 5;
+}
+
+.bucket-item input {
+    display: inline-block;
+    box-shadow: none;
+    background-color: none;
+    border: none;
+    vertical-align: middle;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.bucket-item .icon-group {
+    background-color: none;
+    border: none;
+    float: right;
+    vertical-align: middle;
+    height: 30px;
+}
+
+.bucket-item .icon {
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0 10px;
+    height: 30px;
+}
+
+.bucket-item img {
+    /* height: 100%; */
+}
+
+.bucket-input {
+    text-align: left;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.bucket-input input {
+    width: calc(100% - 110px);
+    height: 30px;
+}
+
+.bucket-input button, .memory-list button {
+    border: none;
+    background-color: var(--lightgray);
+    width: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--browntext);
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 10px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+    /* float: right; */
+}
+
+.memory-list {
+    position: relative;
+    background-color: var(--lightgray);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    margin-top: -15px;
+    padding: 10px;
+    padding-top: 20px;
+    text-align: left;
+    z-index: 0;
+    text-align: center;
+}
+
+
+
 .memory-bucket {
     position: relative;
     text-align: center;
