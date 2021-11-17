@@ -1,4 +1,4 @@
-.scrolllist-container {
+.main .scrolllist-container {
     display: inline-block;
     width: calc(100% - 40px);
     color: var(--purpletext);
@@ -7,7 +7,7 @@
     border-radius: 10px;
 }
 
-.scrolllist-item {
+.main .scrolllist-item {
     position: relative;
     width: calc(100% - 20px);
     background-color: var(--gray);
@@ -16,7 +16,7 @@
     padding: 10px;
 }
 
-.scrolllist-arrow {
+.main .scrolllist-arrow {
     position: relative;
     left: 50%;
     height: 20px;
@@ -24,7 +24,7 @@
     padding-top: 10px;
 }
 
-.scrolllist-item img {
+.main .scrolllist-item img {
     vertical-align: middle;
     position: relative;
     float: right;
