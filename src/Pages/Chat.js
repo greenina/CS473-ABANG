@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import '../styles/chatDesign.css';
 import SpeedDial from '../styles/speedDial';
 
@@ -28,7 +28,7 @@ function Chat() {
 
 function ChatRoom() {
   //const groupZelongTo = firestore.collection('group').whereField('friends', isEqual)  
-  const messagesRef = db.collection('messages');
+  const messagesRef = db.collection('message2');
   const query = messagesRef.orderBy('createdAt').limit(25);
 
   const [messages] = useCollectionData(query, {idField: 'id'});
@@ -37,16 +37,22 @@ function ChatRoom() {
 
   const sendMessage = async(e) => {
     e.preventDefault();
-    const { uid, photoURL } = auth.currentUser;
+    const { email, photoURL } = auth.currentUser;
     await messagesRef.add({
+      isText:true,
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
+      email,
       photoURL 
     })
 
     setFormValue('');
   }
+
+  useEffect(()=>{
+    console.log("VALUE",formValue)
+    console.log("user",auth.currentUser)
+  },[formValue])
 
   return (
     <>
@@ -72,15 +78,15 @@ function ChatRoom() {
 }
 
 function ChatMessage(props) {
-  const { text, uid, photoURL } = props.message;
+  const { isText, text, email, photoURL } = props.message;
 
-  const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+  const messageClass = email === auth.currentUser.email ? 'sent' : 'received';
   
   if(messageClass ==='sent'){
     return (
     <div>
       <div className = {'message ${messageClass}'} style={{display:"flex", justifyContent:"flex-end", alignItems:"center"}}>
-      <p class="msg-box" style={{backgroundColor:"#FFFFFF"}}>{text}</p>
+      <p class="msg-box" style={{backgroundColor:"#FFFFFF"}}>{isText?text:<button>{text.name}</button>}</p>
       <img class="user-img" src = {photoURL} />
     </div>
     </div>

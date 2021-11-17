@@ -6,6 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import {db, auth} from '../firebase'
 import { arrayUnion, updateDoc } from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import firebase from 'firebase/compat/app';
 
 const MakeVote = (props)=>{
 
@@ -15,6 +16,7 @@ const MakeVote = (props)=>{
     const [checked, setChecked] = useState([])
     const [title, setTitle] = useState("")
     const [users, setUsers] = useState([])
+    const [vote, setVote] = useState()
 
     useEffect(()=>{
         console.log("AUTH",auth)
@@ -51,8 +53,15 @@ const MakeVote = (props)=>{
             }
             })
         }
-
+        db.collection('message2').add({
+            isText:false,
+            text: newVote,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            email:auth.currentUser.email,
+            photoURL: auth.currentUser.photoURL
+        })
         console.log("newvote2",newVote)
+
         updateDoc(db.collection('group').doc('groupZ'), {vote:arrayUnion(newVote)})
     }
 
