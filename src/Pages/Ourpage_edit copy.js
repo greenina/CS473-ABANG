@@ -19,7 +19,7 @@ class Ourpage_Edit extends Component {
 
 }
 function GroupInfo(){
-    const docRef = db.collection('group').doc("groupA");
+    const docRef = db.collection('group').doc("groupB");
     const [groupname, setGroupName]=useState("");
     const [introduce, setIntroduce]=useState("");
     useEffect(()=>{

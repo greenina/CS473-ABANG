@@ -19,7 +19,7 @@ class Bucketdata extends Component {
     // };
     // render(){
     //     const { whitebox, greenbox } = this.state;
-    //     const docRef = db.collection('group').doc('groupA');
+    //     const docRef = db.collection('group').doc('groupB');
     //     const arr = [];
     //     docRef.get()
     //     .then(function(querySnapshot){

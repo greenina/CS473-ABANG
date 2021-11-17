@@ -12,14 +12,13 @@ const Ourpage = () =>{
 
     useEffect(()=>{
         db.collection("group")
-        .doc("groupA")
+        .doc("groupB")
         .get()
         .then(doc => {
-            if(doc.exists){
+            if(doc.exists && doc.data().info){
                 setName(doc.data().info.groupName)
                 setIntro(doc.data().info.groupIntroduce)
             }
-            
         });
     },[])
     const inarrange ={

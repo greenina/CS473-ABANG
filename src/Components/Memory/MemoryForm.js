@@ -8,7 +8,7 @@ import PictureList from "./PictureList";
 import CommentList from "./CommentList";
 
 //TBD
-const user = "Shinung"
+const user = "ABANG"
 
 export default function MemoryForm({
   id,

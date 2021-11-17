@@ -8,12 +8,12 @@
 .navbar-item {
     display: inline-block;
     width: calc(100% / 3);
-    height: 100%;
+    height: calc(100% - 15px);
     text-align: center;
     /* vertical-align: middle; */
     /* justify-content: center; */
     /* align-items: center; */
-    padding: 15px 0 5px;
+    padding: 10px 0 5px;
 }
 
 .navbar-item img {

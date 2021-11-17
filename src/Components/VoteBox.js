@@ -21,7 +21,7 @@ const VoteBox = (props) => {
   const [comment, setComment] = useState([])
   const voteIndex  = props.index //will have to give by props
   const email = "kaist.helloworld@gmail.com" //will have to get by auth.currentUser.email
-  const group = "groupA" //will have to get 
+  const group = "groupB" //will have to get 
   const [result, setResult] = useState([])
   const [show, setShow] = useState(false)
   const [voteName, setVoteName] = useState("")

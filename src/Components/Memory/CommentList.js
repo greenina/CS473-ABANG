@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 //TBD
-const user = "Shinung"
+const user = "ABANG"
 
 function CommentItem({ name, comment }) {
     return (<div>{name}: <span style={{ fontWeight: "normal" }}>{comment}</span></div>)

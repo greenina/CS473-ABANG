@@ -28,6 +28,7 @@ async function uploadImageFile(files, storageRef) {
 
 const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
     const { bid } = useParams();
+    const [bucket, setBucket] = useState(null);
     const [newId, setNewId] = useState(null);
     const [wish, setWish] = useState(null);
     const [memory, setMemory] = useState({
@@ -38,6 +39,10 @@ const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
     const [pictureLoading, setPictureLoading] = useState(false);
     const [pictureFiles, setPictureFiles] = useState(false);
     const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        bucketRef.doc(bid).get().then(s => setBucket(s.data()))
+    }, [bid])
 
     useEffect(() => {
         async function fetchPicture() {
@@ -125,12 +130,13 @@ const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
     }
 
     if(!memory) return null;
+    if(!bucket) return null
 
     return (
         <div className="memory">
-            <Link to={`/bucket`} className="close-button"><img src={closeButton} width="100%" /></Link>
+            <Link to={`/ourpage/bucket`} className="close-button"><img src={closeButton} width="100%" /></Link>
             <div className="header">Our Bucket list</div>
-            <div className="memory-bucket">{ bid }</div>
+            <div className="memory-bucket">{ bucket.text }</div>
             <div className="memory-container">
                 <MemoryForm
                     id={newId}

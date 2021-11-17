@@ -13,7 +13,7 @@ const GroupName = () => {
         height:"36px"
     }
     const submit = () => {
-        groupRef.doc("groupA").set({info:{groupName:groupname}});
+        groupRef.doc("groupB").set({info:{groupName:groupname}});
     }
 
     db.collection('group')

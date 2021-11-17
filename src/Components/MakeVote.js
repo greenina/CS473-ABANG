@@ -16,7 +16,7 @@ const MakeVote = (props)=>{
 
     useEffect(()=>{
         db.collection('group')
-        .doc('groupA')
+        .doc('groupB')
         .get()
         .then(doc =>{
             setOptions(doc.data().buckets.map(i=>i.text))
@@ -58,7 +58,7 @@ const MakeVote = (props)=>{
         //     }]
         // }
         console.log("newvote2",newVote)
-        updateDoc(db.collection('group').doc('groupA'), {vote:arrayUnion(newVote)})
+        updateDoc(db.collection('group').doc('groupB'), {vote:arrayUnion(newVote)})
     }
 
     const submitTitle = (e) =>{

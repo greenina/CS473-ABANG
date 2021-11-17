@@ -20,7 +20,7 @@ const MakeVote = (props)=>{
         console.log("AUTH",auth)
         // console.log("USER",auth.currentUser.email)
         db.collection('group')
-        .doc('groupA')
+        .doc('groupB')
         .get()
         .then(doc =>{
             setOptions(doc.data().bucket.map(i=>i.text))
@@ -52,7 +52,7 @@ const MakeVote = (props)=>{
         }
 
         console.log("newvote2",newVote)
-        updateDoc(db.collection('group').doc('groupA'), {vote:arrayUnion(newVote)})
+        updateDoc(db.collection('group').doc('groupB'), {vote:arrayUnion(newVote)})
     }
 
     const submitTitle = (e) =>{

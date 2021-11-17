@@ -97,7 +97,7 @@ export default function PictureList({ pictures, removePicture, isEditing }) {
         onClick={() => console.log(pic)}
         
         >
-          <img src={pic} alt="loading" />}
+          <img src={pic} alt="loading" />
           {isEditing && (
             <GridListTileBar
               classes={{
