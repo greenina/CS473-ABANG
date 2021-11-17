@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
     height: 100%;
     width: 100%;
@@ -12,7 +12,7 @@ body {
   align-items: center;
   justify-content: center;
     flex-direction: column;
-}
+} */
 ::-webkit-scrollbar {
   width: 4px;
 }
