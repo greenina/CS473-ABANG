@@ -1,7 +1,32 @@
 import React, { useState } from "react";
 
+import {
+    Button,
+    IconButton,
+    Theme,
+    Tooltip,
+    makeStyles,
+  } from "@material-ui/core";
+
+import PhotoCamera from '@material-ui/icons/AddAPhoto';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+    input: {
+      display: "none",
+    },
+    photoSelector: {
+      color: "var(--browntext)",
+    },
+  }));
+
 export default function PhotoUploader({ urls, progress, handleChange, handleUpload, onSubmit }) {
   const [isLoading, setLoading] = useState(false);
+  const classes = useStyles();
 
   const readImage = (file) => {
     return new Promise((rs, rj) => {
@@ -31,18 +56,27 @@ export default function PhotoUploader({ urls, progress, handleChange, handleUplo
   };
 
   return (
-    <div>
-        <progress value={progress} max="100" />
-        <input
-            accept="image/jpeg"
-            id="photoSelector"
-            type="file"
-            multiple
-            onChange={handleSubmit}
-        />
-        {/* <button onClick={handleUpload}>Upload</button> */}
-        {urls ? urls.map(url => <div>{url}</div>) : null}
-        <img src={urls} alt="" />
-    </div>
+    <>
+      <input
+        accept="image/jpeg"
+        className={classes.input}
+        id="photoSelector"
+        type="file"
+        multiple
+        onChange={handleSubmit}
+      />
+      <Tooltip title="Select Image">
+        <label htmlFor="photoSelector">
+          <IconButton
+            className={classes.photoSelector}
+            aria-label="upload picture"
+            component="span"
+          >
+            <PhotoCamera fontSize="medium" />
+          </IconButton>
+        </label>
+        
+      </Tooltip>
+    </>
   );
 }
