@@ -27,15 +27,13 @@ class DisplayImage extends Component {
 
   render() {
     return (
-      <div>
-        <div>
           <div>     
             <img src={this.state.image} height='300px'/>
-            <label for = "input-file"><img src = {'/img/edit_button.png'} height='70px' style = {{position: 'relative', 'z-index':'1',top:"-220px",left:"-90px"}}/></label>
+            <label for = "input-file">
+              <img src = {'/img/edit_button.png'} height='70px' style = {{position: 'relative', 'z-index':'1',top:"-220px",left:"-90px"}}/>
+            </label>
             <input type="file" id="input-file" name="myImage" onChange={this.onImageChange} style={{display : "none"}} />
           </div>
-        </div>
-      </div>
     );
   }
 }

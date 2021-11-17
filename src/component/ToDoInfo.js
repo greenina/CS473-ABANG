@@ -5,7 +5,9 @@ import {doc, getDoc} from "firebase/firestore";
 import { arrayRemove, updateDoc } from "firebase/firestore";
 const ToDoInfo = (props) =>{
 
-
+  useEffect(()=>{
+    console.log("props!!",props.data)
+  },[])
   const [lock, setLock] = useState(props.data.isLock)
   const [todo, setTodo] = useState(props.data.text)
   const [toggle, setToggle] = useState(false)
@@ -64,16 +66,20 @@ const ToDoInfo = (props) =>{
               e.isDone = !e.isDone
             }
           })
-          docRef.set({bucket:data})
         }
         )
   }
   const handleRemove = () =>{
     docRef.get().then(doc => {
       if(doc.exists){
-        const newBucket = doc.data().bucket.filter(e => e.text != todo)
+        const newBucket = doc.data().bucket.filter(e => {
+          console.log("e.text",e.text)
+          console.log("todo",todo)
+          return e.text != todo
+        })
         console.log("BUCKET",newBucket)
         updateDoc(docRef, {bucket: newBucket});
+        props.refresh()
       }
     })
     

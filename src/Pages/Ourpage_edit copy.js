@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {Route,Link} from 'react-router-dom';
 import {db} from '../firebase';
 import {doc, getDoc} from "firebase/firestore";
@@ -22,6 +22,18 @@ function GroupInfo(){
     const docRef = db.collection('group').doc("groupB");
     const [groupname, setGroupName]=useState("");
     const [introduce, setIntroduce]=useState("");
+    useEffect(()=>{
+        db.collection("group")
+        .doc("groupB")
+        .get()
+        .then(doc => {
+            if(doc.exists){
+                setGroupName(doc.data().info.groupName)
+                setIntroduce(doc.data().info.groupIntroduce)
+            }
+            
+        });
+    },[])
     const onGroupNameChange=(e) => {
         setGroupName(e.target.value)
     }
