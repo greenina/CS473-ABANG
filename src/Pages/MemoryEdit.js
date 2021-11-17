@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
+import closeButton from "../Icons/CloseButton.png"
 
 import MemoryForm from "../Components/Memory/MemoryForm"
 import { mockMemory } from "../Data/memory"
@@ -8,6 +10,8 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 
 import { db } from "../firebase";
 import { ImageList } from "@material-ui/core";
+
+import "../Components/Memory/Memory.css"
 
 async function uploadImageFile(files, storageRef) {
     if (!files) return null;
@@ -164,7 +168,7 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
             date,
             text,
             pictures: pictures,
-            // comments,
+            comments,
         };
         // console.log(newMemory)
         await memoryRef.doc(id).set(newMemory);
@@ -187,19 +191,24 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
 
     return (
         <div className="memory">
-            <MemoryForm
-                id={id}
-                wish={wish}
-                memory={memory}
-                onSubmit={onSubmit}
-                pictures={pictures}
-                urls={urls}
-                progress={progress}
-                removePicture={removePicture}
-                onSubmitPictures={onSubmitPictures}
-                handleChange={handleChange}
-                handleUpload={handleUpload}
-            />
+            <Link to={`/bucket/${bid}/memory/${id}`} className="close-button"><img src={closeButton} width="100%" /></Link>
+            <div className="header">Our Bucket list</div>
+            <div className="memory-bucket">{ bid }</div>
+            <div className="memory-container">
+                <MemoryForm
+                    id={id}
+                    wish={wish}
+                    memory={memory}
+                    onSubmit={onSubmit}
+                    pictures={pictures}
+                    urls={urls}
+                    progress={progress}
+                    removePicture={removePicture}
+                    onSubmitPictures={onSubmitPictures}
+                    handleChange={handleChange}
+                    handleUpload={handleUpload}
+                />
+            </div>
         </div>
     );
 };

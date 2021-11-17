@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
+import closeButton from "../Icons/CloseButton.png"
 
 import MemoryForm from "../Components/Memory/MemoryForm"
 import { mockMemory } from "../Data/memory"
@@ -11,6 +13,8 @@ import { ImageList } from "@material-ui/core";
 
 import { arrayUnion, updateDoc } from "firebase/firestore"
 
+import "../Components/Memory/Memory.css"
+
 async function uploadImageFile(files, storageRef) {
     if (!files) return null;
     const promises = files.map((file) => {
@@ -20,66 +24,6 @@ async function uploadImageFile(files, storageRef) {
 
     const downloadURLs = await Promise.all(promises);
     return downloadURLs;
-
-
-
-    // if (!files) return null;
-    // const promises = files.map((file) => {
-    //     console.log(file)
-    //     const ref = storageRef.child(`photos${file.name}`);
-    //     console.log(ref)
-    //     const storage = getStorage();
-    //     const metadata = {
-    //         contentType: 'image/jpeg'
-    //     };
-    //     // const imgRef = ref(storage, 'images/' + file.name);
-    //     const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-    //     uploadTask.on('state_changed',
-    //         (snapshot) => {
-    //         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    //         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //         console.log('Upload is ' + progress + '% done');
-    //         switch (snapshot.state) {
-    //             case 'paused':
-    //             console.log('Upload is paused');
-    //             break;
-    //             case 'running':
-    //             console.log('Upload is running');
-    //             break;
-    //         }
-    //         }, 
-    //         (error) => {
-    //         // A full list of error codes is available at
-    //         // https://firebase.google.com/docs/storage/web/handle-errors
-    //         switch (error.code) {
-    //             case 'storage/unauthorized':
-    //             // User doesn't have permission to access the object
-    //             break;
-    //             case 'storage/canceled':
-    //             // User canceled the upload
-    //             break;
-        
-    //             // ...
-        
-    //             case 'storage/unknown':
-    //             // Unknown error occurred, inspect error.serverResponse
-    //             break;
-    //         }
-    //         }, 
-    //         () => {
-    //         // Upload completed successfully, now we can get the download URL
-    //         return getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //             console.log('File available at', downloadURL);
-    //         });
-    //     })
-
-
-        // console.log(ref)
-        // return ref.set(file).then(() => ref.getDownloadURL());
-    // });
-
-    // const downloadURLs = await Promise.all(promises);
-    // return downloadURLs;
 }
 
 const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
@@ -87,7 +31,7 @@ const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
     const [newId, setNewId] = useState(null);
     const [wish, setWish] = useState(null);
     const [memory, setMemory] = useState({
-        text: "", title: "", date: "", pictures: []
+        text: "", title: "", date: "", pictures: [], comments: []
     });
     const [pictures, setPictures] = useState([]);
     const [urls, setUrl] = useState(null);
@@ -157,7 +101,7 @@ const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
             date,
             text,
             pictures: pictures,
-            // comments,
+            comments,
         };
         memoryRef.add(newMemory).then(snapshot => {
             updateDoc(bucketRef.doc(bid), {memories: arrayUnion(snapshot)})
@@ -184,20 +128,25 @@ const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
 
     return (
         <div className="memory">
-            <MemoryForm
-                id={newId}
-                wish={wish}
-                memory={memory}
-                onSubmit={onSubmit}
-                pictures={pictures}
-                urls={urls}
-                progress={progress}
-                removePicture={removePicture}
-                onSubmitPictures={onSubmitPictures}
-                handleChange={handleChange}
-                handleUpload={handleUpload}
-                getNewId={getNewId}
-            />
+            <Link to={`/bucket`} className="close-button"><img src={closeButton} width="100%" /></Link>
+            <div className="header">Our Bucket list</div>
+            <div className="memory-bucket">{ bid }</div>
+            <div className="memory-container">
+                <MemoryForm
+                    id={newId}
+                    wish={wish}
+                    memory={memory}
+                    onSubmit={onSubmit}
+                    pictures={pictures}
+                    urls={urls}
+                    progress={progress}
+                    removePicture={removePicture}
+                    onSubmitPictures={onSubmitPictures}
+                    handleChange={handleChange}
+                    handleUpload={handleUpload}
+                    getNewId={getNewId}
+                />
+            </div>
         </div>
     );
 };

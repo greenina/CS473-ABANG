@@ -1,8 +1,8 @@
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 
 import DeleteIcon from "@material-ui/icons/Delete";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
+import ImageList from "@material-ui/core/ImageList";
+import ImageListItem from "@material-ui/core/ImageListItem";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 // import Loading from "../Loading";
@@ -22,17 +22,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  hashtagGroup: {
-    display: "flex",
-    flexDirection: "row",
-  },
-
   title: {
-    color: theme.palette.primary.light,
+    color: "var(--browntext)",
   },
   titleBar: {
-    background:
-      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+    background: "rgba(0,0,0,0)",
   },
 
   gridList: {},
@@ -92,18 +86,18 @@ export default function PictureList({ pictures, removePicture, isEditing }) {
   const cellHeight = getGridListCellHeight(width);
 
   return (
-    <GridList
+    <ImageList
       cellHeight={cellHeight}
       className={classes.gridList}
       cols={cols}
       spacing={12}
     >
       {pictures.map((pic, index) => (
-        <GridListTile key={pic === 'loading' ? `loading${index}` : pic} className={classes.picture}
+        <ImageListItem key={pic === 'loading' ? `loading${index}` : pic} className={classes.picture}
         onClick={() => console.log(pic)}
         
         >
-          <img src={pic} alt="bike" />}
+          <img src={pic} alt="loading" />}
           {isEditing && (
             <GridListTileBar
               classes={{
@@ -120,8 +114,8 @@ export default function PictureList({ pictures, removePicture, isEditing }) {
               }
             />
           )}
-        </GridListTile>
+        </ImageListItem>
       ))}
-    </GridList>
+    </ImageList>
   );
 }

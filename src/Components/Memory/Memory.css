@@ -1,0 +1,110 @@
+.memory {
+    position: relative;
+    padding: 30px;
+    background-color: var(--purple);
+    /* width: 100%; */
+    min-height: calc(100vh - 60px);
+    line-height: 2em;
+}
+
+.memory .header {
+    text-align: center;
+    font-size: 18px;
+    color: var(--lightyellow);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.memory-bucket {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+    color: var(--browntext);
+    background-color: var(--darkgreen);
+    border-radius: 10px 10px 0 0;
+}
+
+.memory-container {
+    text-align: center;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    position: relative;
+    padding: 15px;
+    background-color: var(--lightgreen);
+    border-radius: 0 0 10px 10px;
+}
+
+.memory-content {
+    text-align: left;
+    position: relative;
+    padding: 20px;
+    background-color: var(--lightyellow);
+    color: var(--browntext);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.memory-content input, .memory-content textarea {
+    /* display: inline-block; */
+    background-color: var(--lightyellow);
+    color: var(--browntext);
+}
+
+.memory-content input {
+    width: calc(50% - 25px);
+}
+
+.memory-content textarea {
+    margin-top: 10px;
+    width: calc(100% - 20px);
+}
+
+.memory-text {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.memory .title {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.memory .date {
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    font-style: italic;
+}
+
+.memory .text {
+    width: 100%;
+}
+
+.memory-comments {
+    text-align: left;
+    color: var(--purpletext);
+    background-color: var(--lightpurple);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 15px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.memory-comments input {
+    /* display: inline-block; */
+    margin-left: 10px;
+    background-color: var(--lightpurple);
+    color: var(--purpletext);
+}
+
+.save-button {
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 10px;
+    background-color: var(--darkgreen);
+    color: var(--yellow);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 10px;
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.25));
+}

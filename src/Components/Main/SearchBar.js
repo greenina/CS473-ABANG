@@ -22,7 +22,7 @@ const SearchBar = ({item}) => {
         );
     }
     return (
-        <Link to="/main/search" className="searchbar-container">
+        <Link to="/main" className="searchbar-container">
             <div className="searchbar-placeholder">
                 Search for activity or group
             </div>

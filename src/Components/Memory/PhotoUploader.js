@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
     photoSelector: {
-      color: theme.palette.primary.main,
+      color: "var(--browntext)",
     },
   }));
 
@@ -56,19 +56,6 @@ export default function PhotoUploader({ urls, progress, handleChange, handleUplo
   };
 
   return (
-    // <div>
-    //     <progress value={progress} max="100" />
-    //     <input
-    //         accept="image/jpeg"
-    //         id="photoSelector"
-    //         type="file"
-    //         multiple
-    //         onChange={handleSubmit}
-    //     />
-    //     {/* <button onClick={handleUpload}>Upload</button> */}
-    //     {urls ? urls.map(url => <div>{url}</div>) : null}
-    //     <img src={urls} alt="" />
-    // </div>
     <>
       <input
         accept="image/jpeg"
@@ -85,8 +72,7 @@ export default function PhotoUploader({ urls, progress, handleChange, handleUplo
             aria-label="upload picture"
             component="span"
           >
-            {/* TODO 이미지 바꾸기 */}
-            <PhotoCamera fontSize="large" />
+            <PhotoCamera fontSize="medium" />
           </IconButton>
         </label>
         

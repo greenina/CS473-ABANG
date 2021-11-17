@@ -2,8 +2,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    /* height: 100px; */
-    background-color: white;
+    height: 70px;
 }
 
 .navbar-item {
@@ -14,7 +13,7 @@
     /* vertical-align: middle; */
     /* justify-content: center; */
     /* align-items: center; */
-    margin: auto;
+    padding: 15px 0 5px;
 }
 
 .navbar-item img {

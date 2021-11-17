@@ -15,6 +15,7 @@ import { db, storage } from "./firebase";
 
 
 const App = () => {
+
   const [bucketRef, setBucketRef] = useState('bucket');
   const [memoryRef, setMemoryRef] = useState('memories');
   // db.collection('wishes').doc('0zcwkyqNN2MFDtY7IRyi').onSnapshot(snapshot => console.log(snapshot))
