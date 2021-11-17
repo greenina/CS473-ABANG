@@ -70,12 +70,9 @@ const MakeVote = (props)=>{
         window.location.href = "/chat"
         
     }
-
-
     const submitTitle = (e) =>{
                     setTitle(e.target.value)
                 }
-
     return(
         <div>
             <FormGroup>

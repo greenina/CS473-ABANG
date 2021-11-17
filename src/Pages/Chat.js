@@ -95,7 +95,6 @@ function ChatMessage(props) {
   const messageClass = email === auth.currentUser.email ? 'sent' : 'received';
 
   
-  
   if(messageClass ==='sent'){
     return (
     <div>

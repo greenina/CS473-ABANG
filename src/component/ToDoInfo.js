@@ -83,7 +83,6 @@ const ToDoInfo = (props) =>{
         props.refresh()
       }
     })
-    
   }
   const changeIsLock = () => {
     setLock(!lock)
