@@ -8,7 +8,6 @@ import 'firebase/compat/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import {auth, db, SignIn} from '../firebase'
-import chatVote from '../component/chatVote'
 
 
 function Chat() {
@@ -78,23 +77,33 @@ function ChatRoom() {
   )
 }
 
+const chatVote = (props)=>{
+  const goVote = () =>{
+    window.location.href = "/vote/groupA/"+props.vote.index.toString()
+  }
+  return(
+    <div>
+      <div>{props.vote.name}</div>
+      <button onClick={goVote}>GO to VOTE</button>
+    </div>
+  )
+}
+
 function ChatMessage(props) {
   const { isText, text, email, photoURL } = props.message;
 
   const messageClass = email === auth.currentUser.email ? 'sent' : 'received';
 
-  const goVote = () =>{
-    window.location.href = "/vote/groupA/3"
-  }
+  
   
   if(messageClass ==='sent'){
     return (
     <div>
       <div className = {'message ${messageClass}'} style={{display:"flex", justifyContent:"flex-end", alignItems:"center"}}>
       <p class="msg-box" style={{backgroundColor:"#FFFFFF"}}>{isText?text:<div>
-            <div>{text.name}</div>
-            <button onClick={goVote}>GO TO VOTE~!</button>
-        </div>}</p>
+      <div>{text.name}</div>
+      <button onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
+    </div>}</p>
       <img class="user-img" src = {photoURL} />
     </div>
     </div>

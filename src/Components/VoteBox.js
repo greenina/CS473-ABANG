@@ -125,7 +125,7 @@ const VoteBox = (props) => {
                   onChange={changeChecked}
                 />} 
                 label={wish} />
-              {checked[i]?<div><input type="number" onChange={submitValue}/><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>:<div></div>}
+              {checked[i]?<div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>:<div></div>}
               <input onChange = {submitComment}/>
             </div>
           )
