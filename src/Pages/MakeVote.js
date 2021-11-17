@@ -20,9 +20,10 @@ const MakeVote = (props)=>{
         console.log("AUTH",auth)
         // console.log("USER",auth.currentUser.email)
         db.collection('group')
-        .doc('groupA')
+        .doc('groupZ')
         .get()
         .then(doc =>{
+            console.log("DATA",doc.data())
             setOptions(doc.data().bucket.map(i=>i.text))
             setUsers(doc.data().friends.map(i=>i.email))
         })
@@ -52,7 +53,7 @@ const MakeVote = (props)=>{
         }
 
         console.log("newvote2",newVote)
-        updateDoc(db.collection('group').doc('groupA'), {vote:arrayUnion(newVote)})
+        updateDoc(db.collection('group').doc('groupZ'), {vote:arrayUnion(newVote)})
     }
 
     const submitTitle = (e) =>{

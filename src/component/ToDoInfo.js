@@ -2,7 +2,7 @@ import React, { useState , useEffect} from 'react';
 import '../App.css';
 import {db} from '../firebase';
 import {doc, getDoc} from "firebase/firestore";
-import { arrayRemove, updateDoc } from "firebase/firestore";
+import { arrayUnion, updateDoc } from "firebase/firestore";
 const ToDoInfo = (props) =>{
 
   useEffect(()=>{
@@ -23,7 +23,7 @@ const ToDoInfo = (props) =>{
         margin: '15px',
         backgroundColor: 'white'
       }
-  const docRef = db.collection('group').doc('groupA');
+  const docRef = db.collection('group').doc('groupZ');
   const style = { margin : '10px'}
 
   const handleToggleChange = () => {
@@ -42,7 +42,7 @@ const ToDoInfo = (props) =>{
                   const curData = dbData.data();
                   curData.bucket[index].text = todo;
                   docRef.set(curData, {merge:true});
-                  //updateDoc(db.collection('group').doc('groupA'), {bucket: arrayUnion({cart:0, isDone:false, isLock:true, text:this.state.text})});
+                  //updateDoc(db.collection('group').doc('groupZ'), {bucket: arrayUnion({cart:0, isDone:false, isLock:true, text:this.state.text})});
                   }
                 );
                 }
@@ -66,6 +66,7 @@ const ToDoInfo = (props) =>{
               e.isDone = !e.isDone
             }
           })
+          updateDoc(docRef, {bucket:data})
         }
         )
   }
@@ -94,7 +95,7 @@ const ToDoInfo = (props) =>{
               e.isLock = !e.isLock
             }
           })
-          docRef.set({bucket:data})
+          updateDoc(docRef, {bucket:data})
         }
         )
   }

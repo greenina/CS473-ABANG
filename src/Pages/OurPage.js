@@ -12,7 +12,7 @@ const Ourpage = () =>{
 
     useEffect(()=>{
         db.collection("group")
-        .doc("groupA")
+        .doc("groupZ")
         .get()
         .then(doc => {
             if(doc.exists){

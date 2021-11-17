@@ -53,7 +53,7 @@ export default function PlaygroundSpeedDial() {
   };
 
   const clickVote = (e) =>{
-    window.location.href="/makevote"
+    window.location.href="/vote/groupZ/make"
   }
   const clickHome = (e) =>{
     window.location.href="/main"

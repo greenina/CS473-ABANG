@@ -47,7 +47,7 @@ class Bucket_Edit extends Component {
     return (
         <div>
           <div><h2>Our Bucket List</h2></div><br/>
-          <ToDoList data={toDoList} onUpdate={this.handleUpdate} onRemove={this.handleRemove} />
+          <ToDoList data={toDoList} />
           <ToDoForm onCreate={this.handleCreate} />
         </div>
       );

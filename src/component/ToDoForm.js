@@ -4,7 +4,7 @@ import { arrayUnion, updateDoc } from "firebase/firestore";
 
 const ToDoForm = () =>{
 
-  const group = 'groupA'
+  const group = 'groupZ'
   const docRef = db.collection('group').doc(group);
 
   const [todo, setTodo] = useState()
@@ -22,7 +22,7 @@ const ToDoForm = () =>{
     }
   }
 
-  const submit =  () => {
+  const submit =  (e) => {
     updateDoc(docRef, {bucket : arrayUnion({cart:0, text:todo, isLock:true, isDone:false})});
   } 
 
@@ -30,7 +30,7 @@ const ToDoForm = () =>{
     <div>
       <form>
         <input value={todo} name="text" placeholder="..입력" onChange={handleChange}></input>
-        {/* <input value={todo2} name="text" placeholder="..입력" onChange={handleChange2}></input> */}
+        <input value={todo2} name="text" placeholder="..입력" onChange={handleChange2}></input>
         <button onClick={submit}>추가</button>
       </form>
     </div>

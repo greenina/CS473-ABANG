@@ -14,6 +14,7 @@ import Ourpage_Edit from './Pages/Ourpage_edit copy';
 import Bucket_Edit from "./component/bucket";
 import Bucketdata from "./component/bucketdata";
 import MakeVote from './Pages/MakeVote'
+import VoteBox from './Components/VoteBox'
 
 import { db, storage } from "./firebase";
 
@@ -60,13 +61,19 @@ const App = () => {
           />} 
         />
 
+        <Route 
+          path="/vote/:gid/make" 
+          element={<MakeVote/>} 
+        />
+
         <Route path="/chat" element={<Chat/>}/>
         <Route path="/ourpage" element={<OurPage/>} />
         <Route path="/ourpage/edit" element={<Ourpage_Edit/>} /> //Ourpage_edit copy
         <Route path="/ourpage/bucket" element={<Bucket_Edit/>} />
         <Route path="/ourpage/bucketdata" element={<Bucketdata/>} />
         <Route path="/vote" element={<Vote/>} />
-        <Route path="/makevote" element={<MakeVote/>} />
+        {/* <Route path="/makevote" element={<MakeVote/>} /> */}
+        <Route path="/vote/:gid/:id" element={<VoteBox/>} />
       </Routes>
     </BrowserRouter>
   );

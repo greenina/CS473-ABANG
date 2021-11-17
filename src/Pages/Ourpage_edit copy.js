@@ -19,12 +19,12 @@ class Ourpage_Edit extends Component {
 
 }
 function GroupInfo(){
-    const docRef = db.collection('group').doc("groupA");
+    const docRef = db.collection('group').doc("groupZ");
     const [groupname, setGroupName]=useState("");
     const [introduce, setIntroduce]=useState("");
     useEffect(()=>{
         db.collection("group")
-        .doc("groupB")
+        .doc("groupZ")
         .get()
         .then(doc => {
             if(doc.exists){
