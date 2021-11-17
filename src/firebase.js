@@ -1,9 +1,6 @@
-
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
-
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyD0gBx7wsHSs0i2mNfFuOzimTNMvBrOzko",
@@ -16,10 +13,7 @@ const firebaseConfig = {
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-firebase.firestore().enablePersistence();
 const db = firebaseApp.firestore();
 const storage = firebase.storage();
 
 export {db, firebaseApp, firebase, storage};
-
-

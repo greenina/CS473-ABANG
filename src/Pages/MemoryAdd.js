@@ -11,6 +11,8 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import { db } from "../firebase";
 import { ImageList } from "@material-ui/core";
 
+import { arrayUnion, updateDoc } from "firebase/firestore"
+
 import "../Components/Memory/Memory.css"
 
 async function uploadImageFile(files, storageRef) {
@@ -24,27 +26,18 @@ async function uploadImageFile(files, storageRef) {
     return downloadURLs;
 }
 
-const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
-    const { bid, id } = useParams();
+const MemoryAdd = ({ bucketRef, memoryRef, storageRef }) => {
+    const { bid } = useParams();
+    const [newId, setNewId] = useState(null);
     const [wish, setWish] = useState(null);
-    const [memory, setMemory] = useState(null);
-    const [pictures, setPictures] = useState(null);
+    const [memory, setMemory] = useState({
+        text: "", title: "", date: "", pictures: [], comments: []
+    });
+    const [pictures, setPictures] = useState([]);
     const [urls, setUrl] = useState(null);
     const [pictureLoading, setPictureLoading] = useState(false);
     const [pictureFiles, setPictureFiles] = useState(false);
     const [progress, setProgress] = useState(0);
-
-    useEffect(() => {
-        if(!memoryRef) return;
-        memoryRef.doc(id).get().then((snapshot) => {
-            setMemory(snapshot.data());
-        });
-    }, [memoryRef]);
-
-    useEffect(() => {
-        if(!memory) return;
-        setPictures(memory.pictures);
-    }, [memory]);
 
     useEffect(() => {
         async function fetchPicture() {
@@ -64,7 +57,7 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
     }, [pictureLoading, pictureFiles, storageRef])
 
     const handleChange = (e) => {
-        console.log(e.target.files)
+        // console.log(e.target.files)
         if(e.target.files) {
             setPictures(e.target.files);
         }
@@ -101,7 +94,7 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
             .catch((err) => console.log(err))
     }
 
-    const onSubmit = async ({ title, date, text, comments }) => {
+    const onSubmit = ({ title, date, text, comments }) => {
         const newMemory = {
             ...memory,
             title,
@@ -110,33 +103,37 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
             pictures: pictures,
             comments,
         };
-        console.log(newMemory)
-        await memoryRef.doc(id).set(newMemory);
-        await window.location.replace(`/bucket/${bid}/memory/${id}`)
+        memoryRef.add(newMemory).then(snapshot => {
+            updateDoc(bucketRef.doc(bid), {memories: arrayUnion(snapshot)})
+            window.location.href = `/bucket/${bid}/memory/${snapshot.id}`
+        })
     };
 
     const onSubmitPictures = (selected) => {
         const loadings = selected.map(item => 'loading')
         setPictureLoading(true)
         setPictureFiles(selected)
-        if(!pictures) setPictures([...loadings])
-        else setPictures([...pictures, ...loadings])
+        setPictures([...pictures, ...loadings])
     };
         
     const removePicture = (pic) => {
         setPictures(pictures.filter((item) => item !== pic));
     };
 
+    const getNewId = () => {
+        return newId;
+    }
+
     if(!memory) return null;
 
     return (
         <div className="memory">
-            <Link to={`/bucket/${bid}/memory/${id}`} className="close-button"><img src={closeButton} width="100%" /></Link>
+            <Link to={`/bucket`} className="close-button"><img src={closeButton} width="100%" /></Link>
             <div className="header">Our Bucket list</div>
             <div className="memory-bucket">{ bid }</div>
             <div className="memory-container">
                 <MemoryForm
-                    id={id}
+                    id={newId}
                     wish={wish}
                     memory={memory}
                     onSubmit={onSubmit}
@@ -147,10 +144,11 @@ const MemoryEdit = ({ bucketRef, memoryRef, storageRef }) => {
                     onSubmitPictures={onSubmitPictures}
                     handleChange={handleChange}
                     handleUpload={handleUpload}
+                    getNewId={getNewId}
                 />
             </div>
         </div>
     );
 };
 
-export default MemoryEdit;
+export default MemoryAdd;

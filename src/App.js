@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import MainDefault from "./Pages/MainDefault";
 import MainSearch from "./Pages/MainSearch";
 import Bucket from "./Pages/Bucket";
+import MemoryAdd from "./Pages/MemoryAdd";
 import MemoryView from "./Pages/MemoryView";
 import MemoryEdit from "./Pages/MemoryEdit";
 import Chat from "./Pages/Chat";
@@ -13,12 +14,10 @@ import Ourpage_Edit from './Pages/Ourpage_edit copy';
 import Bucket_Edit from "./component/bucket";
 import Bucketdata from "./component/bucketdata";
 
-
 import { db, storage } from "./firebase";
 
-
 const App = () => {
-  const [bucketRef, setBucketRef] = useState('wishes');
+  const [bucketRef, setBucketRef] = useState('bucket');
   const [memoryRef, setMemoryRef] = useState('memories');
   // db.collection('wishes').doc('0zcwkyqNN2MFDtY7IRyi').onSnapshot(snapshot => console.log(snapshot))
 
@@ -37,6 +36,14 @@ const App = () => {
           />} 
         />
 
+        <Route 
+          path="/bucket/:bid/memory/add" 
+          element={<MemoryAdd
+            bucketRef={db.collection(bucketRef)}
+            memoryRef={db.collection(memoryRef)}
+            storageRef={storage.ref('/photos')}
+          />} 
+        />
         <Route 
           path="/bucket/:bid/memory/:id" 
           element={<MemoryView 

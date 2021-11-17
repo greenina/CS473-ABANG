@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { db } from "../firebase"
 import { arrayUnion, updateDoc } from "firebase/firestore";
 
-const MemoryItem = ({ bid, item }) => {
+const MemoryItem = ({ bucket, item }) => {
     const [id, setID] = useState(null);
     const [memory, setMemory] = useState(null);
     item.get().then(snapshot => {
@@ -14,7 +14,7 @@ const MemoryItem = ({ bid, item }) => {
 
     if(!memory) return null;
     return (
-        <Link to={`/bucket/${bid}/memory/${id}`}>
+        <Link to={`/bucket/${bucket}/memory/${id}`}>
             <div>{ memory.title }</div>
             <div>{ memory.date }</div>
             <div>{ memory.text }</div>
@@ -22,22 +22,19 @@ const MemoryItem = ({ bid, item }) => {
     );
 };
 
-const MemoryList = ({ bid, memories }) => {
+const MemoryList = ({ bucket, memories }) => {
     if(!memories) return null;
-    return memories.map((item) => <MemoryItem bid={bid} item={item} />);
+    return memories.map((item) => <MemoryItem bucket={bucket} item={item} />);
 };
 
-const BucketItem = ({ item }) => {
-    const [id, setID] = useState(null);
-    useEffect(() => {
-        setID(item.docId);
-    }, [id]);
-
+const BucketItem = ({ bid, item }) => {
     if(!item) return null;
+    console.log(item.id)
     return (
         <div>
-            <div>text: { item.wishText }</div>
-            <MemoryList bid={id} memories={item.memories} />
+            <div>text: { item.data.text }</div>
+            <Link to={`/bucket/${item.data.text}/memory/add`}>Add</Link>
+            <MemoryList bucket={item.data.text} memories={item.data.memories} />
         </div>
     );
 };
@@ -53,25 +50,18 @@ const Bucket = ({ bucketRef }) => {
     useEffect(() => {
         if(!bucketRef) return;
         bucketRef.get().then((snapshot) => {
-            const tmp = snapshot.docs.map(i => i.data());
+            const tmp = snapshot.docs.map(i => ({
+                id: i.id,
+                data: i.data()
+            }));
+            console.log(tmp)
             setBucket(tmp);
         });
     }, [bucketRef]);
 
-    function addWish() {
-        // const [arr, setArr] = useState(null)
-        // bucketRef.doc('EbJhXFg8yQO57LevlIm9').get().then(snapshot => {
-        //     setArr(snapshot.data().arr)
-        // })
-        // updateDoc(bucketRef.doc('EbJhXFg8yQO57LevlIm9'), {arr: arrayUnion({cart:0, isDone:false, isLock:false, test:"hi"})})
-        updateDoc(db.collection('group').doc('groupB'), {bucket: arrayUnion({cart:0, isDone:false, isLock:true, text:"hi"})})
-        // bucketRef.doc('EbJhXFg8yQO57LevlIm9').set({arr: arrayUnion("a")})
-    }
-
     return (
         <div>
             <div>This is Bucket</div>
-            <button onClick={addWish}>Add</button>
             <BucketList bucketList={bucket} />
         </div>
     );
