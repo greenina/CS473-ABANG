@@ -10,25 +10,10 @@ class HashInfo extends Component {
         toggle : false, 
         text : '',
         style : {
-            margin : '10px', 
+          margin : '10px'
         },
         locktoggle : true, //true: lock
-        boxstyle : {
-          display: 'inline-box',
-          border: '1px solid lightgray',
-          height: '30px',
-          width: '100px',
-          margin: '5px',
-          backgroundColor: 'lightgray',
-          "border-radius": "10px"
-        }, 
-        checktoggle : false // true: check
-    };
-
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]:e.target.value, 
-        });
+        checktoggle : false // true: check 
     };
     
     handleRemove = () => {
@@ -41,23 +26,17 @@ class HashInfo extends Component {
 
     render() {
     const { data } = this.props;
-    const { toggle, text, locktoggle} = this.state;
-    
+    const { toggle, text } = this.state;
     return (
-      <div style={this.state.boxstyle}>
-        {toggle ? (
-          <input
-            style={this.state.style}
-            onChange={this.handleChange}
-            value={text}
-            name="text"
-          ></input>
-        ) : (
-          <span style={this.state.style}>{data.text}</span>
-        )}
-        <button onClick={this.handleRemove}>x</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-      </div>
+      
+      <span>
+        <img src = "/img/hashBox.png" height = '50px'/>
+        <label for = "xbutton">
+              <img src = {'/img/Xbutton_yellow.png'} height='20px' style = {{position: 'relative', 'z-index':'1',top:"-20px",left:"-33px"}}/>
+        </label>
+        <button id="xbutton" onClick={this.handleRemove} style={{display : "none"}} />
+        <span style = {{position:'relative', 'z-index':'1', left : '-100px', top: '-25px'}}>{data.text}</span>
+      </span>
     );
   }
 }

@@ -22,19 +22,26 @@ const Ourpage = () =>{
             
         });
     },[])
+    const inarrange ={
+        display : "flex", 
+        flexDirection: "column", 
+        alignItems:"center"
+    }
 
     return(
         <div>
-            <DisplayImage/>
-            <div><h2>Ourpage</h2></div>
-            <h6>Group Name</h6>
-            <h4>{name}</h4>
-            <h6>Introduce our group</h6>
-            <h4>{intro}</h4>
-            <button><Link to = "/ourpage/edit">edit</Link></button>
+            <div style ={inarrange}>
+            <img src = "/img/Yellow_back.png" style ={{position: 'relative', top:'250px',left:'-36px', width:'743.84px','z-index':'1'}}/>
+            <div style = {{position: 'relative' ,top: '-800px'}}><DisplayImage/></div>
+            <img src = "/img/groupNameBox.png" style = {{position: 'relative', 'z-index':'2',top:'-900px',left:'-36px'}}/> 
+            <h4 style = {{position: 'relative', 'z-index':'3', top:'-960px',left:'-36px'}}>{name}</h4>
+            <h2 style = {{position: 'relative', 'z-index':'3', top:'-960px',left:'-280px', 'font-family':'DM Serif Text', color :'#777541'}}>Introduce about Us</h2>
+            <h4 style = {{position: 'relative', 'z-index':'3', top:'-990px',left:'-300px',color :'#777541'}}>{intro}</h4>
+            <Link to = "/ourpage/edit"><img src = {'/img/edit_button.png'} height='70px' style = {{position: 'relative', top:'-1100px',left: '280px', 'z-index':'2'}}/></Link>
             <Hash/>
             <button><Link to = "/ourpage/bucket"> bucket edit </Link></button>
             <Bucket/>
+            </div>
             </div>
     )
 }

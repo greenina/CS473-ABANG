@@ -24,7 +24,7 @@ function GroupInfo(){
     const [introduce, setIntroduce]=useState("");
     useEffect(()=>{
         db.collection("group")
-        .doc("groupA")
+        .doc("groupB")
         .get()
         .then(doc => {
             if(doc.exists){

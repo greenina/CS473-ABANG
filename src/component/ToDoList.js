@@ -7,7 +7,7 @@ import { arrayUnion, updateDoc } from "firebase/firestore";
 const ToDoList = (props) =>{
   const [bucket, setBucket] = useState([])
   const getInfo = () =>{
-    db.collection('group').doc('groupA').get().then(
+    db.collection('group').doc('groupB').get().then(
       doc =>{
         console.log("doc",doc.data())
         if(doc.exists){

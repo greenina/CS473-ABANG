@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import {db} from '../firebase';
 import { arrayUnion, updateDoc } from "firebase/firestore";
 
@@ -30,7 +30,7 @@ const ToDoForm = () =>{
     <div>
       <form>
         <input value={todo} name="text" placeholder="..입력" onChange={handleChange}></input>
-        <input value={todo2} name="text" placeholder="..입력" onChange={handleChange2}></input>
+        {/* <input value={todo2} name="text" placeholder="..입력" onChange={handleChange2}></input> */}
         <button onClick={submit}>추가</button>
       </form>
     </div>
