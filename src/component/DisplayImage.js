@@ -14,7 +14,7 @@ class DisplayImage extends Component {
   }
 
   onImageChange = event => {
-    const docRef = doc(db, 'group','groupZ');
+    const docRef = doc(db, 'group','groupB');
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
       this.setState({

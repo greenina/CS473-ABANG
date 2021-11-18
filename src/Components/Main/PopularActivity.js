@@ -4,13 +4,12 @@ import "./ShortList.css";
 
 import profileIcon from "../../Icons/Profile.png";
 
-const ActivityItem = () => {
+const ActivityItem = ({ text, hashtags }) => {
     return (
-        <div className="shortlist-item">
+        <div className="shortlist-item" style={{ backgroundColor: "var(--lightgray)" }}>
             <img src={profileIcon} />
             <div className="shortlist-text">
-                시끄러운 친구들<br/>
-                #활동적 #액티비티
+                { text }<br/>{ hashtags }
             </div>
         </div>
     );
@@ -20,9 +19,9 @@ const PopularActivity = () => {
   return (
     <div className="shortlist-container">
         <div className="shortlist-name">Popular Activity</div>
-        <ActivityItem />
-        <ActivityItem />
-        <ActivityItem />
+        <ActivityItem text="오징어 게임 보기" hashtags="#456 #오징어"/>
+        <ActivityItem text="Hey Mama 커버 댄스 찍기" hashtags="#스우파 #멋짐"/>
+        <ActivityItem text="스포츠몬스터 뿌시기" hashtags="#인싸"/>
     </div>
   );
 };

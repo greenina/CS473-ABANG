@@ -11,7 +11,7 @@ import {db} from '../firebase';
 
 import "../Components/Memory/Memory.css"
 
-const BucketList = () => {
+const BucketList = ({ show }) => {
     const [bucketList, setBucketList] = useState(null);
     const bucketRef = db.collection('bucket')
 
@@ -54,15 +54,15 @@ const BucketList = () => {
     });
   };
     return (
-        <div className="memory">
-            <Link to={`/ourpage`} className="close-button"><img src={closeButton} width="100%" /></Link>
+        <div className="memory" style={ show ? { minHeight: "0" } : {}}>
+            { show ? null : <Link to={`/ourpage`} className="close-button"><img src={closeButton} width="100%" /></Link> }
             <div className="header">Our Bucket list</div>
-            <div className="scrolllist-container">
+            <div className="scrolllist-container" style={ show ? { height: "100%" } : {}}>
                 <img src={arrowUpIcon} className="arrow" />
-                <div className="bucket-container">
+                <div className="bucket-container" style={ show ? { height: "100%" } : {}}>
                     <BucketItem data={bucketList} onUpdate={handleUpdate}/>
                 </div>
-                <BucketItemAdd/>
+                { show ? null : <BucketItemAdd/> }
                 <img src={arrowDownIcon} className="arrow" />
             </div>
         </div>

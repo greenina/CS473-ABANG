@@ -7,7 +7,7 @@ import {db} from '../firebase'
 
 
 const Vote = () =>{
-  const group = "groupZ"
+  const group = "groupB"
   const docRef = db.collection('group').doc(group)
   const [n, setN] = useState(0)
 

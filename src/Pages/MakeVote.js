@@ -10,7 +10,7 @@ import firebase from 'firebase/compat/app';
 
 const MakeVote = (props)=>{
 
-    const docRef = db.collection('group').doc('groupZ')
+    const docRef = db.collection('group').doc('groupB')
 
     const user = useAuthState(auth);
     // const email = auth.currentUser.email
@@ -25,7 +25,7 @@ const MakeVote = (props)=>{
         console.log("AUTH",auth)
         // console.log("USER",auth.currentUser.email)
         db.collection('group')
-        .doc('groupZ')
+        .doc('groupB')
         .get()
         .then(doc =>{
             console.log("DATA",doc.data())
@@ -66,7 +66,7 @@ const MakeVote = (props)=>{
             photoURL: auth.currentUser.photoURL
         })
 
-        await updateDoc(db.collection('group').doc('groupZ'), {vote:arrayUnion(newVote)})
+        await updateDoc(db.collection('group').doc('groupB'), {vote:arrayUnion(newVote)})
         window.location.href = "/chat"
         
     }
