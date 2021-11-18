@@ -10,33 +10,38 @@ import firebase from 'firebase/compat/app';
 
 const MakeVote = (props)=>{
 
-    const docRef = db.collection('group').doc('groupZ')
+    const docRef = db.collection('group').doc('testGroup')
 
     const user = useAuthState(auth);
     // const email = auth.currentUser.email
     const [options, setOptions] = useState([])
     const [checked, setChecked] = useState([])
-    const [title, setTitle] = useState("")
+    const [title, setTitle] = useState("no title")
     const [users, setUsers] = useState([])
-    const [vote, setVote] = useState()
     const [length, setLength] = useState()
+
 
     useEffect(()=>{
         console.log("AUTH",auth)
-        // console.log("USER",auth.currentUser.email)
-        db.collection('group')
-        .doc('groupZ')
-        .get()
-        .then(doc =>{
-            console.log("DATA",doc.data())
-            setOptions(doc.data().bucket.map(i=>i.text))
-            setUsers(doc.data().friends.map(i=>i.email))
-            setLength(doc.data().vote.length)
-        })
-    },[])
-    useEffect(()=>{
-        setChecked(Array(options.length).fill(false))
-    },options)
+        async function getOptions (){
+            await docRef.get()
+            .then(doc =>{
+                const bucket = doc.data().bucket
+                bucket.map(i=>{
+                    i.get().then(snapshot => {
+                    setOptions(options => options.push(snapshot.data().text))
+                    
+                })
+                console.log("options",options)
+                })
+                setUsers(doc.data().friends.map(i=>i.email))
+                setLength(doc.data().vote.length)
+                setChecked(Array(options.length).fill(false))
+            })
+        }
+        getOptions()
+    },[docRef])
+
 
     const Submit = async () => {
         const newVote = {
@@ -51,7 +56,8 @@ const MakeVote = (props)=>{
                     return {
                     comment:"",
                     email:user,
-                    value:0
+                    value:0,
+                    trial:false
                     }
                 })
             }
@@ -65,8 +71,10 @@ const MakeVote = (props)=>{
             email:auth.currentUser.email,
             photoURL: auth.currentUser.photoURL
         })
-
-        await updateDoc(db.collection('group').doc('groupZ'), {vote:arrayUnion(newVote)})
+        await db.collection('vote').add(newVote).then(ref=>{
+            updateDoc(docRef, {vote:ref})
+        })
+        // await updateDoc(db.collection('group').doc('groupZ'), {vote:arrayUnion(newVote)})
         window.location.href = "/chat"
         
     }
@@ -82,7 +90,7 @@ const MakeVote = (props)=>{
                     arr[i] = !arr[i]
                     setChecked(arr)
                 }
-                
+                console.log("OPTIONS",options)
                 return(
                     <FormControlLabel 
                     control=
