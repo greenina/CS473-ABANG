@@ -1,28 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import '../styles/chatDesign.css';
 import SpeedDial from '../styles/speedDial';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import {auth, db, SignIn} from '../firebase'
 
-// import { SpeedDial } from '@mui/material';
-
-
-firebase.initializeApp({
-  apiKey: "AIzaSyD0gBx7wsHSs0i2mNfFuOzimTNMvBrOzko",
-  authDomain: "abang-803aa.firebaseapp.com",
-  projectId: "abang-803aa",
-  storageBucket: "abang-803aa.appspot.com",
-  messagingSenderId: "308566395170",
-  appId: "1:308566395170:web:4b4dfb498510aeb98dfd7b"
-})
-
-const auth = firebase.auth();
-const firestore = firebase.firestore();
 
 function Chat() {
 
@@ -39,24 +25,10 @@ function Chat() {
   );
 }
 
-function SignIn() {
-  const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-  }
-  return (
-    <button onClick = {signInWithGoogle}>Sign in with google.</button>
-  )
-}
-
-function SignOut() {
-  return auth.currentUser && (
-    <button onClick = {() => auth.signOut()}>Sign Out</button>
-  )
-}
 
 function ChatRoom() {
-  const messagesRef = firestore.collection('messages');
+  //const groupZelongTo = firestore.collection('group').whereField('friends', isEqual)  
+  const messagesRef = db.collection('message2');
   const query = messagesRef.orderBy('createdAt').limit(25);
 
   const [messages] = useCollectionData(query, {idField: 'id'});
@@ -65,16 +37,22 @@ function ChatRoom() {
 
   const sendMessage = async(e) => {
     e.preventDefault();
-    const { uid, photoURL } = auth.currentUser;
+    const { email, photoURL } = auth.currentUser;
     await messagesRef.add({
+      isText:true,
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
+      email,
       photoURL 
     })
 
     setFormValue('');
   }
+
+  useEffect(()=>{
+    console.log("VALUE",formValue)
+    console.log("user",auth.currentUser)
+  },[formValue])
 
   return (
     <>
@@ -99,16 +77,32 @@ function ChatRoom() {
   )
 }
 
-function ChatMessage(props) {
-  const { text, uid, photoURL } = props.message;
+const chatVote = (props)=>{
+  const goVote = () =>{
+    window.location.href = "/vote/groupA/"+props.vote.index.toString()
+  }
+  return(
+    <div>
+      <div>{props.vote.name}</div>
+      <button onClick={goVote}>GO to VOTE</button>
+    </div>
+  )
+}
 
-  const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+function ChatMessage(props) {
+  const { isText, text, email, photoURL } = props.message;
+
+  const messageClass = email === auth.currentUser.email ? 'sent' : 'received';
+
   
   if(messageClass ==='sent'){
     return (
     <div>
       <div className = {'message ${messageClass}'} style={{display:"flex", justifyContent:"flex-end", alignItems:"center"}}>
-      <p class="msg-box" style={{backgroundColor:"#FFFFFF"}}>{text}</p>
+      <p class="msg-box" style={{backgroundColor:"#FFFFFF"}}>{isText?text:<div>
+      <div>{text.name}</div>
+      <button onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
+    </div>}</p>
       <img class="user-img" src = {photoURL} />
     </div>
     </div>
