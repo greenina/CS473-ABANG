@@ -61,7 +61,7 @@ export default function PlaygroundSpeedDial() {
     window.location.href="/main"
   }
   const clickWishlist = (e) =>{
-    window.location.href="/bucket"
+    window.location.href="/ourpage/bucket"
   }
 
   const clickHandler = (name) =>{

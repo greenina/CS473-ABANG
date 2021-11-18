@@ -1,0 +1,29 @@
+.shortlist-container {
+    display: inline-block;
+    width: calc(50% - 20px);
+    color: var(--browntext);
+    padding: 10px;
+}
+
+.shortlist-item {
+    position: relative;
+    width: calc(100% - 20px);
+    background-color: var(--yellow);
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.shortlist-item img {
+    width: 25%;
+    padding-right: 10px;
+}
+
+.shortlist-text {
+    display: inline-block;
+    position: relative;
+    width: calc(75% - 10px);
+    vertical-align: top;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+}

@@ -23,6 +23,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh }) =>{
 //   console.log(data)
 
   useEffect(() => {
+    console.log("DATA",data)
     data.get().then(s => {
         if(s.exists) {
             setID(s.id)

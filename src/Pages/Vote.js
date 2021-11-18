@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import React from "react";
-import VoteBox from "../Components/VoteBox";
+import VoteBox from "../component/VoteBox";
 import {db} from '../firebase'
 //VoteBox component안에 들어가야하는 props : group, email, group안의 어떤 vote? vote의 name or index?
 
