@@ -77,7 +77,7 @@ const MakeVote = (props)=>{
                 }
 
     return(
-        <div>
+        <div style={{width:"654px", height:"1036px"}}>
             <FormGroup>
             {options.map((option,i)=>{
                 const changeChecked = () => {
@@ -87,15 +87,18 @@ const MakeVote = (props)=>{
                 }
                 
                 return(
+                    <div style={{ width:"625px",display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#F2E1E1",color:"#E7A1A1"}}>
                     <FormControlLabel 
                     control=
                     {<Checkbox checked={checked[i]} onChange={changeChecked}/>} 
                     label={option} />
+                    </div>
                 )
             })}
             </FormGroup>
             <input onChange = {submitTitle}/>
-            <button  onClick={Submit}>MAKE</button>
+            <button style={{width:"10vw",height:"auto",backgroundColor:"#EAAEAE", color:"#FDFCF7",borderWidth:0,
+      boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px", padding:5, margin: "15px 15px 15px 15px", justifyContent:"center"}} onClick={Submit}>MAKE</button>
         </div>
     )
 }
