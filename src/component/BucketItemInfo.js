@@ -75,15 +75,19 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh }) =>{
     setTodo(e.target.value)
   }
 
-  const changeIsDone = async () => {
+  const changeIsDone = async (id) => {
     setDone(!done)
     await docRef.get()
         .then(doc =>{
           var data = doc.data().bucket
           data.map(e => {
-            if(e.text === todo){
-              e.isDone = !e.isDone
-            }
+            e.get().then(s => {
+                if(s.id === id) {
+                    var old = s.data()
+                    old.isDone = !old.isDone
+                    s.ref.set(old)
+                }
+            })
           })
         }
     )
@@ -133,7 +137,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh }) =>{
     return(
         <div>
             <div className="bucket-item" style={done ? { backgroundColor: "var(--green)"} : { backgroundColor: "var(--lightgray)" }}>
-                <input type="checkbox" id="unchecked" onClick={changeIsDone} checked={done}/> 
+                <input type="checkbox" id="unchecked" onClick={() => changeIsDone(id)} checked={done}/> 
                 {toggle ? (
                     <input
                         style={style}
