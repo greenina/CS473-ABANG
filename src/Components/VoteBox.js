@@ -118,7 +118,7 @@ const VoteBox = (props) => {
             console.log("comment2",comment)
           }
           return (
-            <div style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#F2E1E1",color:"#E7A1A1"}}>
+            <div style={{ width:"625px",display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#F2E1E1",color:"#E7A1A1"}}>
               <FormControlLabel 
                 control=
                 {<Checkbox 
@@ -127,12 +127,15 @@ const VoteBox = (props) => {
                 />} 
                 label={wish} />
               {checked[i]?<div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>:<div></div>}
-              <div style={{width:"5vw",margin: "15px 15px 15px 15px"}}><input onChange = {submitComment}/></div>
+              <div style={{width:"600px",margin: "5px 15px 15px 15px"}}><input onChange = {submitComment}/></div>
             </div>
           )
         })}
       </FormGroup>
-      <div style={{float:"left"}}>
+      <h1 style = {{color:"#E7A1A1",fontSize:10}}>* 각 항목에 대해 0부터 100까지 선호도를 나타낼 수 있습니다.</h1>
+      <h1 style = {{color:"#E7A1A1",fontSize:10}}>* 체크 안할 경우 0, 체크 할 경우 원하는 만큼 드래그 하실 수 있습니다.</h1>
+      <h1 style = {{color:"#E7A1A1",fontSize:10}}>* comment를 하면 특정 항목에 대한 의견을 제시할 수 있습니다.</h1>
+      <div style={{margin:"auto"}}>
       <button  onClick={Submit} style={{width:"10vw",height:"auto",backgroundColor:"#EAAEAE", color:"#FDFCF7",borderWidth:0,
       boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px", padding:5, margin: "15px 15px 15px 15px", justifyContent:"center"}}>VOTE</button>
       <button  onClick={getResult} style={{width:"10vw", height:"auto",backgroundColor:"#EAAEAE", color:"#FDFCF7",borderWidth:0,
