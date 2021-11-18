@@ -3,6 +3,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 import 'firebase/compat/auth';
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyD0gBx7wsHSs0i2mNfFuOzimTNMvBrOzko",
   authDomain: "abang-803aa.firebaseapp.com",
@@ -37,5 +38,4 @@ function SignOut() {
 }
 
 export {db, firebaseApp, firebase, storage, auth, SignIn, SignOut};
-
 

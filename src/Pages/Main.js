@@ -5,6 +5,7 @@ import MainSearch from "./MainSearch";
 
 const Main = () => {
   return (
+
     // <BrowserRouter>
     <div>
       hi
@@ -16,6 +17,7 @@ const Main = () => {
       </Router>
       </div>
     // </BrowserRouter>
+
   );
 };
 

@@ -31,6 +31,7 @@ const StyledSpeedDialIcon = styled(SpeedDialIcon)(({ theme }) => ({
  
 }));
 
+
 const actions = [
   { icon: <VoteIcon />, name: 'Vote' },
   { icon: <HomeIcon />, name: 'Home' },
@@ -51,6 +52,7 @@ export default function PlaygroundSpeedDial() {
   const handleHiddenChange = (event) => {
     setHidden(event.target.checked);
   };
+ 
 
   const clickVote = (e) =>{
     window.location.href="/vote/groupZ/make"

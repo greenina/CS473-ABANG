@@ -62,6 +62,7 @@ const VoteBox = (props) => {
       const wishArr = doc.data().vote[voteIndex].options.map(i => i.option)
       setWishes(wishArr)
       setVoteName(doc.data().vote[voteIndex].name)
+
   })
   },[])
   useEffect(()=>{
@@ -93,6 +94,7 @@ const VoteBox = (props) => {
   return (
     <div id="vote_box">
       <h1 id="vote_title">{voteName}</h1>
+
       <FormGroup>
         {wishes.map((wish, i)=>{
           const changeChecked = () =>{
@@ -115,6 +117,7 @@ const VoteBox = (props) => {
             arr[i] = e.target.value
             setComment(Array.from(arr, item => typeof item === 'undefined' ? "" : item))
             console.log("comment2",comment)
+
           }
           return (
             <div>
@@ -126,17 +129,21 @@ const VoteBox = (props) => {
                 />} 
                 label={wish} />
               {checked[i]?<div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>:<div></div>}
+
               <input onChange = {submitComment}/>
             </div>
           )
         })}
       </FormGroup>
       <button  onClick={Submit}>VOTE</button>
+
       <button  onClick={getResult}>RESULT</button>
       
       <div>{result}</div>
+
     </div>
   );
 };
 
 export default connect(mapStateToProps)(VoteBox);
+
