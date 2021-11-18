@@ -11,7 +11,6 @@ import firebase from 'firebase/compat/app';
 const MakeVote = (props)=>{
 
     const docRef = db.collection('group').doc('testGroup')
-
     const user = useAuthState(auth);
     // const email = auth.currentUser.email
     const [options, setOptions] = useState([])
@@ -90,7 +89,7 @@ const MakeVote = (props)=>{
                     arr[i] = !arr[i]
                     setChecked(arr)
                 }
-                console.log("OPTIONS",options)
+                console.log("!!!!",options)
                 return(
                     <FormControlLabel 
                     control=

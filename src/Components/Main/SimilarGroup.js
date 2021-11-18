@@ -4,13 +4,12 @@ import "./ShortList.css";
 
 import profileIcon from "../../Icons/Profile.png";
 
-const GroupItem = () => {
+const GroupItem = ({name, hashtags}) => {
     return (
         <div className="shortlist-item">
             <img src={profileIcon} />
             <div className="shortlist-text">
-                시끄러운 친구들<br/>
-                #활동적 #액티비티
+                {name}<br/>{hashtags}
             </div>
         </div>
     );
@@ -20,9 +19,9 @@ const SimilarGroup = () => {
   return (
     <div className="shortlist-container">
         <div className="shortlist-name">Similar Group</div>
-        <GroupItem />
-        <GroupItem />
-        <GroupItem />
+        <GroupItem name="시끄러운 친구들" hashtags="#활동적 #액티비티"/>
+        <GroupItem name="야행성 부엉이들" hashtags="#심야시간 #밤샘"/>
+        <GroupItem name="코딩하는 대학생" hashtags="#코딩쫌재밌어"/>
     </div>
   );
 };

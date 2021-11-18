@@ -19,7 +19,7 @@ class HashForm extends Component {
       });
     };
     submit =  () => {
-      updateDoc(db.collection('group').doc('groupZ'), {hash : arrayUnion({text:this.state.text})});
+      updateDoc(db.collection('group').doc('groupB'), {hash : arrayUnion({text:this.state.text})});
     }
     render() {
       const { text } = this.state;

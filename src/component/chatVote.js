@@ -5,7 +5,7 @@ const chatVote = (props) =>{
     console.log("PROPS",props)
 
     const goVote = () =>{
-        window.location.href="/vote/groupZ/"+props.index.toString()
+        window.location.href="/vote/groupB/"+props.index.toString()
     }
     return(
         <div>
