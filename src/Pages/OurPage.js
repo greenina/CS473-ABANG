@@ -28,7 +28,6 @@ const Ourpage = () =>{
     return(
         <div className="ourpage">
             <div className="ourpage-container">
-                <DisplayImage/>
                 <GroupImage />
                 <div className="group-name">{ name }</div>
                 <div className="info-container">

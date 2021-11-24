@@ -7,9 +7,9 @@ import arrowDownIcon from "../../Icons/ArrowDownPurple.png";
 import shareIcon from "../../Icons/Share.png";
 import shoppingCartIcon from "../../Icons/ShoppingCart.png";
 
-const ActivityItem = ({ text }) => {
+const ActivityItem = ({ text, href }) => {
     return (
-        <div className="scrolllist-item">
+        <div className="scrolllist-item" onClick={() => window.location.href = href}>
             <div className="scrolllist-text">
                 { text }
                 <img src={shoppingCartIcon} /> 
@@ -25,10 +25,10 @@ const RecommendedActivity = () => {
         <div className="scrolllist-name">Recommended</div>
         <img src={arrowUpIcon} className="scrolllist-arrow" />
         <div className="scrollist-text">
-            <ActivityItem text="도자기 공방"/>
-            <ActivityItem text="남산 타워"/>
-            <ActivityItem text="유튜브 브이로그"/>
-            <ActivityItem text="시베리아 횡단 열차"/>
+            <ActivityItem text="도자기 공방" href="/bucket/El7sNoR43uaVqN9Ih8P9"/>
+            <ActivityItem text="남산 타워" href="/bucket/8KfLFCkk7efxo0KhdhQs"/>
+            <ActivityItem text="유튜브 브이로그" href="/bucket/IGT7Za1piAYputJwo4fq"/>
+            <ActivityItem text="시베리아 횡단 열차" href="/bucket/WZMwjBLbnD1sG9tBnMCM"/>
         </div>
         <img src={arrowDownIcon} className="scrolllist-arrow" />
     </div>

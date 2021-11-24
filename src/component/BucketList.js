@@ -13,7 +13,6 @@ import "../Components/Memory/Memory.css"
 
 const BucketList = ({ show }) => {
     const [bucketList, setBucketList] = useState(null);
-    const bucketRef = db.collection('bucket')
 
     useEffect(() => {
         db.collection('group').doc('groupB').get().then(snapshot => {
@@ -45,7 +44,7 @@ const BucketList = ({ show }) => {
             <div className="scrolllist-container" style={ show ? { height: "100%" } : {}}>
                 <img src={arrowUpIcon} className="arrow" />
                 <div className="bucket-container" style={ show ? { height: "100%" } : {}}>
-                    <BucketItem bucketList={bucketList} onUpdate={handleUpdate}/>
+                    <BucketItem data={bucketList} onUpdate={handleUpdate}/>
                 </div>
                 { show ? null : <BucketItemAdd/> }
                 <img src={arrowDownIcon} className="arrow" />
