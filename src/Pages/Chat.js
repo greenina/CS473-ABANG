@@ -3,6 +3,7 @@ import '../styles/chatDesign.css';
 import SpeedDial from '../styles/speedDial';
 
 import firebase from 'firebase/compat/app';
+//import firebase  from 'firebase/firebase-config';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -44,7 +45,7 @@ function ChatRoom() {
     e.preventDefault();
     const { email, photoURL } = auth.currentUser;
     await messagesRef.add({
-      isText:1,
+      isText:true,
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       email,
@@ -62,8 +63,8 @@ function ChatRoom() {
   return (
     <>
     <div>
-    <div style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#EAF6F4", maxWidth: "20vw", width:"20vw", height:"80vh"}}>
-      <div style={{position:"fixed", top:"10vh", right:"40vw", padding:5}}>
+    <div style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#EAF6F4", maxWidth: "100vw", width:"100vw", height:"100vh"}}>
+      <div style={{position:"fixed", top:"5px", right:"5px", padding:5}}>
       <SpeedDial />
       </div>
       <div style={{padding:"10px", overflow:"auto"}}>
@@ -72,8 +73,8 @@ function ChatRoom() {
       <div style={{backgroundColor:"#EBEDD0"}}>
       
         <form onSubmit = {sendMessage} style={{padding:"10px", height:"20px", display:"flex", alignItems:"center"}}>
-          <input style={{width:"80%", marginRight:"5%", borderColor:"white", borderRadius:"6px",borderWidth:0, boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25)  "}} value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
-          <button type = "submit"  style={{width:"auto", backgroundColor:"#FFFEDB", color:"#829B89",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}>Send</button>
+          <input style={{width:"90%", marginRight:"2%", borderColor:"white", borderRadius:"6px",borderWidth:0, boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25)  "}} value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
+          <button type = "submit"  style={{width:"6%", backgroundColor:"#FFFEDB", color:"#829B89",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}>Send</button>
         </form>
       </div>
       </div>
@@ -94,7 +95,6 @@ const chatVote = (props)=>{
   )
 }
 
-
 function ChatMessage(props) {
   const { isText, text, email, photoURL } = props.message;
 
@@ -105,20 +105,10 @@ function ChatMessage(props) {
     return (
     <div>
       <div className = {'message ${messageClass}'} style={{display:"flex", justifyContent:"flex-end", alignItems:"center"}}>
-      <p class="msg-box" style={{backgroundColor:"#FFFFFF"}}>
-        {isText==3?
-        <div>
-          <button onClick={()=>window.location.href = text.link}>{text.name}</button>
-        </div>:
-        (isText==1?text:
-        (isText==2?
-          <div>
-          <div>{text.name}</div>
-          <button onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
-        </div>
-        :<div>"isText?"{isText}</div>
-        ))}
-      </p>
+      <p class="msg-box" style={{backgroundColor:"#FFFFFF"}}>{isText?text:<div>
+      <div>{text.name}</div>
+      <button onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
+    </div>}</p>
       <img class="user-img" src = {photoURL} />
     </div>
     </div>
@@ -129,12 +119,10 @@ function ChatMessage(props) {
     
       <div className = {'message ${messageClass}'} style={{display:"flex", justifyContent:"flex-start", alignItems:"center"}}>
       <img class="user-img" src = {photoURL} />
-      <p class="msg-box" style={{backgroundColor:"#FFFDD0"}}>{isText==3?<div>
-      <button onClick={()=>window.location.href = text.link}>{text.name}</button>
-    </div>:(isText==1?text:<div>
+      <p class="msg-box" style={{backgroundColor:"#FFFDD0"}}>{isText?text:<div>
       <div>{text.name}</div>
       <button onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
-    </div>)}</p>
+    </div>}</p>
       
     </div>
     );
