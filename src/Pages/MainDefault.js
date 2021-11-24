@@ -17,8 +17,10 @@ const MainDefault = () => {
         <SearchBar />
         <div className="content-container">
             <div className="group-container">
+              <span>
                 <SimilarGroup />
                 <PopularActivity />
+              </span>
             </div>
             <RecommendedActivity />
         </div>
