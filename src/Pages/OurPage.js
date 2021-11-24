@@ -44,9 +44,7 @@ const Ourpage = () =>{
                             <img src = {editButton} height='40px' className="clickable" style = {{position: 'relative', marginLeft: "10px" }}/>
                         </label>
                         </div>
-                        <div className="group-introduction-text">{intro}
-                        </div>
-                    
+                        <div className="group-introduction-text">{intro}</div>
                         <Hashtags/>
                     </div>
                     <div className="bucket-container">
