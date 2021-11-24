@@ -14,13 +14,18 @@ import {auth, db, SignIn} from '../firebase'
 function Chat() {
 
   const [user] = useAuthState(auth);
-  //const { uid, photoURL } = auth.currentUser;
+  useEffect(()=>{
+    console.log("AUTH",user)
+  },[])
+
   return (
     <div className="Chat">
       <header>    
       </header>
       <section>
-        {<ChatRoom />}
+        <ChatRoom />
+        {/* {user ? 
+          <ChatRoom /> : <SignIn />} */}
       </section>
     </div>
   );
@@ -28,7 +33,7 @@ function Chat() {
 
 
 function ChatRoom() {
-  //const groupZelongTo = firestore.collection('group').whereField('friends', isEqual)  
+  //const groupBelongTo = firestore.collection('group').whereField('friends', isEqual)  
   const messagesRef = db.collection('message2');
   const query = messagesRef.orderBy('createdAt').limit(25);
 
@@ -96,7 +101,6 @@ function ChatMessage(props) {
   const messageClass = email === auth.currentUser.email ? 'sent' : 'received';
 
   
-  
   if(messageClass ==='sent'){
     return (
     <div>
@@ -115,7 +119,10 @@ function ChatMessage(props) {
     
       <div className = {'message ${messageClass}'} style={{display:"flex", justifyContent:"flex-start", alignItems:"center"}}>
       <img class="user-img" src = {photoURL} />
-      <p class="msg-box" style={{backgroundColor:"#FFFDD0"}}>{text}</p>
+      <p class="msg-box" style={{backgroundColor:"#FFFDD0"}}>{isText?text:<div>
+      <div>{text.name}</div>
+      <button onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
+    </div>}</p>
       
     </div>
     );

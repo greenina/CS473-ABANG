@@ -14,7 +14,7 @@ export const setEmail = email => ({type:SET_EMAIL, email })
 const initialState = {
   color: 'red',
   number: 3,
-  email:"igreen0485@gmail.com"
+  email:"kaist.helloworld@gmail.com"
 };
 
 // **** 리듀서 작성

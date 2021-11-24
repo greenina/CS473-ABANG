@@ -8,7 +8,10 @@ import PopularActivity from "../Components/Main/PopularActivity";
 import RecommendedActivity from "../Components/Main/RecommendedActivity";
 import NavBar from "../Components/Main/NavBar";
 
+import { auth } from "../firebase"
+
 const MainDefault = () => {
+
   return (
     <div className="main">
         <SearchBar />

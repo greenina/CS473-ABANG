@@ -1,0 +1,34 @@
+.main .scrolllist-container {
+    display: inline-block;
+    width: calc(100% - 40px);
+    color: var(--purpletext);
+    padding: 20px;
+    background-color: var(--purple);
+    border-radius: 10px;
+}
+
+.main .scrolllist-item {
+    position: relative;
+    width: calc(100% - 20px);
+    background-color: var(--gray);
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.main .scrolllist-arrow {
+    position: relative;
+    left: 50%;
+    height: 20px;
+    transform: translateX(-50%);
+    padding-top: 10px;
+}
+
+.main .scrolllist-item img {
+    vertical-align: middle;
+    position: relative;
+    float: right;
+    height: 20px;
+    padding-right: 5px;
+    /* transform: translateY(-50%); */
+}

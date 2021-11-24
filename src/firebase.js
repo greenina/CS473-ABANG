@@ -3,14 +3,25 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 import 'firebase/compat/auth';
 
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyD0gBx7wsHSs0i2mNfFuOzimTNMvBrOzko",
+//   authDomain: "abang-803aa.firebaseapp.com",
+//   projectId: "abang-803aa",
+//   databaseURL: "gs://abang-803aa.appspot.com",
+//   storageBucket: "abang-803aa.appspot.com",
+//   messagingSenderId: "308566395170",
+//   appId: "1:308566395170:web:4b4dfb498510aeb98dfd7b"
+// };
+
+//abang2
 const firebaseConfig = {
-  apiKey: "AIzaSyD0gBx7wsHSs0i2mNfFuOzimTNMvBrOzko",
-  authDomain: "abang-803aa.firebaseapp.com",
-  projectId: "abang-803aa",
-  databaseURL: "gs://abang-803aa.appspot.com",
-  storageBucket: "abang-803aa.appspot.com",
-  messagingSenderId: "308566395170",
-  appId: "1:308566395170:web:4b4dfb498510aeb98dfd7b"
+  apiKey: "AIzaSyA9QuWiTKqSqS7dNRUWSoWp3pHjxgYqwSY",
+  authDomain: "abang2-3e855.firebaseapp.com",
+  projectId: "abang2-3e855",
+  storageBucket: "abang2-3e855.appspot.com",
+  messagingSenderId: "1074718648223",
+  appId: "1:1074718648223:web:78ccaf8e9ff20103a73faa"
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
@@ -37,5 +48,4 @@ function SignOut() {
 }
 
 export {db, firebaseApp, firebase, storage, auth, SignIn, SignOut};
-
 

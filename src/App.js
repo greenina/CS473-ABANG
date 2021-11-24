@@ -11,10 +11,10 @@ import Chat from "./Pages/Chat";
 import OurPage from "./Pages/OurPage";
 import Vote from "./Pages/Vote";
 import Ourpage_Edit from './Pages/Ourpage_edit copy';
-import Bucket_Edit from "./component/bucket";
+import BucketList from "./component/BucketList";
 import Bucketdata from "./component/bucketdata";
 import MakeVote from './Pages/MakeVote'
-import VoteBox from './Components/VoteBox'
+import VoteBox from './component/VoteBox'
 
 import { db, storage } from "./firebase";
 
@@ -41,6 +41,7 @@ const App = () => {
         <Route 
           path="/bucket/:bid/memory/add" 
           element={<MemoryAdd
+            docRef={db.collection('group').doc('groupB')}
             bucketRef={db.collection(bucketRef)}
             memoryRef={db.collection(memoryRef)}
             storageRef={storage.ref('/photos')}
@@ -49,12 +50,15 @@ const App = () => {
         <Route 
           path="/bucket/:bid/memory/:id" 
           element={<MemoryView 
+            docRef={db.collection('group').doc('groupB')}
+            bucketRef={db.collection(bucketRef)}
             memoryRef={db.collection(memoryRef)} 
           />} 
         />
         <Route 
           path="/bucket/:bid/memory/:id/edit" 
           element={<MemoryEdit
+            docRef={db.collection('group').doc('groupB')}
             bucketRef={db.collection(bucketRef)}
             memoryRef={db.collection(memoryRef)}
             storageRef={storage.ref('/photos')}
@@ -69,7 +73,7 @@ const App = () => {
         <Route path="/chat" element={<Chat/>}/>
         <Route path="/ourpage" element={<OurPage/>} />
         <Route path="/ourpage/edit" element={<Ourpage_Edit/>} /> //Ourpage_edit copy
-        <Route path="/ourpage/bucket" element={<Bucket_Edit/>} />
+        <Route path="/ourpage/bucket" element={<BucketList/>} />
         <Route path="/ourpage/bucketdata" element={<Bucketdata/>} />
         <Route path="/vote" element={<Vote/>} />
         {/* <Route path="/makevote" element={<MakeVote/>} /> */}

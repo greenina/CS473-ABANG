@@ -1,14 +1,16 @@
+
 import { useEffect, useState } from "react";
 import React from "react";
-import VoteBox from "../Components/VoteBox";
+import VoteBox from "../component/VoteBox";
 import {db} from '../firebase'
-// import MakeVote from "../Components/MakeVote";
 //VoteBox component안에 들어가야하는 props : group, email, group안의 어떤 vote? vote의 name or index?
 
+
 const Vote = () =>{
-  const group = "groupZ"
+  const group = "groupB"
   const docRef = db.collection('group').doc(group)
   const [n, setN] = useState(0)
+
 
   useEffect(()=>{
     docRef.get().then((doc)=>{
@@ -23,6 +25,7 @@ const Vote = () =>{
         return <VoteBox  index={vote}/>
       })}
       {/* <MakeVote/> */}
+
     </div>
   )
 }

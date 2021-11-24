@@ -2,15 +2,17 @@ import React from "react";
 
 import "./ScrollList.css";
 
-import arrowUpIcon from "../../Icons/ArrowUp.png";
-import arrowDownIcon from "../../Icons/ArrowDown.png";
+import arrowUpIcon from "../../Icons/ArrowUpPurple.png";
+import arrowDownIcon from "../../Icons/ArrowDownPurple.png";
 import shareIcon from "../../Icons/Share.png";
+import shoppingCartIcon from "../../Icons/ShoppingCart.png";
 
-const ActivityItem = () => {
+const ActivityItem = ({ text }) => {
     return (
         <div className="scrolllist-item">
             <div className="scrolllist-text">
-                시끄러운 친구들
+                { text }
+                <img src={shoppingCartIcon} /> 
                 <img src={shareIcon} /> 
             </div>
         </div>
@@ -23,10 +25,10 @@ const RecommendedActivity = () => {
         <div className="scrolllist-name">Recommended</div>
         <img src={arrowUpIcon} className="scrolllist-arrow" />
         <div>
-            <ActivityItem />
-            <ActivityItem />
-            <ActivityItem />
-            <ActivityItem />
+            <ActivityItem text="도자기 공방"/>
+            <ActivityItem text="남산 타워"/>
+            <ActivityItem text="유튜브 브이로그"/>
+            <ActivityItem text="시베리아 횡단 열차"/>
         </div>
         <img src={arrowDownIcon} className="scrolllist-arrow" />
     </div>
