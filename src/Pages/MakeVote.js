@@ -21,21 +21,24 @@ const MakeVote = (props)=>{
 
 
     useEffect(()=>{
-        console.log("AUTH",auth)
+        // console.log("AUTH",auth)
         async function getOptions (){
             await docRef.get()
-            .then(doc =>{
+            .then(async doc =>{
                 const bucket = doc.data().bucket
-                bucket.map(i=>{
+                const newBucket = []
+                await bucket.map(i=>{
                     i.get().then(snapshot => {
-                    setOptions(options => options.push(snapshot.data().text))
-                    
+                        console.log("snapshott",options.push([snapshot.data().text]))
+                        newBucket.push(snapshot.data().text)
+                        console.log("new",newBucket)
+                        setOptions(newBucket)
                 })
-                console.log("options",options)
+                // console.log("options",options)
                 })
-                setUsers(doc.data().friends.map(i=>i.email))
-                setLength(doc.data().vote.length)
-                setChecked(Array(options.length).fill(false))
+                await setUsers(doc.data().friends.map(i=>i.email))
+                await setLength(doc.data().vote.length)
+                await setChecked(Array(options.length).fill(false))
             })
         }
         getOptions()
@@ -64,7 +67,7 @@ const MakeVote = (props)=>{
             index:length
         }
         await db.collection('message2').add({
-            isText:false,
+            isText:2,
             text: newVote,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             email:auth.currentUser.email,
@@ -80,6 +83,9 @@ const MakeVote = (props)=>{
     const submitTitle = (e) =>{
                     setTitle(e.target.value)
                 }
+
+    // console.log(options)
+    // console.log(typeof(options))
     return(
         <div>
             <FormGroup>

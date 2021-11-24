@@ -6,14 +6,28 @@ import arrowUpIcon from "../../Icons/ArrowUpPurple.png";
 import arrowDownIcon from "../../Icons/ArrowDownPurple.png";
 import shareIcon from "../../Icons/Share.png";
 import shoppingCartIcon from "../../Icons/ShoppingCart.png";
+import firebase from 'firebase/compat/app';
+import {db, auth} from '../../firebase'
 
 const ActivityItem = ({ text, href }) => {
+    const share = async () => {
+        await db.collection('message2').add({
+            isText:3,
+            text: {name:text, link:href},
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            email:auth.currentUser.email,
+            photoURL: auth.currentUser.photoURL
+        })
+
+        window.location.href = "/chat"
+        
+    }
     return (
-        <div className="scrolllist-item" onClick={() => window.location.href = href}>
+        <div className="scrolllist-item" >
             <div className="scrolllist-text">
-                { text }
                 <img src={shoppingCartIcon} /> 
-                <img src={shareIcon} /> 
+                <img src={shareIcon } onClick={share}/> 
+                <div onClick={() => window.location.href = href}>{ text }</div>
             </div>
         </div>
     );
