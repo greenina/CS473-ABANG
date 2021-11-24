@@ -28,7 +28,7 @@ const BucketDetail = ({ bucketRef }) => {
             <div className="header">Recommended Bucket list</div>
             <div className="scrolllist-container">
                 <div className="bucket-container">
-                    <BucketItemInfo data={bucket} detail={true} />
+                    <BucketItemInfo data={bucket} detail={true} link={bid} />
                 </div>
             </div>
         </div>

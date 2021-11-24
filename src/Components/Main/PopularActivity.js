@@ -7,6 +7,8 @@ import shareIcon from "../../Icons/Share.png";
 import shoppingCartIcon from "../../Icons/ShoppingCart.png";
 import hitIcon from "../../Icons/Hit_icon.png";
 import zIndex from "@material-ui/core/styles/zIndex";
+import firebase from 'firebase/compat/app';
+import {db, auth} from '../../firebase'
 
 const ActivityItem = ({ text, hashtags, href }) => {
     const resize = {
@@ -20,16 +22,28 @@ const ActivityItem = ({ text, hashtags, href }) => {
         'margin-left' : '630px', 
         'margin-top' : '-50px'
     }
+    const share = async () => {
+        await db.collection('message2').add({
+            isText:3,
+            text: {name:text, link:href},
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            email:auth.currentUser.email,
+            photoURL: auth.currentUser.photoURL
+        })
+
+        window.location.href = "/chat"
+        
+    }
     return (
         <div className="shortlist-item clickable" 
             onClick={() => window.location.href=href}
             style={{ backgroundColor: "var(--lightgray)", verticalAlign: "top" }}>
             <img src={hitIcon} style={{height:'30px', width:'40px'}}/>
             <div style={{ display: "inline-block", width: "calc(100% - 50px)", verticalAlign: "top" }}>
-                <div className="shortlist-text-big">{ text }</div>
-                <div className="shortlist-text">{ hashtags }</div>   
+                <div className="shortlist-text-big" onClick={() => window.location.href=href}>{ text }</div>
+                <div className="shortlist-text" onClick={() => window.location.href=href}>{ hashtags }</div>   
                 <img src={shoppingCartIcon} className="img" /> 
-                <img src={shareIcon} className="img" /> 
+                <img src={shareIcon} className="img" onClick={share} /> 
             </div>
         </div>
     );
