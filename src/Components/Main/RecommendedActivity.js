@@ -9,7 +9,7 @@ import shoppingCartIcon from "../../Icons/ShoppingCart.png";
 
 const ActivityItem = ({ text, href }) => {
     return (
-        <div className="scrolllist-item" onClick={() => window.location.href = href}>
+        <div className="scrolllist-item clickable" onClick={() => window.location.href = href}>
             <div className="scrolllist-text">
                 { text }
                 <img src={shoppingCartIcon} /> 

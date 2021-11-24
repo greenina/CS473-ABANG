@@ -62,7 +62,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId }) 
 
     return(
         <div>
-            <div className="bucket-item" 
+            <div className="bucket-item clickable" 
               onClick={() => window.location.href=`/bucket/${id}`}
               style={done ? { backgroundColor: "var(--green)"} : { backgroundColor: "var(--lightgray)" }}>
             {/* <span onClick={() => setOpen(!open)} style={style}>{todo}</span>  */}

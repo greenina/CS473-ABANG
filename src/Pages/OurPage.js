@@ -32,7 +32,7 @@ const Ourpage = () =>{
                 <div className="group-name">{ name }</div>
                 <div className="info-container">
                     <div className="group-introduction">
-                        <div onClick={() => window.location.href = "/ourpage/bucket"} className="bucket-button">See Bucket List &nbsp;<img src={bucketlistIcon} width={20} /></div>
+                        <div onClick={() => window.location.href = "/ourpage/bucket"} className="bucket-button clickable">See Bucket List &nbsp;<img src={bucketlistIcon} width={20} /></div>
                         <div className="header">Introduce Us</div>
                         {intro}
                         <Hashtags/>

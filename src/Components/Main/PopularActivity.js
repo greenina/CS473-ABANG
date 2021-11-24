@@ -21,7 +21,7 @@ const ActivityItem = ({ text, hashtags, href }) => {
         'margin-top' : '-50px'
     }
     return (
-        <div className="shortlist-item" 
+        <div className="shortlist-item clickable" 
             onClick={() => window.location.href=href}
             style={{ backgroundColor: "var(--lightgray)", verticalAlign: "top" }}>
             <img src={hitIcon} style={{height:'30px', width:'40px'}}/>

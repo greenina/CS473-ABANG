@@ -9,7 +9,7 @@ import hashBox from "../../Icons/hashBox.png"
 
 const GroupItem = ({name, hashtags, href}) => {
     return (
-        <div className="shortlist-item-profile" onClick={() => window.location.href = href}>
+        <div className="shortlist-item-profile clickable" onClick={() => window.location.href = href}>
             <img src={groupImg} width='100%'/>
             <div className="shortlist-text-groupname">{name}</div>
             <div className="shortlist-text-grouphash">{hashtags}</div>

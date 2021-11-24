@@ -73,7 +73,7 @@ function ChatRoom() {
       
         <form onSubmit = {sendMessage} style={{padding:"10px", height:"20px", display:"flex", alignItems:"center"}}>
           <input style={{width:"80%", marginRight:"5%", borderColor:"white", borderRadius:"6px",borderWidth:0, boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25)  "}} value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
-          <button type = "submit"  style={{width:"auto", backgroundColor:"#FFFEDB", color:"#829B89",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}>Send</button>
+          <button className="clickable" type = "submit"  style={{width:"auto", backgroundColor:"#FFFEDB", color:"#829B89",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}>Send</button>
         </form>
       </div>
       </div>

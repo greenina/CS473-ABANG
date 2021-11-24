@@ -147,7 +147,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId }) 
     return(
         <div>
             <div className="bucket-item" style={done ? { backgroundColor: "var(--green)"} : { backgroundColor: "var(--lightgray)" }}>
-                { !detail ? <input type="checkbox" id="unchecked" onClick={() => changeIsDone(id)} checked={done}/> : null }
+                { !detail ? <input className="clickable" type="checkbox" id="unchecked" onClick={() => changeIsDone(id)} checked={done}/> : null }
                 {toggle ? (
                     <input
                         style={style}
@@ -157,17 +157,17 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId }) 
                         style={{ boxShadow: "inset 0px 0.5px 6px rgba(0, 0, 0, 0.25)" }}
                     />
                 ) : ( 
-                <span onClick={() => setOpen(!open)} style={style}>{todo}</span> 
+                <span className="clickable" onClick={() => setOpen(!open)} style={style}>{todo}</span> 
                 )}
                 { !detail ? 
                   <div className="icon-group">
-                      <div onClick={() => handleToggleChange(id)} className="icon">{toggle ? <img src={checkIcon} height='30px'/> : <img src={editIcon} height='40px'/> }</div>
+                      <div onClick={() => handleToggleChange(id)} className="icon clickable">{toggle ? <img src={checkIcon} height='30px'/> : <img src={editIcon} height='40px'/> }</div>
                       {/* <div onClick={handleRemove} className="icon"><img src={closeIcon} height='30px'/></div> */}
-                      <div onClick={() => changeIsLock(id)} className="icon">{lock ? <img src={lockIcon} height='30px'/> : <img src={unlockIcon} height='30px'/>}</div>
+                      <div onClick={() => changeIsLock(id)} className="icon clickable">{lock ? <img src={lockIcon} height='30px'/> : <img src={unlockIcon} height='30px'/>}</div>
                   </div>
                   :
                   <div className="icon-group">
-                      <div className="icon"><img src={shareIcon} height='30px'/></div>
+                      <div className="icon clickable"><img src={shareIcon} height='30px'/></div>
                       <div className="icon"><img src={cartIcon} height='30px'/></div>
                   </div>
                 }

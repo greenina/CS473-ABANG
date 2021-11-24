@@ -17,7 +17,7 @@ const HashForm = () => {
     return (
         <div className="hashtag-input">
             <input value={text} name="text" placeholder="Add a new hashtag!" onChange={handleChange} />
-            <div onClick={onSubmit} className="hashtag-add">Add</div>
+            <div onClick={onSubmit} className="hashtag-add clickable">Add</div>
         </div>
     );
   }

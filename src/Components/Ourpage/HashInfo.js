@@ -22,7 +22,7 @@ const HashInfo = ({ id, data, onRemove }) => {
       <div className="hashtag-item">
         <div>#{ data.text }</div>
         { removable ? 
-          <div onClick={handleRemove} id={id}><img src = {'/img/Xbutton_yellow.png'} height='20px' /></div>
+          <div className="clickable" onClick={handleRemove} id={id}><img src = {'/img/Xbutton_yellow.png'} height='20px' /></div>
           : null }
       </div>
     );
