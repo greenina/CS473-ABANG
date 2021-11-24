@@ -34,7 +34,7 @@ function Chat() {
 function ChatRoom() {
   //const groupBelongTo = firestore.collection('group').whereField('friends', isEqual)  
   const messagesRef = db.collection('message2');
-  const query = messagesRef.orderBy('createdAt').limit(25);
+  const query = messagesRef.orderBy('createdAt');
 
   const [messages] = useCollectionData(query, {idField: 'id'});
 

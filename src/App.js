@@ -15,7 +15,7 @@ import Ourpage_Edit from './Pages/Ourpage_edit_copy';
 import BucketList from "./component/BucketList";
 import BucketDetail from "./component/BucketDetail";
 import Bucketdata from "./component/bucketdata";
-import MakeVote from './Pages/MakeVote'
+import MakeVote from './Pages/MakeVoteJY'
 import VoteBox from './component/VoteBox'
 
 import { db, storage } from "./firebase";
