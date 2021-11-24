@@ -64,7 +64,7 @@ const MakeVote = (props)=>{
                 })
             }
             }),
-            index:length
+            index:3
         }
         console.log("VOTE",newVote)
         await db.collection('message2').add({
@@ -74,11 +74,11 @@ const MakeVote = (props)=>{
             email:auth.currentUser.email,
             photoURL: auth.currentUser.photoURL
         })
-        await db.collection('vote').add(newVote).then(ref=>{
-            console.log("REF",ref)
-            updateDoc(docRef, {vote:ref})
-        })
-        // await updateDoc(db.collection('group').doc('groupZ'), {vote:arrayUnion(newVote)})
+        // await db.collection('vote').add(newVote).then(ref=>{
+        //     console.log("REF",ref)
+        //     updateDoc(docRef, {vote:ref})
+        // })
+        await updateDoc(db.collection('group').doc('groupB'), {vote:arrayUnion(newVote)})
         window.location.href = "/chat"
         
     }

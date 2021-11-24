@@ -9,7 +9,7 @@ import hitIcon from "../../Icons/Hit_icon.png";
 import zIndex from "@material-ui/core/styles/zIndex";
 import firebase from 'firebase/compat/app';
 import {db, auth} from '../../firebase'
-import { Tooltip, Button } from '@mui/material';
+import { Tooltip } from '@mui/material';
 const ActivityItem = ({ text, hashtags, href }) => {
     const resize = {
         height : '30px',
@@ -35,7 +35,7 @@ const ActivityItem = ({ text, hashtags, href }) => {
         
     }
     return (
-        <div className="shortlist-item clickable" 
+        <div className="shortlist-item" 
             style={{ backgroundColor: "var(--lightgray)", verticalAlign: "top" }}>
             <img src={hitIcon} style={{height:'30px', width:'40px'}}/>
             <div style={{ display: "inline-block", width: "calc(100% - 50px)", verticalAlign: "top" }}>

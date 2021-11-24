@@ -8,6 +8,7 @@ import shareIcon from "../../Icons/Share.png";
 import shoppingCartIcon from "../../Icons/ShoppingCart.png";
 import firebase from 'firebase/compat/app';
 import {db, auth} from '../../firebase'
+import { Tooltip } from '@mui/material';
 
 const ActivityItem = ({ text, href }) => {
     const share = async () => {
@@ -23,9 +24,11 @@ const ActivityItem = ({ text, href }) => {
         
     }
     return (
-        <div className="scrolllist-item clickable">
+        <div className="scrolllist-item" >
             <div className="scrolllist-text">
-                <img src={shoppingCartIcon} /> 
+                <Tooltip title="Not a Core Feature(To be Implemented)" arrow>
+                <img src={shoppingCartIcon} className="img" /> 
+                </Tooltip>
                 <img src={shareIcon } onClick={share}/> 
                 <div onClick={() => window.location.href = href}>{ text }</div>
             </div>
