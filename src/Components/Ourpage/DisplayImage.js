@@ -37,7 +37,7 @@ class DisplayImage extends Component {
           <div>     
             <img src={this.state.image} width='100%'/>
             <label for = "input-file">
-              <img src = {editButton} height='70px' style = {{position: 'absolute', top: "10px", right: "10px"}}/>
+              <img src = {editButton} height='40px' className="clickable" style = {{position: 'absolute', top: "10px", right: "10px"}}/>
             </label>
             <input type="file" id="input-file" name="myImage" onChange={this.onImageChange} style={{display : "none"}} />
           </div>

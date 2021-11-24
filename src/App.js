@@ -11,7 +11,7 @@ import Chat from "./Pages/Chat";
 import OurPage from "./Pages/OurPage";
 import TheirPage from "./Pages/TheirPage";
 import Vote from "./Pages/Vote";
-import Ourpage_Edit from './Pages/Ourpage_edit copy';
+import Ourpage_Edit from './Pages/Ourpage_edit_copy';
 import BucketList from "./component/BucketList";
 import BucketDetail from "./component/BucketDetail";
 import Bucketdata from "./component/bucketdata";
