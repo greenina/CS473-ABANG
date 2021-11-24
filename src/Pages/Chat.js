@@ -62,8 +62,8 @@ function ChatRoom() {
   return (
     <>
     <div>
-    <div style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#EAF6F4", maxWidth: "20vw", width:"20vw", height:"80vh"}}>
-      <div style={{position:"fixed", top:"10vh", right:"40vw", padding:5}}>
+    <div style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#EAF6F4", maxWidth: "100vw", width:"100vw", height:"100vh"}}>
+      <div style={{position:"fixed", top:"5px", right:"5px", padding:5}}>
       <SpeedDial />
       </div>
       <div style={{padding:"10px", overflow:"auto"}}>
