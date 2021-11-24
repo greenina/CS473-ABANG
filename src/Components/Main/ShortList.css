@@ -1,6 +1,7 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url('https://fonts.googleapis.com/css2?family=Cantora+One&display=swap');
 
+
 .shortlist-container {
     display: inline-block;
     width: calc(50% - 20px);
@@ -9,17 +10,17 @@
 }
 .shortlist-container-small {
     display: inline-block;
-    width: calc(25% - 20px);
+    width: calc(50% - 20px);
     color: var(--browntext);
     padding: 10px;
 }
 
 .shortlist-container-small-second {
     display: inline-block;
-    width: calc(25% - 20px);
+    width: calc(50% - 20px);
     color: var(--browntext);
     padding: -10px;
-    margin-left:-20px;
+    margin-left: -10px;
 }
 
 .shortlist-item {
@@ -29,6 +30,7 @@
     border-radius: 10px;
     margin-top: 10px;
     padding: 10px;
+    vertical-align: top;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -68,7 +70,7 @@
     font-family: 'Jeju Gothic', sans-serif;
     font-size:20px;
     z-index:2;
-    margin-top:-40px;
+    margin-top:-30px;
     /* top: 50%; */
     /* transform: translateY(-50%); */
 }
@@ -80,7 +82,8 @@
     vertical-align: top;
     font-family: 'Jeju Gothic', sans-serif;
     z-index:2;
-    margin-top:-40px;
+    margin-left:10px;
+    margin-top:-25px;
     /* top: 50%; */
     /* transform: translateY(-50%); */
 }

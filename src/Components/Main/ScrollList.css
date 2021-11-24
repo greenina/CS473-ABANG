@@ -1,3 +1,6 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url('https://fonts.googleapis.com/css2?family=Cantora+One&display=swap');
+
 .main .scrolllist-container {
     display: inline-block;
     width: calc(100% - 40px);
@@ -25,6 +28,12 @@
     padding-top: 10px;
 }
 
+.main .scrolllist-text {
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size:22px;
+    padding:7px;
+}
+
 .main .scrolllist-item img {
     vertical-align: middle;
     position: relative;
@@ -35,5 +44,6 @@
 }
 
 .main .scrolllist-name {
-    font-weight: bold;
+    font-size:50px;
+    font-family: 'Cantora One', sans-serif;
 }

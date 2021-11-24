@@ -11,7 +11,7 @@ class Ourpage_Edit extends Component {
                 <h2>Ourpage</h2>
                 <div><GroupInfo/></div>
                 <br/>
-                <Link to = "../ourpage"><button>edit finish!</button></Link>
+                <Link to = "../ourpage"><button z-index='3'>edit finish!</button></Link>
                 
             </div>
         )

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {doc, setDoc} from "firebase/firestore";
-import {db} from '../firebase';
+import {db} from '../../firebase';
 
 class DisplayImage extends Component {
   constructor(props) {

@@ -5,8 +5,8 @@ import NavBar from "../Components/Main/NavBar";
 import GroupImage from "../Components/Ourpage/GroupImage";
 import Hashtags from "../Components/Ourpage/Hashtags";
 
-import bucketlistIcon from "../Icons/Bucketlist.png"
-
+import bucketlistIcon from "../Icons/Bucketlist.png";
+import DisplayImage from '../Components/Ourpage/DisplayImage';
 import "../Components/Ourpage/Ourpage.css"
 
 const Ourpage = () =>{
@@ -28,6 +28,7 @@ const Ourpage = () =>{
     return(
         <div className="ourpage">
             <div className="ourpage-container">
+                <DisplayImage/>
                 <GroupImage />
                 <div className="group-name">{ name }</div>
                 <div className="info-container">

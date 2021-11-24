@@ -24,7 +24,7 @@ const RecommendedActivity = () => {
     <div className="scrolllist-container">
         <div className="scrolllist-name">Recommended</div>
         <img src={arrowUpIcon} className="scrolllist-arrow" />
-        <div>
+        <div className="scrollist-text">
             <ActivityItem text="도자기 공방"/>
             <ActivityItem text="남산 타워"/>
             <ActivityItem text="유튜브 브이로그"/>
