@@ -22,15 +22,6 @@ const BucketList = ({ show }) => {
         });
     }, []);
 
-//   const handleCreate = (data) => {
-//     this.setState({
-//       bucketList: bucketList.concat({
-//         id: this.id++,
-//         ...data,
-//       }),
-//     });
-//   };
-
   const handleUpdate = (id, data) => {
     this.setState({
       bucketList: bucketList.map((bucketList) => {
@@ -47,12 +38,6 @@ const BucketList = ({ show }) => {
     });
   };
 
-  const handleRemove = (id) => {
-    bucketList[id] = "null"
-    this.setState({
-      bucketList: bucketList
-    });
-  };
     return (
         <div className="memory" style={ show ? { minHeight: "0" } : {}}>
             { show ? null : <Link to={`/ourpage`} className="close-button"><img src={closeButton} width="100%" /></Link> }

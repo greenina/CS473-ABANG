@@ -14,13 +14,14 @@ import cartIcon from "../Icons/ShoppingCart.png"
 import shareIcon from "../Icons/Share.png"
 import { OutletSharp } from '@mui/icons-material';
 
-const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail }) =>{
+const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, isMy }) =>{
     const [id, setID] = useState(null)
     const [lock, setLock] = useState(null)
   const [todo, setTodo] = useState(null)
   const [toggle, setToggle] = useState(false)
   const [done, setDone] = useState(null)
   const [open, setOpen] = useState(false)
+  const [showInLIst, setShowInList] = useState(true)
 
 //   console.log(data)
 
@@ -39,6 +40,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail }) =>{
             setLock(s.data().isLock)
             setTodo(s.data().text)
             setDone(s.data().isDone)
+            if(isMy && s.data().main) setShowInList(false)
         }
     })
   }, [data])
@@ -143,6 +145,8 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail }) =>{
         }
     )
   }
+
+  if(!showInLIst) return null
 
     return(
         <div>

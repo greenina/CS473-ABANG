@@ -25,7 +25,7 @@ const BucketItem = ({ data, onRemove, onUpdate }) =>{
   return(
     <div>
         {bucketlist.map((data) => (
-            <BucketItemInfo data={data} onUpdate={onUpdate} onRemove={onRemove} refresh = {getInfo} />
+            <BucketItemInfo data={data} onUpdate={onUpdate} onRemove={onRemove} refresh = {getInfo} isMy={true} />
         ))}
     </div>
   )
