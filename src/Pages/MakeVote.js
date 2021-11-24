@@ -42,7 +42,7 @@ const MakeVote = (props)=>{
             })
         }
         getOptions()
-    },[docRef])
+    },[])
 
 
     const Submit = async () => {
