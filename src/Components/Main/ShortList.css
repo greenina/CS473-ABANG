@@ -1,13 +1,41 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url('https://fonts.googleapis.com/css2?family=Cantora+One&display=swap');
+
 .shortlist-container {
     display: inline-block;
     width: calc(50% - 20px);
     color: var(--browntext);
     padding: 10px;
 }
+.shortlist-container-small {
+    display: inline-block;
+    width: calc(25% - 20px);
+    color: var(--browntext);
+    padding: 10px;
+}
+
+.shortlist-container-small-second {
+    display: inline-block;
+    width: calc(25% - 20px);
+    color: var(--browntext);
+    padding: -10px;
+    margin-left:-20px;
+}
 
 .shortlist-item {
     position: relative;
     width: calc(100% - 20px);
+    background-color: var(--yellow);
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.shortlist-item-profile {
+    position: relative;
+    width: calc(100% - 50px);
+    height : 210px;
     background-color: var(--yellow);
     border-radius: 10px;
     margin-top: 10px;
@@ -25,10 +53,54 @@
     position: relative;
     width: calc(75% - 10px);
     vertical-align: top;
+    font-family: 'Jeju Gothic', sans-serif;
+    margin-left:80px;
+    margin-top: -3px;
     /* top: 50%; */
     /* transform: translateY(-50%); */
 }
 
+.shortlist-text-groupname {
+    display: inline-block;
+    position: relative;
+    width: calc(75% - 10px);
+    vertical-align: top;
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size:20px;
+    z-index:2;
+    margin-top:-40px;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+}
+
+.shortlist-text-grouphash {
+    display: inline-block;
+    position: relative;
+    width: calc(75% - 10px);
+    vertical-align: top;
+    font-family: 'Jeju Gothic', sans-serif;
+    z-index:2;
+    margin-top:-40px;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+}
+
+.shortlist-text-big {
+    display: inline-block;
+    position: relative;
+    width: calc(75% - 10px);
+    vertical-align: top;
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size:30px;
+    margin-left: -10px;
+    margin-top: 12px;
+}
 .shortlist-name {
-    font-weight: bold;
+    font-size:50px;
+    font-family: 'Cantora One', sans-serif;
+}
+
+.shortlist-groupname {
+    z-index: 3;
+    margin-top: -12px;
 }
