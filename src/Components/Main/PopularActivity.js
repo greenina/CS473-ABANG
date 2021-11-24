@@ -35,7 +35,8 @@ const ActivityItem = ({ text, hashtags, href }) => {
         
     }
     return (
-        <div className="shortlist-item" 
+        <div className="shortlist-item clickable" 
+            onClick={() => window.location.href=href}
             style={{ backgroundColor: "var(--lightgray)", verticalAlign: "top" }}>
             <img src={hitIcon} style={{height:'30px', width:'40px'}}/>
             <div style={{ display: "inline-block", width: "calc(100% - 50px)", verticalAlign: "top" }}>

@@ -62,8 +62,11 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId }) 
 
     return(
         <div>
-            <div className="bucket-item" style={done ? { backgroundColor: "var(--green)"} : { backgroundColor: "var(--lightgray)" }}>
-            <span onClick={() => setOpen(!open)} style={style}>{todo}</span> 
+            <div className="bucket-item clickable" 
+              onClick={() => window.location.href=`/bucket/${id}`}
+              style={done ? { backgroundColor: "var(--green)"} : { backgroundColor: "var(--lightgray)" }}>
+            {/* <span onClick={() => setOpen(!open)} style={style}>{todo}</span>  */}
+            {todo}
                   <div className="icon-group">
                       <div className="icon"><img src={shareIcon} height='30px'/></div>
                       <div className="icon"><img src={cartIcon} height='30px'/></div>

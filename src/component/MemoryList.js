@@ -19,7 +19,7 @@ const MemoryList = ({ id, detail }) =>{
             {memories.map((memory) => (
                 <MemoryItem bid={id} memory={memory} detail={detail} />
             ))}
-            {!detail ? <button onClick={() => window.location.href = `/bucket/${id}/memory/add`}>Add</button> : null }
+            {!detail ? <button className="clickable" onClick={() => window.location.href = `/bucket/${id}/memory/add`}>Add</button> : null }
         </div>
     )
 }
