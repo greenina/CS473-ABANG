@@ -10,9 +10,11 @@ import checkIcon from "../Icons/Check.png"
 import closeIcon from "../Icons/Close.png"
 import lockIcon from "../Icons/Lock.png"
 import unlockIcon from "../Icons/Unlock.png"
+import cartIcon from "../Icons/ShoppingCart.png"
+import shareIcon from "../Icons/Share.png"
 import { OutletSharp } from '@mui/icons-material';
 
-const BucketItemInfo = ({ data, onUpdate, onRemove, refresh }) =>{
+const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail }) =>{
     const [id, setID] = useState(null)
     const [lock, setLock] = useState(null)
   const [todo, setTodo] = useState(null)
@@ -21,6 +23,13 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh }) =>{
   const [open, setOpen] = useState(false)
 
 //   console.log(data)
+
+  useEffect(() => {
+    if(detail) {
+      setOpen(true)
+      // setDone(false)
+    }
+  });
 
   useEffect(() => {
     console.log("DATA",data)
@@ -138,7 +147,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh }) =>{
     return(
         <div>
             <div className="bucket-item" style={done ? { backgroundColor: "var(--green)"} : { backgroundColor: "var(--lightgray)" }}>
-                <input type="checkbox" id="unchecked" onClick={() => changeIsDone(id)} checked={done}/> 
+                { !detail ? <input type="checkbox" id="unchecked" onClick={() => changeIsDone(id)} checked={done}/> : null }
                 {toggle ? (
                     <input
                         style={style}
@@ -150,15 +159,22 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh }) =>{
                 ) : ( 
                 <span onClick={() => setOpen(!open)} style={style}>{todo}</span> 
                 )}
-                <div className="icon-group">
-                    <div onClick={() => handleToggleChange(id)} className="icon">{toggle ? <img src={checkIcon} height='30px'/> : <img src={editIcon} height='40px'/> }</div>
-                    {/* <div onClick={handleRemove} className="icon"><img src={closeIcon} height='30px'/></div> */}
-                    <div onClick={() => changeIsLock(id)} className="icon">{lock ? <img src={lockIcon} height='30px'/> : <img src={unlockIcon} height='30px'/>}</div>
-                </div>
+                { !detail ? 
+                  <div className="icon-group">
+                      <div onClick={() => handleToggleChange(id)} className="icon">{toggle ? <img src={checkIcon} height='30px'/> : <img src={editIcon} height='40px'/> }</div>
+                      {/* <div onClick={handleRemove} className="icon"><img src={closeIcon} height='30px'/></div> */}
+                      <div onClick={() => changeIsLock(id)} className="icon">{lock ? <img src={lockIcon} height='30px'/> : <img src={unlockIcon} height='30px'/>}</div>
+                  </div>
+                  :
+                  <div className="icon-group">
+                      <div className="icon"><img src={shareIcon} height='30px'/></div>
+                      <div className="icon"><img src={cartIcon} height='30px'/></div>
+                  </div>
+                }
             </div>
             { open && done ?
                 <div className="memory-list">
-                    <MemoryList id={data.id} />
+                    <MemoryList id={data.id} detail={detail} />
                 </div>
             : null }
         </div>

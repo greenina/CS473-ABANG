@@ -3,7 +3,7 @@ import {useState} from 'react'
 import {db} from '../firebase'
 import MemoryItem from "./MemoryItem"
 
-const MemoryList = ({ id }) =>{
+const MemoryList = ({ id, detail }) =>{
     const [memories, setMemories] = useState([])
 
     useEffect(() => {
@@ -17,9 +17,9 @@ const MemoryList = ({ id }) =>{
     return (
         <div>
             {memories.map((memory) => (
-                <MemoryItem bid={id} memory={memory} />
+                <MemoryItem bid={id} memory={memory} detail={detail} />
             ))}
-            <button onClick={() => window.location.href = `/bucket/${id}/memory/add`}>Add</button>
+            {!detail ? <button onClick={() => window.location.href = `/bucket/${id}/memory/add`}>Add</button> : null }
         </div>
     )
 }

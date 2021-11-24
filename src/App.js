@@ -12,6 +12,7 @@ import OurPage from "./Pages/OurPage";
 import Vote from "./Pages/Vote";
 import Ourpage_Edit from './Pages/Ourpage_edit copy';
 import BucketList from "./component/BucketList";
+import BucketDetail from "./component/BucketDetail";
 import Bucketdata from "./component/bucketdata";
 import MakeVote from './Pages/MakeVote'
 import VoteBox from './component/VoteBox'
@@ -35,6 +36,16 @@ const App = () => {
           path="/bucket" 
           element={<Bucket
             bucketRef={db.collection(bucketRef)}
+          />} 
+        />
+
+        <Route 
+          path="/bucket/:bid" 
+          element={<BucketDetail
+            docRef={db.collection('group').doc('groupB')}
+            bucketRef={db.collection(bucketRef)}
+            memoryRef={db.collection(memoryRef)}
+            storageRef={storage.ref('/photos')}
           />} 
         />
 

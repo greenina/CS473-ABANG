@@ -5,7 +5,7 @@ import { arrayUnion, updateDoc } from "firebase/firestore";
 import { getFormControlUnstyledUtilityClasses } from '@mui/core';
 import PictureList from '../Components/Memory/PictureList';
 
-const MemoryItem = ({ bid, memory }) =>{
+const MemoryItem = ({ bid, memory, detail }) =>{
   const [memoryItem, setMemoryItem] = useState(null)
   const [id, setID] = useState(null)
 
@@ -16,12 +16,18 @@ const MemoryItem = ({ bid, memory }) =>{
     })
   },[memory])
 
+  const redirectTo = () => {
+    console.log(detail)
+    if(!detail) window.location.href = `/bucket/${bid}/memory/${id}`
+    else return
+  }
+
   if(!memoryItem) return null
 
   return(
     <div className="memory-content" 
         style={{ marginBottom: "10px" }}
-        onClick={() => window.location.href = `/bucket/${bid}/memory/${id}`}>
+        onClick={redirectTo}>
         <div className="memory-text">
             <div className="title">{ memoryItem.title }</div>
             <div className="date">{ memoryItem.date }</div>
