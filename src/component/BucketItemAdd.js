@@ -31,7 +31,7 @@ const BucketItemAdd = () =>{
   return (
     <div className="bucket-input">
         <input value={todo} name="text" placeholder="Add a new bucket list!" onChange={handleChange}/>
-        <button onClick={onSubmit}>Add</button>
+        <button className="clickable" onClick={onSubmit}>Add</button>
     </div>
   )
 }

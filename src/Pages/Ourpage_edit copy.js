@@ -2,16 +2,23 @@ import React, {Component, useEffect, useState} from 'react';
 import {Route,Link} from 'react-router-dom';
 import {db} from '../firebase';
 import {doc, getDoc} from "firebase/firestore";
+import GroupName from '../component/groupname';
+import Introduce from '../component/introduce';
+import DisplayImage from '../Components/Ourpage/DisplayImage';
+import NavBar from '../Components/Main/NavBar';
+import Hashtags from "../Components/Ourpage/Hashtags";
+import BucketList from '../component/BucketList'
+import zIndex from '@material-ui/core/styles/zIndex';
+import "../Components/Ourpage/Ourpage.css"
+import { fontFamily } from '@mui/system';
 
 class Ourpage_Edit extends Component {
 
     render(){
         return(
-            <div>
-                <h2>Ourpage</h2>
+            <div className="info-container">
+                <DisplayImage/>
                 <div><GroupInfo/></div>
-                <br/>
-                <Link to = "../ourpage"><button z-index='3'>edit finish!</button></Link>
                 
             </div>
         )
@@ -41,9 +48,10 @@ function GroupInfo(){
         setIntroduce(e.target.value)
     }
     const Box ={
-        marginTop:"-10px",
+        marginTop:"10px",
         width:"364px",
-        height:"36px"
+        height:"36px",
+        backgroundColor: "var(--lightyellow)"
     }
     const submit = () => {
         docRef.get()
@@ -66,10 +74,20 @@ function GroupInfo(){
    
     
 
-    return<div>
-        <input type="text" style={Box} value={groupname} onChange={e=>onGroupNameChange(e)} placeholder={groupname}/>
-        <input type="text" style={Box} value={introduce} onChange={e=>onIntroduceChange(e)} placeholder={introduce}/>
-        <button onClick={submit}>save</button>
+    return<div> 
+        <input className="group-name" type="text"  value={groupname} onChange={e=>onGroupNameChange(e)} placeholder={groupname}/>
+        <div className="info-container">
+            <div className="introduce-us">Introduce Us</div>
+            
+            <input type="text" className='text-jeju' style={{marginTop:"10px", width:"99%", height:'4vh',backgroundColor: "var(--lightyellow)"}}value={introduce} onChange={e=>onIntroduceChange(e)} placeholder={introduce}/>
+            <Link to="/ourpage"> <div onClick={submit} className="edit-finish-button" style = {{position: 'relative', color: 'var(--browntext)','z-index':'3',top:"0vh",left:"-78vw"}} >edit finish!</div></Link>
+            <Hashtags/>
+            <div className="bucket-container">
+                        <BucketList show={true} />
+            </div>
+        </div>
+        
+
       </div>
 }
 
