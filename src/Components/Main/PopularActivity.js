@@ -9,7 +9,7 @@ import hitIcon from "../../Icons/Hit_icon.png";
 import zIndex from "@material-ui/core/styles/zIndex";
 import firebase from 'firebase/compat/app';
 import {db, auth} from '../../firebase'
-
+import { Tooltip, Button } from '@mui/material';
 const ActivityItem = ({ text, hashtags, href }) => {
     const resize = {
         height : '30px',
@@ -41,7 +41,11 @@ const ActivityItem = ({ text, hashtags, href }) => {
             <div style={{ display: "inline-block", width: "calc(100% - 50px)", verticalAlign: "top" }}>
                 <div className="shortlist-text-big" onClick={() => window.location.href=href}>{ text }</div>
                 <div className="shortlist-text" onClick={() => window.location.href=href}>{ hashtags }</div>   
+                
+
+                <Tooltip title="Not a Core Feature(To be Implemented)" arrow>
                 <img src={shoppingCartIcon} className="img" /> 
+                </Tooltip>
                 <img src={shareIcon} className="img" onClick={share} /> 
             </div>
         </div>
