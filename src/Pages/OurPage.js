@@ -40,13 +40,11 @@ const Ourpage = () =>{
                         <div className="header">
                             Introduce Us
                             <label for = 'editbuttonimg'>
-                            <img src = {editButton} height='60px' style = {{position: 'relative'}}/>
+                            <Link to="/ourpage/edit"><button id='editbuttonimg' className="clickable" style={{display:'none'}}>edit</button></Link>
+                            <img src = {editButton} height='40px' className="clickable" style = {{position: 'relative', marginLeft: "10px" }}/>
                         </label>
                         </div>
-                        <div className="group-introduction-text">{intro}
-                        <Link to="/ourpage/edit"><button id='editbuttonimg' style={{display:'none'}}>edit</button></Link>
-                        </div>
-                    
+                        <div className="group-introduction-text">{intro}</div>
                         <Hashtags/>
                     </div>
                     <div className="bucket-container">
