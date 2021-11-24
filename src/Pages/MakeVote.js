@@ -7,6 +7,7 @@ import {db, auth} from '../firebase'
 import { arrayUnion, updateDoc } from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from 'firebase/compat/app';
+import TextField from '@mui/material/TextField';
 
 const MakeVote = (props)=>{
 
@@ -87,8 +88,10 @@ const MakeVote = (props)=>{
     // console.log(options)
     // console.log(typeof(options))
     return(
-        <div>
+        <div style={{display:"flex", flexDirection:"column",justifyContent:"flex-start",maxWidth: "100vw", width:"100vw"}}>
             <FormGroup>
+            <div style={{height:"70vh",width:"100vw",background:"#F4CCCC", display:"flex", justifyContent:"center", alignItems:"center"}}>
+                <div style={{height:"80%", width:"80%", backgroundColor:"#F2E1E1", padding:10, borderRadius:10}}>
             {options.map((option,i)=>{
                 const changeChecked = () => {
                     var arr = [...checked]
@@ -97,15 +100,20 @@ const MakeVote = (props)=>{
                 }
                 console.log("!!!!",options)
                 return(
+                    <div style={{display:"flex", flexDirection:"column",justifyContent:"flex-end", width:"100%-20px",background:"#EFF1EE",color:"#605A2A", marginBottom:"15px",borderRadius:10, paddingLeft:"10px", paddingRight:"10px"}}>
                     <FormControlLabel 
                     control=
                     {<Checkbox checked={checked[i]} onChange={changeChecked}/>} 
                     label={option} />
+                    </div>
                 )
             })}
+            </div>
+            </div>
             </FormGroup>
-            <input onChange = {submitTitle}/>
-            <button  onClick={Submit}>MAKE</button>
+            <TextField id="standard-basic" onChange = {submitTitle} label=" Enter the Title of the vote." variant="standard" style={{marginBottom:"15px"}}/>
+            <button style={{width:"10vw",height:"auto",backgroundColor:"#EAAEAE", color:"#FDFCF7",borderWidth:0,
+      boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px", padding:5, margin: "auto"}} onClick={Submit}>MAKE</button>
         </div>
     )
 }
