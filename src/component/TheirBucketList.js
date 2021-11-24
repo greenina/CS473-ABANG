@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import BucketItemAdd from './BucketItemAdd';
-import BucketItem from './BucketItem';
+import BucketItem from './TheirBucketItem';
 
 import closeButton from "../Icons/CloseButton.png"
 import arrowUpIcon from "../Icons/ArrowUpBlue.png";
@@ -12,31 +12,15 @@ import {db} from '../firebase';
 import "../Components/Memory/Memory.css"
 
 const BucketList = ({ show }) => {
+    const { group } = useParams()
     const [bucketList, setBucketList] = useState(null);
-    const bucketRef = db.collection('bucket')
 
     useEffect(() => {
-        db.collection('group').doc('groupB').get().then(snapshot => {
+        db.collection('group').doc(group).get().then(snapshot => {
             setBucketList(snapshot.data().bucket)
             console.log(snapshot.data().bucket)
         });
     }, []);
-
-  const handleUpdate = (id, data) => {
-    this.setState({
-      bucketList: bucketList.map((bucketList) => {
-        console.log(bucketList);
-        if (bucketList.id === id) {
-          console.log(bucketList.id + ' / ' + id);
-          return {
-            id,
-            ...data,
-          };
-        }
-        return bucketList;
-      }),
-    });
-  };
 
     return (
         <div className="memory" style={ show ? { minHeight: "0" } : {}}>
@@ -45,9 +29,8 @@ const BucketList = ({ show }) => {
             <div className="scrolllist-container" style={ show ? { height: "100%" } : {}}>
                 <img src={arrowUpIcon} className="arrow" />
                 <div className="bucket-container" style={ show ? { height: "100%" } : {}}>
-                    <BucketItem bucketList={bucketList} onUpdate={handleUpdate}/>
+                    <BucketItem data={bucketList} group={group}/>
                 </div>
-                { show ? null : <BucketItemAdd/> }
                 <img src={arrowDownIcon} className="arrow" />
             </div>
         </div>

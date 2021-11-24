@@ -9,6 +9,7 @@ import MemoryView from "./Pages/MemoryView";
 import MemoryEdit from "./Pages/MemoryEdit";
 import Chat from "./Pages/Chat";
 import OurPage from "./Pages/OurPage";
+import TheirPage from "./Pages/TheirPage";
 import Vote from "./Pages/Vote";
 import Ourpage_Edit from './Pages/Ourpage_edit copy';
 import BucketList from "./component/BucketList";
@@ -86,6 +87,7 @@ const App = () => {
         <Route path="/ourpage/edit" element={<Ourpage_Edit/>} /> //Ourpage_edit copy
         <Route path="/ourpage/bucket" element={<BucketList/>} />
         <Route path="/ourpage/bucketdata" element={<Bucketdata/>} />
+        <Route path="/theirpage/:group" element={<TheirPage/>} />
         <Route path="/vote" element={<Vote/>} />
         {/* <Route path="/makevote" element={<MakeVote/>} /> */}
         <Route path="/vote/:gid/:id" element={<VoteBox/>} />

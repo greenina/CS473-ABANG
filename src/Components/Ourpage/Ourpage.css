@@ -4,6 +4,7 @@
     background-color: var(--lightyellow);
     color: var(--browntext);
     overflow: scroll;
+    padding-bottom: 40px;
 }
 
 .ourpage img {
@@ -99,5 +100,5 @@
 
 .hashtag-item div {
     display: inline-block;
-    margin-left: 10px;
+    margin: 0 10px;
 }

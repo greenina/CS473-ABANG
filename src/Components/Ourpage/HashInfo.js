@@ -5,6 +5,11 @@ import { arrayRemove, updateDoc } from "firebase/firestore";
 
 
 const HashInfo = ({ id, data, onRemove }) => {
+  const [removable, setRemovable] = useState(true)
+
+  useEffect(() => {
+    if(!onRemove) setRemovable(false)
+  }, [onRemove])
     
     const handleRemove = (e) => {
         onRemove(e.target.id);
@@ -15,8 +20,10 @@ const HashInfo = ({ id, data, onRemove }) => {
       
     return (
       <div className="hashtag-item">
-        <div>{ data.text }</div>
-        <div onClick={handleRemove} id={id}><img src = {'/img/Xbutton_yellow.png'} height='20px' /></div>
+        <div>#{ data.text }</div>
+        { removable ? 
+          <div onClick={handleRemove} id={id}><img src = {'/img/Xbutton_yellow.png'} height='20px' /></div>
+          : null }
       </div>
     );
 }
