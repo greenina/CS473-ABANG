@@ -63,7 +63,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId }) 
     return(
         <div>
             <div className="bucket-item" style={done ? { backgroundColor: "var(--green)"} : { backgroundColor: "var(--lightgray)" }}>
-                    {todo} 
+            <span onClick={() => setOpen(!open)} style={style}>{todo}</span> 
                   <div className="icon-group">
                       <div className="icon"><img src={shareIcon} height='30px'/></div>
                       <div className="icon"><img src={cartIcon} height='30px'/></div>
@@ -71,7 +71,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId }) 
             </div>
             { open ?
                 <div className="memory-list">
-                    <MemoryList id={data.id} detail={detail} />
+                    <MemoryList id={data.id} detail={true} />
                 </div>
             : null }
         </div>
