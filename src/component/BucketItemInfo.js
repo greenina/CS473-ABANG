@@ -1,6 +1,6 @@
 import React, { useState , useEffect} from 'react';
 import '../App.css';
-import {db} from '../firebase';
+import {db, auth} from '../firebase';
 import {doc, getDoc} from "firebase/firestore";
 import { arrayRemove, updateDoc } from "firebase/firestore";
 import MemoryList from "./MemoryList"
@@ -13,8 +13,9 @@ import unlockIcon from "../Icons/Unlock.png"
 import cartIcon from "../Icons/ShoppingCart.png"
 import shareIcon from "../Icons/Share.png"
 import { OutletSharp } from '@mui/icons-material';
+import firebase from 'firebase/compat/app';
 
-const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId }) =>{
+const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId, link }) =>{
     const [id, setID] = useState(null)
     const [lock, setLock] = useState(null)
   const [todo, setTodo] = useState(null)
@@ -84,6 +85,18 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId }) 
   const editTodo = (e) =>{
     setTodo(e.target.value)
   }
+  const share = async () => {
+        await db.collection('message2').add({
+            isText:3,
+            text: {name:todo, link:link},
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            email:auth.currentUser.email,
+            photoURL: auth.currentUser.photoURL
+        })
+
+        window.location.href = "/chat"
+        
+    }
 
   const changeIsDone = async (id) => {
     setDone(!done)
@@ -167,7 +180,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId }) 
                   </div>
                   :
                   <div className="icon-group">
-                      <div className="icon"><img src={shareIcon} height='30px'/></div>
+                      <div onClick={share} className="icon"><img src={shareIcon} height='30px'/></div>
                       <div className="icon"><img src={cartIcon} height='30px'/></div>
                   </div>
                 }
