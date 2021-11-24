@@ -23,7 +23,7 @@ const ActivityItem = ({ text, href }) => {
         
     }
     return (
-        <div className="scrolllist-item clickable" onClick={() => window.location.href = href}>
+        <div className="scrolllist-item clickable">
             <div className="scrolllist-text">
                 <img src={shoppingCartIcon} /> 
                 <img src={shareIcon } onClick={share}/> 
