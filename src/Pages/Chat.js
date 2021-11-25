@@ -125,7 +125,7 @@ function ChatMessage(props) {
         (isText==1?text:
         (isText==2?
           <div>
-          <button style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
+          <button style={{border:'0px', outline:'0px', backgroundColor:'#FFF'}} onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}><img src ={GoToVote} height='150px'/></button>
           <center><div className='vote-name'>{text.name}</div></center>
         </div>
         :<div>"isText?"{isText}</div>
