@@ -34,9 +34,8 @@ function Chat() {
       <header>    
       </header>
       <section>
-        <ChatRoom />
-        {/* {user ? 
-          <ChatRoom /> : <SignIn />} */}
+        {user ? 
+          <ChatRoom /> : <SignIn />}
       </section>
     </div>
   );
@@ -118,7 +117,8 @@ const chatVote = (props)=>{
 
 
 function ChatMessage(props) {
-  const { isText, text, email, photoURL, ref } = props.message;
+  const { isText, text, email, photoURL, id } = props.message;
+  console.log("chagmsg",props)
   const {vid} = props
 
   const messageClass = email === auth.currentUser.email ? 'sent' : 'received';
@@ -136,7 +136,7 @@ function ChatMessage(props) {
         (isText==1?text:
         (isText==2?
           <div>
-          <button style={{border:'0px', outline:'0px', backgroundColor:'#FFF'}} onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}><img src ={GoToVote} height='150px'/></button>
+          <button style={{border:'0px', outline:'0px', backgroundColor:'#FFF'}} onClick={()=>window.location.href = "/vote/"+ id}><img src ={GoToVote} height='150px'/></button>
           <center><div className='vote-name'>{text.name}</div></center>
         </div>
         :<div>"isText?"{isText}</div>
@@ -155,7 +155,7 @@ function ChatMessage(props) {
       <p class="msg-box" style={{backgroundColor:"#FFFDD0"}}>{isText==3?<div>
       <button className='share-name' style={{border:'10px', borderRadius:'10px', backgroundColor:'#FFFFFF',boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} onClick={()=>window.location.href = text.link}>{text.name}</button>
     </div>:(isText==1?text:<div>
-      <button style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}><img src ={GoToVote} height='150px'/></button>
+      <button style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/"+ id}><img src ={GoToVote} height='150px'/></button>
       <center><div className='vote-name'>{text.name}</div></center>
     </div>)}</p>
       
