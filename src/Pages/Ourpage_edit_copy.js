@@ -16,15 +16,18 @@ class Ourpage_Edit extends Component {
 
     render(){
         return(
-            <div className="info-container">
-                <DisplayImage/>
-                <div><GroupInfo/></div>
-                
+            <div className="ourpage">
+                <div className="ourpage-container">
+                    <DisplayImage/>
+                    <br/>
+                    <GroupInfo/>
+                </div>
             </div>
         )
     }
 
 }
+
 function GroupInfo(){
     const docRef = db.collection('group').doc("groupB");
     const [groupname, setGroupName]=useState("");
@@ -74,21 +77,26 @@ function GroupInfo(){
    
     
 
-    return<div> 
-        <input className="group-name" type="text"  value={groupname} onChange={e=>onGroupNameChange(e)} placeholder={groupname}/>
-        <div className="info-container">
-            <div className="introduce-us">Introduce Us</div>
-            
-            <input type="text" className='text-jeju' style={{marginTop:"10px", width:"99%", height:'4vh',backgroundColor: "var(--lightyellow)"}}value={introduce} onChange={e=>onIntroduceChange(e)} placeholder={introduce}/>
-            <Link to="/ourpage"> <div onClick={submit} className="edit-finish-button" style = {{position: 'relative', color: 'var(--browntext)','z-index':'3',top:"0vh",left:"-78vw"}} >edit finish!</div></Link>
-            <Hashtags/>
-            <div className="bucket-container">
-                        <BucketList show={true} />
+    return (
+        <div> 
+            <input className="group-name" type="text"  value={groupname} onChange={e=>onGroupNameChange(e)} placeholder={groupname}/>
+            <div className="info-container">
+            <div className="group-introduction">
+                <div className="header">
+                    Introduce Us
+                    <Link to="/ourpage"> <div onClick={submit} className="edit-finish-button" style = {{position: 'relative', color: 'var(--browntext)', marginTop: "0px", fontWeight: "normal", fontSize: "18px"}} >edit finish!</div></Link>
+                </div>
+                
+                <input type="text" className='text-jeju group-introduction-text' style={{ width: "calc(100% - 20px)", backgroundColor: "var(--lightyellow)"}} value={introduce} onChange={e=>onIntroduceChange(e)} placeholder={introduce}/>
+                <Hashtags/>
+                
+                </div>
+                <div className="bucket-container">
+                    <BucketList show={true} />
+                </div>
             </div>
         </div>
-        
-
-      </div>
+    )
 }
 
 export default Ourpage_Edit
