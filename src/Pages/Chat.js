@@ -101,7 +101,7 @@ const chatVote = (props)=>{
   return(
     <div>
       <button onClick={goVote} style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}}>GO to VOTE</button>
-      <div className='vote-name'>{props.vote.name}</div>
+      <center><div className='vote-name'>{props.vote.name}</div></center>
     </div>
   )
 }
@@ -126,7 +126,7 @@ function ChatMessage(props) {
         (isText==2?
           <div>
           <button style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
-          <div className='vote-name'>{text.name}</div>
+          <center><div className='vote-name'>{text.name}</div></center>
         </div>
         :<div>"isText?"{isText}</div>
         ))}
@@ -145,7 +145,7 @@ function ChatMessage(props) {
       <button className='share-name' style={{border:'10px', borderRadius:'10px', backgroundColor:'#FFFFFF',boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} onClick={()=>window.location.href = text.link}>{text.name}</button>
     </div>:(isText==1?text:<div>
       <button style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}><img src ={GoToVote} height='150px'/></button>
-      <div className='vote-name'>{text.name}</div>
+      <center><div className='vote-name'>{text.name}</div></center>
     </div>)}</p>
       
     </div>
