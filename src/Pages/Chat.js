@@ -77,7 +77,7 @@ useEffect(() => {
         <div className="rearrange-speeddial"><SpeedDial /></div>
       </div>
       </div>
-      <div style={{padding:"10px", overflow:"auto"}}>
+      <div style={{padding:"10px", overflow:"auto", height: "calc(100vh - 80px)"}}>
         {messages && messages.map(msg => <ChatMessage key = {msg.id} message = {msg}/>)}
       </div>
       <div className="bottom-bar-container">
