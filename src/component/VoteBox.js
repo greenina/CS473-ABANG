@@ -15,6 +15,7 @@ const mapStateToProps = state =>({
 })
 
 const VoteBox = (props) => {
+  const {vid, voteRef} = props
 
   const params = useParams()
   
@@ -32,12 +33,12 @@ const VoteBox = (props) => {
   console.log("userEmail", userEmail)
 
   const Submit = () =>{
-    db.collection('group')
-      .doc(group)
+    db.collection('vote')
+      .doc(vid)
       .get()
       .then((doc)=>{
-        const vote = [...doc.data().vote]
-        vote[voteIndex].options.map((i, index)=>{
+        const vote = doc.data()
+        vote.options.map((i, index)=>{
           i.indiv.map((e, j)=>{
             if(e.email == email){
               i.indiv[j].value = parseInt(Array.from(value, item => (typeof item === 'undefined') || isNaN(item) ? 0 : item)[index]) 
@@ -46,22 +47,19 @@ const VoteBox = (props) => {
           })  
         })
         console.log("vote2",vote)
-        updateDoc(db.collection('group').doc(group),{vote:vote})
+        updateDoc(db.collection('vote').doc(vid),{vote:vote})
       })
   }
 
-  const eventHandler = (e) =>{
-    console.log("HANDLER", e.target.value)
-  }
-  
+
   useEffect(()=>{
-    db.collection('group')
-    .doc(group) //should be later changed to props
+    db.collection('vote')
+    .doc(vid) //should be later changed to props
     .get()
     .then((doc)=>{
-      const wishArr = doc.data().vote[voteIndex].options.map(i => i.option)
+      const wishArr = doc.data().options.map(i => i.option)
       setWishes(wishArr)
-      setVoteName(doc.data().vote[voteIndex].name)
+      setVoteName(doc.data().name)
 
   })
   },[])
@@ -73,11 +71,11 @@ const VoteBox = (props) => {
   }, wishes)
 
   const getResult = () =>{
-    db.collection('group')
-    .doc(group)
+    db.collection('vote')
+    .doc(vid)
     .get()
     .then((doc)=>{
-      const result = doc.data().vote[voteIndex].options.map((option, i)=>{
+      const result = doc.data().options.map((option, i)=>{
         var sum = 0
         option.indiv.map((indi, j)=>{
           console.log("value",indi.value)

@@ -9,9 +9,6 @@ import { useParams } from "react-router";
 
 const Vote = () =>{
   const { vid } = useParams();
-  useEffect(()=>{
-    console.log("VID",vid)
-  },[])
 
   return(
     <div>

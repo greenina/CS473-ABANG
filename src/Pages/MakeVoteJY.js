@@ -64,8 +64,8 @@ const MakeVote = (props)=>{
             index:length
         }
         console.log(newVote)
-        await db.collection('vote').add(newVote).then(ref=>{
-            db.collection('message2').add({
+        await db.collection('vote').add(newVote).then(async ref=>{
+            await db.collection('message2').add({
                 isText:2,
                 text: newVote,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -74,9 +74,9 @@ const MakeVote = (props)=>{
                 ref: ref.id
             })
             debugger;
-            console.log("REF",ref.id)
+            await console.log("REF",ref.id)
             debugger;
-            updateDoc(docRef, {vote:arrayUnion(ref)})
+            await updateDoc(docRef, {vote:arrayUnion(ref)})
         })
         // await console.log(voteRef)
 
