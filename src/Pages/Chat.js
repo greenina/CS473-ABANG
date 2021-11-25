@@ -8,6 +8,8 @@ import 'firebase/compat/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import {auth, db, SignIn} from '../firebase'
+import GoToVote from '../Icons/GoToVote.png';
+
 
 
 function Chat() {
@@ -37,8 +39,15 @@ function ChatRoom() {
   const query = messagesRef.orderBy('createdAt');
 
   const [messages] = useCollectionData(query, {idField: 'id'});
+  const [groupName, setGroupName] = useState(null)
 
   const [formValue, setFormValue] = useState('');
+
+useEffect(() => {
+  db.collection('group').doc('groupB').get().then(s => {
+    if(s.exists && s.data().info) setGroupName(s.data().info.groupName)
+  })
+}, [])
 
   const sendMessage = async(e) => {
     e.preventDefault();
@@ -53,7 +62,6 @@ function ChatRoom() {
 
     setFormValue('');
   }
-
   useEffect(()=>{
     console.log("VALUE",formValue)
     console.log("user",auth.currentUser)
@@ -62,18 +70,22 @@ function ChatRoom() {
   return (
     <>
     <div>
-    <div style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end",background:"#EAF6F4", maxWidth: "100vw", width:"100vw", height:"100vh"}}>
-      <div style={{position:"fixed", top:"5px", right:"5px", padding:5}}>
-      <SpeedDial />
+    <div className="background">
+      <div style={{position:"fixed", top:"10vh", right:"40vw", padding:5}}>
+      <div className='top-bar-container'>
+        <div className='chat-group-name'>{groupName}</div>
+        <div className="rearrange-speeddial"><SpeedDial /></div>
+      </div>
       </div>
       <div style={{padding:"10px", overflow:"auto"}}>
         {messages && messages.map(msg => <ChatMessage key = {msg.id} message = {msg}/>)}
       </div>
-      <div style={{backgroundColor:"#EBEDD0"}}>
-      
+      <div className="bottom-bar-container">
         <form onSubmit = {sendMessage} style={{padding:"10px", height:"20px", display:"flex", alignItems:"center"}}>
-          <input style={{width:"80%", marginRight:"5%", borderColor:"white", borderRadius:"6px",borderWidth:0, boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25)  "}} value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
-          <button className="clickable" type = "submit"  style={{width:"auto", backgroundColor:"#FFFEDB", color:"#829B89",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}>Send</button>
+          <input className="chat-box" style={{width:"80%", marginRight:"5%", borderColor:"white", borderRadius:"6px",borderWidth:0, boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
+          
+          <button className="clickable" type = "submit" style={{width:"100px", marginTop:"35px", fontSize:'20px', height: '50px', backgroundColor:"#FFFEDB", color:"#829B89",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}><div className='font-eng'>Send</div></button>
+
         </form>
       </div>
       </div>
@@ -88,8 +100,8 @@ const chatVote = (props)=>{
   }
   return(
     <div>
-      <div>{props.vote.name}</div>
-      <button onClick={goVote}>GO to VOTE</button>
+      <button onClick={goVote} style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}}>GO to VOTE</button>
+      <center><div className='vote-name'>{props.vote.name}</div></center>
     </div>
   )
 }
@@ -108,13 +120,13 @@ function ChatMessage(props) {
       <p class="msg-box" style={{backgroundColor:"#FFFFFF"}}>
         {isText==3?
         <div>
-          <button onClick={()=>window.location.href = text.link}>{text.name}</button>
+          <button className='share-name' style={{border:'10px', borderRadius:'10px', backgroundColor:'#FFFFFF',boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} onClick={()=>window.location.href = text.link}>{text.name}</button>
         </div>:
         (isText==1?text:
         (isText==2?
           <div>
-          <div>{text.name}</div>
-          <button onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
+          <button style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
+          <center><div className='vote-name'>{text.name}</div></center>
         </div>
         :<div>"isText?"{isText}</div>
         ))}
@@ -130,10 +142,10 @@ function ChatMessage(props) {
       <div className = {'message ${messageClass}'} style={{display:"flex", justifyContent:"flex-start", alignItems:"center"}}>
       <img class="user-img" src = {photoURL} />
       <p class="msg-box" style={{backgroundColor:"#FFFDD0"}}>{isText==3?<div>
-      <button onClick={()=>window.location.href = text.link}>{text.name}</button>
+      <button className='share-name' style={{border:'10px', borderRadius:'10px', backgroundColor:'#FFFFFF',boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} onClick={()=>window.location.href = text.link}>{text.name}</button>
     </div>:(isText==1?text:<div>
-      <div>{text.name}</div>
-      <button onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
+      <button style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}><img src ={GoToVote} height='150px'/></button>
+      <center><div className='vote-name'>{text.name}</div></center>
     </div>)}</p>
       
     </div>
