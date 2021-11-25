@@ -23,6 +23,7 @@ import { db, storage } from "./firebase";
 const App = () => {
   const [bucketRef, setBucketRef] = useState('bucket');
   const [memoryRef, setMemoryRef] = useState('memories');
+  const [voteRef, setVoteRef] = useState('vote');
   // db.collection('wishes').doc('0zcwkyqNN2MFDtY7IRyi').onSnapshot(snapshot => console.log(snapshot))
 
   return (
@@ -39,6 +40,12 @@ const App = () => {
             bucketRef={db.collection(bucketRef)}
           />} 
         />
+        <Route 
+          path="/vote/:vid" 
+          element={<Vote
+            voteRef={db.collection(voteRef)}
+          />} 
+        />
 
         <Route 
           path="/bucket/:bid" 
@@ -49,6 +56,7 @@ const App = () => {
             storageRef={storage.ref('/photos')}
           />} 
         />
+
 
         <Route 
           path="/bucket/:bid/memory/add" 

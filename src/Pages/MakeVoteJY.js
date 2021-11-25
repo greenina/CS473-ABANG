@@ -12,13 +12,14 @@ import OptionList from "../Components/Vote/OptionList";
 
 const MakeVote = (props)=>{
 
-    const docRef = db.collection('group').doc('testGroup')
+    const docRef = db.collection('group').doc('groupB')
     const user = useAuthState(auth);
     // const email = auth.currentUser.email
     const [options, setOptions] = useState([])
     const [title, setTitle] = useState("no title")
     const [users, setUsers] = useState([])
     const [length, setLength] = useState()
+    const [voteRef, setVoteRef] = useState(null)
 
 
 
@@ -40,6 +41,7 @@ const MakeVote = (props)=>{
         }
     }, [bucketList])
 
+    
     const Submit = async () => {
         const newVote = {
             createdAt: Date.now(),
@@ -62,17 +64,24 @@ const MakeVote = (props)=>{
             index:length
         }
         console.log(newVote)
-        await db.collection('message2').add({
-            isText:2,
-            text: newVote,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            email:auth.currentUser.email,
-            photoURL: auth.currentUser.photoURL
-        })
         await db.collection('vote').add(newVote).then(ref=>{
-            updateDoc(docRef, {vote:ref})
+            db.collection('message2').add({
+                isText:2,
+                text: newVote,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                email:auth.currentUser.email,
+                photoURL: auth.currentUser.photoURL,
+                ref: ref.id
+            })
+            debugger;
+            console.log("REF",ref.id)
+            debugger;
+            updateDoc(docRef, {vote:arrayUnion(ref)})
         })
-        await updateDoc(db.collection('group').doc('groupB'), {vote:arrayUnion(newVote)})
+        // await console.log(voteRef)
+
+        
+        //await updateDoc(db.collection('group').doc('groupB'), {vote:arrayUnion(newVote)})
         window.location.href = "/chat"
         
     }

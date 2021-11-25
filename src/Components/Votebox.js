@@ -3,10 +3,11 @@ import {useState} from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import {db} from '../firebase'
+import {db, auth} from '../firebase'
 import { arrayUnion, updateDoc } from "firebase/firestore";
 import { connect } from 'react-redux';
 import './VoteBox.css'
+import { useAuthState } from 'react-firebase-hooks/auth';
 import {useParams} from 'react-router-dom'
 
 
@@ -17,27 +18,26 @@ const mapStateToProps = state =>({
 const VoteBox = (props) => {
 
   const params = useParams()
-  
+  const [user] = useAuthState(auth);
   const [wishes, setWishes] = useState([])
   const [checked, setChecked] = useState([])
   const [value, setValue] = useState([])
   const [comment, setComment] = useState([])
   const voteIndex  = params.id //will have to give by props usePrams
-  const email = "kaist.helloworld@gmail.com" //will have to get by auth.currentUser.email
-  const group = "groupZ" //will have to get 
+  const email = auth.currentUser.email //will have to get by auth.currentUser.email
+  const group = "groupB" //will have to get 
   const [result, setResult] = useState([])
   const [show, setShow] = useState(false)
   const [voteName, setVoteName] = useState("")
-  const {userEmail} = props
-  console.log("userEmail", userEmail)
+  const {vid, voteRef} = props
 
   const Submit = () =>{
-    db.collection('group')
-      .doc(group)
+    db.collection('vote')
+      .doc(vid)
       .get()
       .then((doc)=>{
-        const vote = [...doc.data().vote]
-        vote[voteIndex].options.map((i, index)=>{
+        const vote = doc.data()
+        vote.options.map((i, index)=>{
           i.indiv.map((e, j)=>{
             if(e.email == email){
               i.indiv[j].value = parseInt(Array.from(value, item => (typeof item === 'undefined') || isNaN(item) ? 0 : item)[index]) 
@@ -46,7 +46,7 @@ const VoteBox = (props) => {
           })  
         })
         console.log("vote2",vote)
-        updateDoc(db.collection('group').doc(group),{vote:vote})
+        updateDoc(db.collection('vote').doc(vid),{vote:vote})
       })
   }
 
@@ -55,14 +55,22 @@ const VoteBox = (props) => {
   }
   
   useEffect(()=>{
-    db.collection('group')
-    .doc(group) //should be later changed to props
+    db.collection('vote')
+    .doc(vid) 
     .get()
     .then((doc)=>{
-      const wishArr = doc.data().vote[voteIndex].options.map(i => i.option)
+      debugger;
+      console.log("VID",vid)
+      debugger;
+      console.log("DOC",doc.data())
+      if(doc.exists &&  doc.data()){
+        const wishArr = doc.data().options.map(i => i.option)
       setWishes(wishArr)
-      setVoteName(doc.data().vote[voteIndex].name)
-
+      setVoteName(doc.data().name)
+      } else{
+        console.log("NUUUL")
+      }
+      
   })
   },[])
   useEffect(()=>{
@@ -73,11 +81,11 @@ const VoteBox = (props) => {
   }, wishes)
 
   const getResult = () =>{
-    db.collection('group')
-    .doc(group)
+    db.collection('vote')
+    .doc(vid)
     .get()
     .then((doc)=>{
-      const result = doc.data().vote[voteIndex].options.map((option, i)=>{
+      const result = doc.data().options.map((option, i)=>{
         var sum = 0
         option.indiv.map((indi, j)=>{
           console.log("value",indi.value)

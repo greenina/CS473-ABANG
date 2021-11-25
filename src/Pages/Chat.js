@@ -8,8 +8,15 @@ import 'firebase/compat/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import {auth, db, SignIn} from '../firebase'
+import setVote from '../store/modules/counter'
+import { connect } from "react-redux";
 
-
+const mapStateToProps = (state) =>({
+  vid : state.counter.vid
+})
+const mapDispatchToProps = (dispatch) => ({
+  setVote :(vid) =>dispatch(setVote(vid))
+});
 function Chat() {
 
   const [user] = useAuthState(auth);
@@ -96,7 +103,8 @@ const chatVote = (props)=>{
 
 
 function ChatMessage(props) {
-  const { isText, text, email, photoURL } = props.message;
+  const { isText, text, email, photoURL, ref } = props.message;
+  const {vid} = props
 
   const messageClass = email === auth.currentUser.email ? 'sent' : 'received';
 
@@ -114,7 +122,7 @@ function ChatMessage(props) {
         (isText==2?
           <div>
           <div>{text.name}</div>
-          <button onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
+          <button onClick={()=>window.location.href = "/vote/"+ ref}>GO to VOTE</button>
         </div>
         :<div>"isText?"{isText}</div>
         ))}
@@ -129,12 +137,17 @@ function ChatMessage(props) {
     
       <div className = {'message ${messageClass}'} style={{display:"flex", justifyContent:"flex-start", alignItems:"center"}}>
       <img class="user-img" src = {photoURL} />
-      <p class="msg-box" style={{backgroundColor:"#FFFDD0"}}>{isText==3?<div>
-      <button onClick={()=>window.location.href = text.link}>{text.name}</button>
-    </div>:(isText==1?text:<div>
-      <div>{text.name}</div>
-      <button onClick={()=>window.location.href = "/vote/groupA/"+text.index.toString()}>GO to VOTE</button>
-    </div>)}</p>
+      <p class="msg-box" style={{backgroundColor:"#FFFDD0"}}>
+        {isText==3?
+        <div>
+          <button onClick={()=>window.location.href = text.link}>{text.name}</button>
+        </div>:
+        (isText==1?
+        text:
+        <div>
+          <div>{text.name}</div>
+          <button onClick={()=>window.location.href = "/vote/" + ref}>GO to VOTE</button>
+        </div>)}</p>
       
     </div>
     );
@@ -142,4 +155,5 @@ function ChatMessage(props) {
 
 }
 
-export default Chat;
+export default connect(mapStateToProps, mapDispatchToProps)(Chat);
+connect(mapStateToProps, mapDispatchToProps)(ChatMessage)
