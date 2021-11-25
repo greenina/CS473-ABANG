@@ -30,8 +30,8 @@ const Ourpage = () =>{
     return(
         <div className="ourpage">
             <div className="ourpage-container">
-                {/* <GroupImage /> */}
-                <DisplayImage/>
+                <GroupImage />
+                {/* <DisplayImage/> */}
                 <br/>
                 <div className="group-name">{ name }</div>
                 <div className="info-container">
