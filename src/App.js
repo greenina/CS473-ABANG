@@ -16,7 +16,7 @@ import BucketList from "./component/BucketList";
 import BucketDetail from "./component/BucketDetail";
 import Bucketdata from "./component/bucketdata";
 import MakeVote from './Pages/MakeVoteJY'
-import VoteBox from './component/VoteBox'
+import VoteResult from './component/VoteResult'
 
 import { db, storage } from "./firebase";
 
@@ -43,6 +43,12 @@ const App = () => {
         <Route 
           path="/vote/:vid" 
           element={<Vote
+            voteRef={db.collection(voteRef)}
+          />} 
+        />
+        <Route 
+          path="/vote/:vid/result" 
+          element={<VoteResult
             voteRef={db.collection(voteRef)}
           />} 
         />
@@ -96,7 +102,7 @@ const App = () => {
         <Route path="/ourpage/bucket" element={<BucketList/>} />
         <Route path="/ourpage/bucketdata" element={<Bucketdata/>} />
         <Route path="/theirpage/:group" element={<TheirPage/>} />
-        <Route path="/vote" element={<Vote/>} />
+        {/* <Route path="/vote" element={<Vote/>} /> */}
         {/* <Route path="/makevote" element={<MakeVote/>} /> */}
         {/* <Route path="/vote/:gid/:id" element={<VoteBox/>} /> */}
       </Routes>
