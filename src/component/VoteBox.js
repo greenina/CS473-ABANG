@@ -8,6 +8,7 @@ import { arrayUnion, updateDoc } from "firebase/firestore";
 import { connect } from 'react-redux';
 import './VoteBox.css'
 import {useParams} from 'react-router-dom'
+import firebase from 'firebase/compat/app';
 
 
 const mapStateToProps = state =>({
@@ -32,6 +33,19 @@ const VoteBox = (props) => {
   const [voteName, setVoteName] = useState("")
   const {userEmail} = props
   console.log("userEmail", userEmail)
+  const messagesRef = db.collection('message2')
+
+  const sendResult = async() => {
+
+    const { email, photoURL } = auth.currentUser;
+    await messagesRef.add({
+      isText:4,
+      text: {vid:vid},
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      email,
+      photoURL 
+    })
+  }
 
   const Submit = () =>{
     db.collection('vote')
@@ -40,7 +54,6 @@ const VoteBox = (props) => {
       .then(async (doc)=>{
         const vote = doc.data()
         await vote.options.map((i, index)=>{
-          console.log(index)
           i.indiv.map((e, j)=>{
             console.log(e.email, email)
             if(e.email == email){
@@ -48,8 +61,22 @@ const VoteBox = (props) => {
               i.indiv[j].comment = comment[index]
               i.indiv[j].trial = true
             }
-
-          })  
+          })
+          if(index==0){
+            var done = true
+            i.indiv.map((e,j)=>{
+              if(!e.trial){
+                done = false
+              }
+            })
+            if(done){
+              console.log("Sending Result!!")
+              sendResult()
+            }
+            else {
+              console.log("Not finished!")
+            }
+          }
         });
         await console.log("vote2",vote)
         await updateDoc(db.collection('vote').doc(vid), vote)

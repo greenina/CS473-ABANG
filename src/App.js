@@ -20,9 +20,9 @@ import MakeVote from './Pages/MakeVoteJY'
 import { db, storage } from "./firebase";
 
 const App = () => {
-  const bucketRef = useState('bucket');
-  const memoryRef = useState('memories');
-  const voteRef = useState('vote');
+  const bucketRef = 'bucket';
+  const memoryRef = 'memories';
+  const voteRef = 'vote';
   // db.collection('wishes').doc('0zcwkyqNN2MFDtY7IRyi').onSnapshot(snapshot => console.log(snapshot))
 
   return (
