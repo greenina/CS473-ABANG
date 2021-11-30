@@ -4,7 +4,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {auth, SignIn, SignOut} from '../firebase'
+import {auth,  SignIn, SignOut} from '../firebase'
+// import {SignIn} from '../Components/SignIn'
 
 
 const Home = () => {

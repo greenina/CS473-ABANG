@@ -14,39 +14,17 @@ export const setVote = vid => ({type:SET_VOTE, vid })
 
 // **** 초기상태 정의
 const initialState = {
-  color: 'red',
-  number: 3,
-  email:"kaist.helloworld@gmail.com",
+  email:"",
   vid:"aa"
 };
 
 // **** 리듀서 작성
 export default function counter(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_COLOR:
-      return {
-        ...state,
-        color: action.color,
-      };
-    case INCREMENT:
-      return {
-        ...state,
-        number: state.number + 1,
-      };
-    case DECREMENT:
-      return {
-        ...state,
-        number: state.number - 1,
-      };
     case SET_EMAIL:
       return{
           ...state,
           email: action.email
-      };
-    case SET_VOTE:
-      return{
-          ...state,
-          vid: action.vid
       };
     default:
       return state;

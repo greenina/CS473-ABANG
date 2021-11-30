@@ -10,6 +10,7 @@ import bucketlistIcon from "../Icons/Bucketlist.png";
 import editButton from '../Icons/edit_button.png';
 import DisplayImage from '../Components/Ourpage/DisplayImage';
 import "../Components/Ourpage/Ourpage.css"
+import {auth, SignIn, SignOut} from '../firebase'
 
 const Ourpage = () =>{
     const [name, setName] = useState("")
@@ -29,6 +30,7 @@ const Ourpage = () =>{
 
     return(
         <div className="ourpage">
+            <SignOut/>
             <div className="ourpage-container">
                 <GroupImage />
                 {/* <DisplayImage/> */}

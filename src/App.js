@@ -98,7 +98,7 @@ const App = () => {
         <Route path="/theirpage/:group" element={<TheirPage/>} />
         <Route path="/vote" element={<Vote/>} />
         {/* <Route path="/makevote" element={<MakeVote/>} /> */}
-        <Route path="/vote/:gid/:id" element={<VoteBox/>} />
+        {/* <Route path="/vote/:gid/:id" element={<VoteBox/>} /> */}
       </Routes>
     </BrowserRouter>
   );
