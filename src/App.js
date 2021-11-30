@@ -16,14 +16,13 @@ import BucketList from "./component/BucketList";
 import BucketDetail from "./component/BucketDetail";
 import Bucketdata from "./component/bucketdata";
 import MakeVote from './Pages/MakeVoteJY'
-import VoteBox from './component/VoteBox'
 
 import { db, storage } from "./firebase";
 
 const App = () => {
-  const [bucketRef, setBucketRef] = useState('bucket');
-  const [memoryRef, setMemoryRef] = useState('memories');
-  const [voteRef, setVoteRef] = useState('vote');
+  const bucketRef = useState('bucket');
+  const memoryRef = useState('memories');
+  const voteRef = useState('vote');
   // db.collection('wishes').doc('0zcwkyqNN2MFDtY7IRyi').onSnapshot(snapshot => console.log(snapshot))
 
   return (
