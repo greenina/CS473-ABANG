@@ -11,6 +11,7 @@ import {auth, db, SignIn} from '../firebase'
 import setVote from '../store/modules/counter'
 import { connect } from "react-redux";
 import GoToVote from '../Icons/GoToVote.png';
+import VoteEnd from '../Icons/VoteEnd.png';
 
 const mapStateToProps = (state) =>({
   vid : state.counter.vid
@@ -126,10 +127,16 @@ function ChatMessage(props) {
         (isText==1?text:
         (isText==2?
           <div>
-          <button style={{border:'0px', outline:'0px', backgroundColor:'#FFF'}} onClick={()=>window.location.href = "/vote/"+ ref}><img src ={GoToVote} height='150px'/></button>
-          <center><div className='vote-name'>{text.name}</div></center>
-        </div>
-        :(isText==4?<div>vid:<button onClick={()=>window.location.href = "/vote/"+ text.vid+"/result"}>{text.vid}</button></div>:<div>"isText?"{isText}</div>)
+            <button style={{border:'0px', outline:'0px', backgroundColor:'#FFF'}} onClick={()=>window.location.href = "/vote/"+ ref}><img src ={GoToVote} height='150px'/></button>
+            <center><div className='vote-name'>{text.name}</div></center>
+          </div>
+        :(isText==4?
+          <div>
+            <button style={{border:'0px', outline:'0px', backgroundColor:'#FFF'}} onClick={()=>window.location.href = "/vote/"+ text.vid+"/result"}><img src ={VoteEnd} height='150px'/></button>
+            <center><div className='vote-name'>{text.name}</div></center>
+          </div>
+        // <div>vid:<button onClick={()=>window.location.href = "/vote/"+ text.vid+"/result"}>{text.vid}</button></div>
+        :<div>"isText?"{isText}</div>)
         ))}
       </p>
       <img class="user-img" src = {photoURL} />
@@ -147,7 +154,13 @@ function ChatMessage(props) {
     </div>:(isText==1?text:(isText==2?<div>
       <button style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/"+ ref}><img src ={GoToVote} height='150px'/></button>
       <center><div className='vote-name'>{text.name}</div></center>
-    </div>:(isText==4?<div>vid:<button onClick={()=>window.location.href = "/vote/"+ text.vid+"/result"}>{text.vid}</button></div>:<div>"isText?"{isText}</div>)))}</p>
+    </div>:
+    (isText==4?
+        <div>
+          <button style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/"+ text.vid+"/result"}><img src ={VoteEnd} height='150px'/></button>
+          <center><div className='vote-name'>{text.name}</div></center>
+        </div>    
+        :<div>"isText?"{isText}</div>)))}</p>
       
     </div>
     );

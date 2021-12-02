@@ -40,7 +40,10 @@ const VoteBox = (props) => {
     const { email, photoURL } = auth.currentUser;
     await messagesRef.add({
       isText:4,
-      text: {vid:vid},
+      text: {
+        vid:vid,
+        name:voteName
+      },
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       email,
       photoURL 
