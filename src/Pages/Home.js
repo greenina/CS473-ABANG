@@ -4,8 +4,9 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {auth,  SignIn, SignOut} from '../firebase'
-// import {SignIn} from '../Components/SignIn'
+import {auth,  SignOut} from '../firebase'
+import SignIn from '../Components/SignIn'
+import Main from './Main'
 
 
 const Home = () => {
@@ -15,7 +16,6 @@ const Home = () => {
   useEffect(()=>{
     if(user){
       window.location.href="/main"
-      console.log('hi');
     }
   },user)
 
