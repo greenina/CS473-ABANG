@@ -11,18 +11,19 @@ import Chat from "./Pages/Chat";
 import OurPage from "./Pages/OurPage";
 import TheirPage from "./Pages/TheirPage";
 import Vote from "./Pages/Vote";
-import Ourpage_Edit from './Pages/Ourpage_edit copy';
+import Ourpage_Edit from './Pages/Ourpage_edit_copy';
 import BucketList from "./component/BucketList";
 import BucketDetail from "./component/BucketDetail";
 import Bucketdata from "./component/bucketdata";
-import MakeVote from './Pages/MakeVote'
-import VoteBox from './component/VoteBox'
+import MakeVote from './Pages/MakeVoteJY'
+import VoteResult from './component/VoteResult'
 
 import { db, storage } from "./firebase";
 
 const App = () => {
-  const [bucketRef, setBucketRef] = useState('bucket');
-  const [memoryRef, setMemoryRef] = useState('memories');
+  const bucketRef = 'bucket';
+  const memoryRef = 'memories';
+  const voteRef = 'vote';
   // db.collection('wishes').doc('0zcwkyqNN2MFDtY7IRyi').onSnapshot(snapshot => console.log(snapshot))
 
   return (
@@ -39,6 +40,18 @@ const App = () => {
             bucketRef={db.collection(bucketRef)}
           />} 
         />
+        <Route 
+          path="/vote/:vid" 
+          element={<Vote
+            voteRef={db.collection(voteRef)}
+          />} 
+        />
+        <Route 
+          path="/vote/:vid/result" 
+          element={<VoteResult
+            voteRef={db.collection(voteRef)}
+          />} 
+        />
 
         <Route 
           path="/bucket/:bid" 
@@ -49,6 +62,7 @@ const App = () => {
             storageRef={storage.ref('/photos')}
           />} 
         />
+
 
         <Route 
           path="/bucket/:bid/memory/add" 
@@ -88,9 +102,9 @@ const App = () => {
         <Route path="/ourpage/bucket" element={<BucketList/>} />
         <Route path="/ourpage/bucketdata" element={<Bucketdata/>} />
         <Route path="/theirpage/:group" element={<TheirPage/>} />
-        <Route path="/vote" element={<Vote/>} />
+        {/* <Route path="/vote" element={<Vote/>} /> */}
         {/* <Route path="/makevote" element={<MakeVote/>} /> */}
-        <Route path="/vote/:gid/:id" element={<VoteBox/>} />
+        {/* <Route path="/vote/:gid/:id" element={<VoteBox/>} /> */}
       </Routes>
     </BrowserRouter>
   );

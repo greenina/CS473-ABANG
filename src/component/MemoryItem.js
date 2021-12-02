@@ -25,7 +25,7 @@ const MemoryItem = ({ bid, memory, detail }) =>{
   if(!memoryItem) return null
 
   return(
-    <div className="memory-content" 
+    <div className="memory-content clickable" 
         style={{ marginBottom: "10px" }}
         onClick={redirectTo}>
         <div className="memory-text">

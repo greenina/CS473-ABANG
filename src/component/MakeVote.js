@@ -5,7 +5,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import {db} from '../firebase'
 import { arrayUnion, updateDoc } from "firebase/firestore";
-import DateTimePicker from 'react-datetime-picker';
 
 const MakeVote = (props)=>{
 
@@ -45,18 +44,6 @@ const MakeVote = (props)=>{
             }
             })
         }
-        // const newVote = {
-        //     createdAt: Date.now(),
-        //     name:title,
-        //     options:[{
-        //         option:"playyyy",
-        //         indiv:[{
-        //             comment:"",
-        //             uid:"inhwa2",
-        //             value:0
-        //         }]
-        //     }]
-        // }
         console.log("newvote2",newVote)
         updateDoc(db.collection('group').doc('groupB'), {vote:arrayUnion(newVote)})
     }

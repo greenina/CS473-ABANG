@@ -11,10 +11,9 @@ import TextField from '@mui/material/TextField';
 
 const MakeVote = (props)=>{
 
-    const docRef = db.collection('group').doc('testGroup')
+    const docRef = db.collection('group').doc('groupB')
     const user = useAuthState(auth);
-    // const email = auth.currentUser.email
-    const [options, setOptions] = useState([])
+    const [options, setOptions] = useState(["밤샘 줌 코딩","교복 입고 놀이공원","투다리 종강파티","학과설명회 뽀개기"])
     const [checked, setChecked] = useState([])
     const [title, setTitle] = useState("no title")
     const [users, setUsers] = useState([])
@@ -22,7 +21,7 @@ const MakeVote = (props)=>{
 
 
     useEffect(()=>{
-        // console.log("AUTH",auth)
+        console.log("docref",docRef.vote)
         async function getOptions (){
             await docRef.get()
             .then(async doc =>{
@@ -30,15 +29,15 @@ const MakeVote = (props)=>{
                 const newBucket = []
                 await bucket.map(i=>{
                     i.get().then(snapshot => {
-                        console.log("snapshott",options.push([snapshot.data().text]))
                         newBucket.push(snapshot.data().text)
                         console.log("new",newBucket)
-                        setOptions(newBucket)
+                        //setOptions(newBucket)
                 })
-                // console.log("options",options)
+                console.log("options",options)
                 })
                 await setUsers(doc.data().friends.map(i=>i.email))
                 await setLength(doc.data().vote.length)
+                console.log("Length",doc.data().vote.length)
                 await setChecked(Array(options.length).fill(false))
             })
         }
@@ -65,8 +64,9 @@ const MakeVote = (props)=>{
                 })
             }
             }),
-            index:length
+            index:3
         }
+        console.log("VOTE",newVote)
         await db.collection('message2').add({
             isText:2,
             text: newVote,
@@ -74,10 +74,11 @@ const MakeVote = (props)=>{
             email:auth.currentUser.email,
             photoURL: auth.currentUser.photoURL
         })
-        await db.collection('vote').add(newVote).then(ref=>{
-            updateDoc(docRef, {vote:ref})
-        })
-        // await updateDoc(db.collection('group').doc('groupZ'), {vote:arrayUnion(newVote)})
+        // await db.collection('vote').add(newVote).then(ref=>{
+        //     console.log("REF",ref)
+        //     updateDoc(docRef, {vote:ref})
+        // })
+        await updateDoc(db.collection('group').doc('groupB'), {vote:arrayUnion(newVote)})
         window.location.href = "/chat"
         
     }
@@ -91,21 +92,21 @@ const MakeVote = (props)=>{
         <div style={{display:"flex", flexDirection:"column",justifyContent:"flex-start",maxWidth: "100vw", width:"100vw"}}>
             <FormGroup>
             <div style={{height:"70vh",width:"100vw",background:"#F4CCCC", display:"flex", justifyContent:"center", alignItems:"center"}}>
-                <div style={{height:"80%", width:"80%", backgroundColor:"#F2E1E1", padding:10, borderRadius:10}}>
+            <div style={{height:"80%", width:"80%", backgroundColor:"#F2E1E1", padding:10, borderRadius:10}}>
             {options.map((option,i)=>{
+                console.log("option",option)
                 const changeChecked = () => {
                     var arr = [...checked]
                     arr[i] = !arr[i]
                     setChecked(arr)
                 }
-                console.log("!!!!",options)
                 return(
-                    <div style={{display:"flex", flexDirection:"column",justifyContent:"flex-end", width:"100%-20px",background:"#EFF1EE",color:"#605A2A", marginBottom:"15px",borderRadius:10, paddingLeft:"10px", paddingRight:"10px"}}>
+                  <div style={{display:"flex", flexDirection:"column",justifyContent:"flex-end", width:"100%-20px",background:"#EFF1EE",color:"#605A2A", marginBottom:"15px",borderRadius:10, paddingLeft:"10px", paddingRight:"10px"}}>
                     <FormControlLabel 
                     control=
                     {<Checkbox checked={checked[i]} onChange={changeChecked}/>} 
                     label={option} />
-                    </div>
+                  </div>
                 )
             })}
             </div>

@@ -2,26 +2,14 @@ import React from "react";
 
 import "./ShortList.css";
 
-import profileIcon from "../../Icons/Profile.png";
 import shareIcon from "../../Icons/Share.png";
 import shoppingCartIcon from "../../Icons/ShoppingCart.png";
 import hitIcon from "../../Icons/Hit_icon.png";
-import zIndex from "@material-ui/core/styles/zIndex";
 import firebase from 'firebase/compat/app';
 import {db, auth} from '../../firebase'
-
+import { Tooltip } from '@mui/material';
 const ActivityItem = ({ text, hashtags, href }) => {
-    const resize = {
-        height : '30px',
-        width : '30px',
-        float: "right"
-        
-    }
-    const locate = {
-        zIndex:'1',
-        'margin-left' : '630px', 
-        'margin-top' : '-50px'
-    }
+
     const share = async () => {
         await db.collection('message2').add({
             isText:3,
@@ -41,7 +29,11 @@ const ActivityItem = ({ text, hashtags, href }) => {
             <div style={{ display: "inline-block", width: "calc(100% - 50px)", verticalAlign: "top" }}>
                 <div className="shortlist-text-big" onClick={() => window.location.href=href}>{ text }</div>
                 <div className="shortlist-text" onClick={() => window.location.href=href}>{ hashtags }</div>   
+                
+
+                <Tooltip title="Not a Core Feature(To be Implemented)" arrow>
                 <img src={shoppingCartIcon} className="img" /> 
+                </Tooltip>
                 <img src={shareIcon} className="img" onClick={share} /> 
             </div>
         </div>

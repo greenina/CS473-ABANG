@@ -1,26 +1,17 @@
 //for design,
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import Switch from '@mui/material/Switch';
 import Backdrop from '@mui/material/Backdrop';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
-import SaveIcon from '@mui/icons-material/Save';
-import PrintIcon from '@mui/icons-material/Print';
-import ShareIcon from '@mui/icons-material/Share';
 import MenuIcon from '@mui/icons-material/Menu';
 import VoteIcon from '@mui/icons-material/HowToVote';
 import HomeIcon from '@mui/icons-material/Home';
 import WishlistIcon from '@mui/icons-material/AddShoppingCart';
+import voteIcon from '../Icons/voteIcon.png';
 //using mui
+import { height } from '@mui/system';
 
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
   position: 'relative',
@@ -33,9 +24,11 @@ const StyledSpeedDialIcon = styled(SpeedDialIcon)(({ theme }) => ({
 
 
 const actions = [
-  { icon: <VoteIcon />, name: 'Vote' },
-  { icon: <HomeIcon />, name: 'Home' },
-  { icon: <WishlistIcon />, name: 'Wishlist' },
+  { icon: <div>
+    <label for id="voteIcon"><voteIcon/></label> 
+    <VoteIcon id="voteIcon" display='none'/></div>, name: 'Vote'},
+  { icon: <HomeIcon />, name: 'Home'},
+  { icon: <WishlistIcon />, name: 'Wishlist'},
 ];
 
 export default function PlaygroundSpeedDial() {
@@ -88,7 +81,7 @@ export default function PlaygroundSpeedDial() {
           open={open}
           hidden={hidden}
           icon={<StyledSpeedDialIcon icon={<MenuIcon/>} openIcon={<MenuIcon/>}/>} 
-          FabProps={{size:"small", style: {backgroundColor:"red"}}} 
+          FabProps={{size:"small", id:'menuIcon',style: {backgroundColor:"#C4DCDF", outlineColor:'white',outlineWidth:'4px', outlineStyle:'solid'}}} 
           direction={"down"}
           style={{padding:0, margin:0}}
         >
