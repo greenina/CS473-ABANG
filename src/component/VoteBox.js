@@ -83,6 +83,7 @@ const VoteBox = (props) => {
         });
         await console.log("vote2",vote)
         await updateDoc(db.collection('vote').doc(vid), vote)
+        window.location.href="/chat"
       })
   }
 
