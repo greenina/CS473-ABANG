@@ -21,7 +21,7 @@ body {
     display:"flex";
     flex-direction:"column";
     justify-content:"flex-end";
-    background:#EAF6F4;
+    background:#B8C9C6;
     height:"80vh";
     z-index:-1
 }
@@ -182,7 +182,7 @@ body {
     bottom: 0;
     width: 100%;
     height: 80px;
-    background-color:#EBEDD0;
+    background-color:#999B6E;
 }
 
 .font-eng {
@@ -196,7 +196,7 @@ body {
     width: 100vw;
     left:0px;
     height: 60px;
-    background-color:#C4DCDF;
+    background-color:#4D7075;
 }
 
 .rearrange-speeddial{
@@ -210,16 +210,16 @@ body {
     font-family: 'Cantora One', sans-serif;
     margin-top: 10px;
     margin-left: 10px;
-    color: #508087;
+    color: #BDD8DC;
 }
 
 .vote-name {
-    font-size:20px;
-    font-family: 'Cantora One', sans-serif;
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size:18px;
     align-items: center;
-    margin-top: -5px;
+    margin-top: 0px;
     margin-bottom: 5px;
-    color: #979A64;
+    color: #999B6E;
 }
 
 .share-name {

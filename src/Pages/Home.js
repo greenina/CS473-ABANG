@@ -27,7 +27,7 @@ const Home = () => {
 
 
   return (
-      <div className='background'>
+      <div className='home_background'>
         <header className="backcircle">  
           <div className='animation_position'>
             <BucketAnimation/>
