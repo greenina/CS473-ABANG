@@ -3,9 +3,15 @@ import '../styles/chatDesign.css';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import BucketAnimation from "./BucketAnimation";
+
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {auth,  SignIn, SignOut} from '../firebase'
-// import {SignIn} from '../Components/SignIn'
+import "./Home.css";
+import "../Components/Memory/Memory.css";
+import zIndex from "@material-ui/core/styles/zIndex";
+//import SignInButton from ".././Icons/SignInButton.png";
+
 
 
 const Home = () => {
@@ -21,13 +27,17 @@ const Home = () => {
 
 
   return (
-      <div className="Chat">
-        <header>    
+      <div className='background'>
+        <header className="backcircle">  
+          <div className='animation_position'>
+            <BucketAnimation/>
+          </div>  
         </header>
-        <section>
-          {user ? <div></div>:<SignIn />}
+        <section style={{position:'absolute',zIndex:'3', top:'10%', left:'70%'}}> 
+            {user ? <div></div>:<SignIn />}
         </section>
       </div>
+
     );
 };
 
