@@ -13,6 +13,7 @@ import { arrayUnion, updateDoc } from "firebase/firestore"
 
 const ActivityItem = ({ text, hashtags, href }) => {
     const [bucketList, setBucketList] = useState([]);
+    const [showTooltip, setShowTooltip] = useState(false);
 
     useEffect(() => {
         db.collection("group").doc("groupB").get().then(async s => {
@@ -48,6 +49,8 @@ const ActivityItem = ({ text, hashtags, href }) => {
                 await updateDoc(db.collection('group').doc('groupB'), {bucket: arrayUnion(snapshot)})
                 await window.location.replace(`/ourpage/bucket`)
             }) 
+        } else {
+            setShowTooltip(true)
         }
     }
 
@@ -62,9 +65,13 @@ const ActivityItem = ({ text, hashtags, href }) => {
                 <div className="shortlist-text" onClick={() => window.location.href=href}>{ hashtags }</div>   
                 
 
-                {/* <Tooltip title="Not a Core Feature(To be Implemented)" arrow> */}
-                <img src={shoppingCartIcon} className="img clickable" onClick={addBucket} /> 
-                {/* </Tooltip> */}
+                { showTooltip ? 
+                    <Tooltip title="Already added to our bucket list!" arrow>
+                        <img src={shoppingCartIcon} className="img clickable" onClick={addBucket} /> 
+                    </Tooltip> 
+                : 
+                    <img src={shoppingCartIcon} className="img clickable" onClick={addBucket} />
+                }
                 <img src={shareIcon} className="img clickable" onClick={share} /> 
             </div>
         </div>
