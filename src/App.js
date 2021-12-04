@@ -36,9 +36,10 @@ const App = () => {
 
         <Route 
           path="/bucket" 
-          element={<Bucket
-            bucketRef={db.collection(bucketRef)}
-          />} 
+          element={<BucketList/>} 
+          // element={<Bucket
+          //   bucketRef={db.collection(bucketRef)}
+          // />} 
         />
         <Route 
           path="/vote/:vid" 
