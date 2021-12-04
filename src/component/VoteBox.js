@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import {useState} from 'react'; 
+import { Link } from "react-router-dom";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -14,7 +15,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import Clip from '../Icons/clip_navy.png';
 import { BrowserNotSupported } from "@mui/icons-material";
 
-
+import closeButton from "../Icons/CloseButtonGreen.png"
 
 const VoteBox = (props) => {
   const {vid, voteRef} = props
@@ -137,121 +138,121 @@ const VoteBox = (props) => {
 
   return (
     <div id="vote_box" className='vote_ing_background'>
+      <Link to={`/chat`} className="close-button" style={{ left: "30px", top: "30px" }}><img src={closeButton} width="100%" /></Link>
       <img src ={Clip} className='clip-ing-location'/>
       <div className='paper-ing-back'></div>
-      <div className="set_vote_ing_title">{voteName}</div>
       <div className='paper-box'>
-      <FormGroup>
-        {wishes.map((wish, i)=>{
-          const changeChecked = () =>{
-          var arr = [...checked]
-          arr[i] = !arr[i]
-          setChecked(arr)
-          }
+        <div className="set_vote_ing_title">{voteName}</div>
+        <FormGroup>
+          {wishes.map((wish, i)=>{
+            const changeChecked = () =>{
+            var arr = [...checked]
+            arr[i] = !arr[i]
+            setChecked(arr)
+            }
 
-          const submitValue = (values) =>{
-            var arr = value
-            //arr[i] = parseInt(e.target.value)
-            arr[i] = parseInt(values[0])
-            console.log(arr)
-            setValue(Array.from(arr, item => typeof item === 'undefined' ? 0 : item))
-          }
-          const submitComment = (e) =>{
-            var arr = comment
-            arr[i] = e.target.value
-            console.log(arr)
-            setComment(Array.from(arr, item => typeof item === 'undefined' ? "" : item))
-          }
-          return (
-            <div className='vote-ing-background'>
-              <div className="vote-ing-checkbox">
-              <FormControlLabel 
-                control=
-                {<Checkbox 
-                  checked={checked[i]} 
-                  onChange={changeChecked}
-                />} 
-                label={wish} />
-              {checked[i]?
-              // <div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>
-              <div>
-                <Range
-                step={0.1}
-                min={0}
-                max={100}
-                values={[value[i]]}
-                onChange={(values) => submitValue(values)}
-                renderTrack={({ props, children }) => (
-             <div
-              onMouseDown={props.onMouseDown}
-              onTouchStart={props.onTouchStart}
-              style={{
-                ...props.style,
-                height: "36px",
-                display: "flex",
-                width: "100%"
-              }}
-            >
+            const submitValue = (values) =>{
+              var arr = value
+              //arr[i] = parseInt(e.target.value)
+              arr[i] = parseInt(values[0])
+              console.log(arr)
+              setValue(Array.from(arr, item => typeof item === 'undefined' ? 0 : item))
+            }
+            const submitComment = (e) =>{
+              var arr = comment
+              arr[i] = e.target.value
+              console.log(arr)
+              setComment(Array.from(arr, item => typeof item === 'undefined' ? "" : item))
+            }
+            return (
+              <div className='vote-ing-background'>
+                <div className="vote-ing-checkbox">
+                <FormControlLabel 
+                  control=
+                  {<Checkbox 
+                    checked={checked[i]} 
+                    onChange={changeChecked}
+                  />} 
+                  label={wish} />
+                {checked[i]?
+                // <div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>
+                <div>
+                  <Range
+                  step={0.1}
+                  min={0}
+                  max={100}
+                  values={[value[i]]}
+                  onChange={(values) => submitValue(values)}
+                  renderTrack={({ props, children }) => (
               <div
-                ref={props.ref}
+                onMouseDown={props.onMouseDown}
+                onTouchStart={props.onTouchStart}
                 style={{
-                  height: "5px",
-                  width: "100%",
-                  borderRadius: "4px",
-                  background: getTrackBackground({
-                    values: [value[i]],
-                    colors: ["#548BF4", "#ccc"],
-                    min: 0,
-                    max: 100
-                  }),
-                  alignSelf: "center"
+                  ...props.style,
+                  height: "36px",
+                  display: "flex",
+                  width: "100%"
                 }}
               >
-                {children}
+                <div
+                  ref={props.ref}
+                  style={{
+                    height: "5px",
+                    width: "100%",
+                    borderRadius: "4px",
+                    background: getTrackBackground({
+                      values: [value[i]],
+                      colors: ["#548BF4", "#ccc"],
+                      min: 0,
+                      max: 100
+                    }),
+                    alignSelf: "center"
+                  }}
+                >
+                  {children}
+                </div>
               </div>
-            </div>
-                )}
-                renderThumb={({ props, isDragged }) => (
-            <div
-              {...props}
-              style={{
-                ...props.style,
-                height: "42px",
-                width: "42px",
-                borderRadius: "4px",
-                backgroundColor: "#FFF",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                boxShadow: "0px 2px 6px #AAA"
-              }}
-            >
+                  )}
+                  renderThumb={({ props, isDragged }) => (
               <div
+                {...props}
                 style={{
-                  height: "16px",
-                  width: "5px",
-                  backgroundColor: isDragged ? "#548BF4" : "#CCC"
+                  ...props.style,
+                  height: "42px",
+                  width: "42px",
+                  borderRadius: "4px",
+                  backgroundColor: "#FFF",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  boxShadow: "0px 2px 6px #AAA"
                 }}
-              />
-            </div>
-          )}
-              />{value[i].toFixed(1)}
+              >
+                <div
+                  style={{
+                    height: "16px",
+                    width: "5px",
+                    backgroundColor: isDragged ? "#548BF4" : "#CCC"
+                  }}
+                />
               </div>
-              :<div></div>}
+            )}
+                />{value[i].toFixed(1)}
+                </div>
+                :<div></div>}
 
-              <input onChange = {submitComment}  placeholder='Write the comment about item' className='comment_box'/>
-            </div>
-            </div>
-          )
-        })}
-      </FormGroup>
-      
-      {/* <br/>
-      <button  onClick={getResult}>RESULT</button>
-      <div>{result}</div> */}
-
-    </div>
-    <button  onClick={Submit} className='vote-finish-button'>SUBMIT VOTE</button>
+                <input onChange = {submitComment}  placeholder='Write the comment about item' className='comment_box'/>
+              </div>
+              </div>
+            )
+          })}
+        </FormGroup>
+        
+        {/* <br/>
+        <button  onClick={getResult}>RESULT</button>
+        <div>{result}</div> */}
+        <button  onClick={Submit} className='vote-finish-button clickable'>SUBMIT VOTE</button>
+      </div>
     </div>
   );
 };

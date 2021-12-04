@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import {useState} from 'react'; 
+import { Link } from "react-router-dom";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -11,6 +12,8 @@ import './MakeVote.css';
 import Clip from '../Icons/clip_navy.png';
 
 import OptionList from "../Components/Vote/OptionList";
+
+import closeButton from "../Icons/CloseButtonGreen.png"
 
 const MakeVote = (props)=>{
 
@@ -91,6 +94,7 @@ const MakeVote = (props)=>{
     if(!bucketList) return null
     return(
         <div className='vote_background'>
+            <Link to={`/chat`} className="close-button" style={{ left: "30px", top: "30px" }}><img src={closeButton} width="100%" /></Link>
             <div className='paper-back'></div>
             <img src ={Clip} className='clip-location'/>
             <div className='paper-box'>

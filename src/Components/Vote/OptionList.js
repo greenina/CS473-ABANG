@@ -24,7 +24,7 @@ const OptionList = ({ data, setChecked, checked, setTitle, Submit, options, setO
                 <li className='list-text'><OptionItem data={data} i={i} setChecked={setChecked} checked={checked} setTitle={setTitle} options={options} setOptions={setOptions}/>
                 </li>
             ))}
-            <button  onClick={Submit} className='vote-make-button'>MAKE NEW VOTE</button>
+            <button  onClick={Submit} className='vote-make-button clickable'>MAKE NEW VOTE</button>
         </div>
       )
 }

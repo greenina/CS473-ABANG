@@ -6,12 +6,13 @@
     flex-direction:"column";
     justify-content:"flex-end";
     background-color:#90A886;
-    height:120vh;
+    height:100vh;
     z-index:-1
 }
 
 .set_vote_title{
-    display:"inline-box";
+    position: relative;
+    display:inline-box;
     border-radius:20px;
     width:50%;
     height:40px;
@@ -19,8 +20,9 @@
     font-size:20px;
     text-align: center;
     align-items: center;
-    margin-top: 10%;
-    margin-left: 25%;
+    margin-top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
     margin-bottom: 5px;
     background-color: #DBD9C3;
     color: #68694A;
@@ -43,7 +45,7 @@
     list-style: none;
     padding:0px; 
     margin-left:15%; 
-    margin-top:5%;
+    margin-top:20px;
     border-bottom: 2px solid;
     border-color: #999B6E;
     height: auto;
@@ -68,6 +70,7 @@
 }
 
 .vote-make-button {
+    position: relative;
     display: inline-block;
     background-color: #77785F;
     border-radius: 10px;
@@ -78,8 +81,10 @@
     border-width: 0px;
     color:#e5e6d5;
     z-index: 3;
-    margin-left: 40%;
-    margin-top:10%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 .clip-location{

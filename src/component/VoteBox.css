@@ -2,15 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cantora+One&display=swap');
 
 .vote_ing_background{
-    display:"flex";
-    flex-direction:"column";
-    justify-content:"flex-end";
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
     background-color:#90A886;
-    height:120vh;
+    height:100vh;
 }
 
 .content-container {
-    position: absolute;
+    /* position: absolute; */
     width: 90%;
     top: 40px;
     left: 50%;
@@ -53,14 +53,14 @@
 }
 
 .set_vote_ing_title{
-    position:absolute;
+    /* position:absolute; */
     display: inline-block;
     width:60%;
     font-family: 'Jeju Gothic', sans-serif;
     font-size:25px;
     text-align: center;
     color: #68694A;
-    margin-top: 23%;
+    margin-top: 50px;
     margin-left: 20%;
     z-index: 5;
     background-color:#DBD9C3 ;
@@ -68,7 +68,7 @@
 
 .comment_box{
     font-family: 'Jeju Gothic', sans-serif;
-    width:60%;
+    width:70%;
     margin-left: 7%;
     background-color:#DBD9C3;
     color: #68694A;
@@ -76,9 +76,9 @@
 }
 
 .vote-finish-button {
-    position:absolute;
+    position:relative;
     display: inline-block;
-    width: 10%;
+    /* width: 10%; */
     background-color: #77785F;
     border-radius: 10px;
     font-family: 'Jeju Gothic', sans-serif;
@@ -87,15 +87,17 @@
     box-shadow: 10px, 10px, 5px, rgba(255,255,255,0.7);
     border-width: 0px;
     color:#e5e6d5;
-    margin-left: 68%;
-    margin-top:77%;
-    margin-bottom:100px;
+    /* margin-left: 68%; */
+    margin-top: 30px;
+    margin-bottom:50px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index:7;
 }
 
 .vote-ing-checkbox{
-    margin-left: 10%;
-    margin-top:15%;
+    margin-left: 15%;
+    margin-top:20px;
     font-family: 'Jeju Gothic', sans-serif;
     color: #68694A;
 }

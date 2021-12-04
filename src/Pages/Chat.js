@@ -102,9 +102,9 @@ useEffect(() => {
       </div>
       <div className="bottom-bar-container">
         <form onSubmit = {sendMessage} style={{padding:"10px", height:"20px", display:"flex", alignItems:"center"}}>
-          <input className="chat-box" style={{width:"80%", marginRight:"5%", borderColor:"white", borderRadius:"6px",borderWidth:0, boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
+          <input className="chat-box" style={{width:"100%", marginRight:"5%", borderColor:"white", borderRadius:"6px",borderWidth:0, boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
           
-          <button onclick={refreshPage} className="clickable" type = "submit" style={{width:"100px", marginTop:"35px", fontSize:'20px', height: '50px', backgroundColor:"#FFFEDB", color:"#829B89",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}><div className='font-eng'>Send</div></button>
+          <button onclick={refreshPage} className="clickable" type = "submit" style={{width:"150px", marginTop:"35px", fontSize:'20px', height: '50px', backgroundColor:"#FFFEDB", color:"#4F6148",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}><div className='font-eng'>Send</div></button>
 
         </form>
       </div>
