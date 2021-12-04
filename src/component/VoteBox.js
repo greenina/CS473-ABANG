@@ -9,17 +9,15 @@ import { connect } from 'react-redux';
 import './VoteBox.css'
 import {useParams} from 'react-router-dom'
 import firebase from 'firebase/compat/app';
-import { Range, getTrackBackground } from "react-range";
+import {Range, getTrackBackground} from 'react-range'
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
-const mapStateToProps = state =>({
-  email : state.counter.email
-})
 
 const VoteBox = (props) => {
   const {vid, voteRef} = props
   console.log(vid)
-
+  const [user] = useAuthState(auth);
   const params = useParams()
   
   const [wishes, setWishes] = useState()
@@ -27,13 +25,13 @@ const VoteBox = (props) => {
   const [value, setValue] = useState([])
   const [comment, setComment] = useState([])
   const voteIndex  = params.id //will have to give by props usePrams
-  const email = auth.currentUser ? auth.currentUser.email : "" //will have to get by auth.currentUser.email
+   //will have to get by auth.currentUser.email
   const group = "groupZ" //will have to get 
   const [result, setResult] = useState([])
   const [show, setShow] = useState(false)
   const [voteName, setVoteName] = useState("")
-  const {userEmail} = props
-  console.log("userEmail", userEmail)
+  console.log("auth", auth)
+  const email = auth.currentUser ? auth.currentUser.email : ""
   const messagesRef = db.collection('message2')
 
   const sendResult = async() => {
@@ -170,38 +168,70 @@ const VoteBox = (props) => {
                 />} 
                 label={wish} />
               {checked[i]?
-              // <div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div> 
-              <Range
+              // <div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>
+              <div>
+                <Range
                 step={0.1}
                 min={0}
                 max={100}
-                values={50}
+                values={[value[i]]}
                 onChange={(values) => submitValue(values)}
                 renderTrack={({ props, children }) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: '6px',
-                      width: '100%',
-                      backgroundColor: '#ccc'
-                    }}
-                  >
-                    {children}
-                  </div>
+             <div
+              onMouseDown={props.onMouseDown}
+              onTouchStart={props.onTouchStart}
+              style={{
+                ...props.style,
+                height: "36px",
+                display: "flex",
+                width: "100%"
+              }}
+            >
+              <div
+                ref={props.ref}
+                style={{
+                  height: "5px",
+                  width: "100%",
+                  borderRadius: "4px",
+                  background: getTrackBackground({
+                    values: [value[i]],
+                    colors: ["#548BF4", "#ccc"],
+                    min: 0,
+                    max: 100
+                  }),
+                  alignSelf: "center"
+                }}
+              >
+                {children}
+              </div>
+            </div>
                 )}
-                renderThumb={({ props }) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: '42px',
-                      width: '42px',
-                      backgroundColor: '#999'
-                    }}
-                  />
-                )}
+                renderThumb={({ props, isDragged }) => (
+            <div
+              {...props}
+              style={{
+                ...props.style,
+                height: "42px",
+                width: "42px",
+                borderRadius: "4px",
+                backgroundColor: "#FFF",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                boxShadow: "0px 2px 6px #AAA"
+              }}
+            >
+              <div
+                style={{
+                  height: "16px",
+                  width: "5px",
+                  backgroundColor: isDragged ? "#548BF4" : "#CCC"
+                }}
               />
+            </div>
+          )}
+              />{value[i].toFixed(1)}
+              </div>
               :<div></div>}
 
               <input onChange = {submitComment}/>
@@ -210,7 +240,6 @@ const VoteBox = (props) => {
         })}
       </FormGroup>
       <button  onClick={Submit}>VOTE</button>
-
       <button  onClick={getResult}>RESULT</button>
       
       <div>{result}</div>
