@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from "react";
+
+import React, {useEffect, useState, useRef} from "react";
 import '../styles/chatDesign.css';
 import SpeedDial from '../styles/speedDial';
 
@@ -48,7 +49,8 @@ function ChatRoom() {
   const messagesRef = db.collection('message2');
   const query = messagesRef.orderBy('createdAt');
 
-  const [messages] = useCollectionData(query, {idField: 'id'});
+  const [messages] = (useCollectionData(query, {idField: 'id'}));
+  
   const [groupName, setGroupName] = useState(null)
 
   const [formValue, setFormValue] = useState('');
@@ -58,6 +60,10 @@ useEffect(() => {
     if(s.exists && s.data().info) setGroupName(s.data().info.groupName)
   })
 }, [])
+
+  const refreshPage = () => {
+    window.location.reload();
+  }
 
   const sendMessage = async(e) => {
     e.preventDefault();
@@ -69,7 +75,7 @@ useEffect(() => {
       email,
       photoURL 
     })
-
+    
     setFormValue('');
   }
   useEffect(()=>{
@@ -87,14 +93,18 @@ useEffect(() => {
         <div className="rearrange-speeddial"><SpeedDial /></div>
       </div>
       </div>
-      <div style={{padding:"10px", overflow:"auto", height: "calc(100vh - 80px)"}}>
+      <div style={{ display:"flex", flexDirection:"column-reverse", overflowY:"auto"}}>
+      <div style={{ display:"flex", flexDirection:"column",justifyContent:"flex-end", padding:"10px",  height: "calc(100vh - 80px)"}}>
+        <div style={{marginTop:"auto"}}></div>
         {messages && messages.map(msg => <ChatMessage message = {msg}/>)}
+        
+      </div>
       </div>
       <div className="bottom-bar-container">
         <form onSubmit = {sendMessage} style={{padding:"10px", height:"20px", display:"flex", alignItems:"center"}}>
           <input className="chat-box" style={{width:"80%", marginRight:"5%", borderColor:"white", borderRadius:"6px",borderWidth:0, boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
           
-          <button className="clickable" type = "submit" style={{width:"100px", marginTop:"35px", fontSize:'20px', height: '50px', backgroundColor:"#FCDEA2", color:"#829B89",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}><div className='font-eng'>Send</div></button>
+          <button onclick={refreshPage} className="clickable" type = "submit" style={{width:"100px", marginTop:"35px", fontSize:'20px', height: '50px', backgroundColor:"#FFFEDB", color:"#829B89",borderWidth:0, boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)", borderRadius:"10px"}}><div className='font-eng'>Send</div></button>
 
         </form>
       </div>
@@ -113,7 +123,6 @@ function ChatMessage(props) {
   const {vid} = props
 
   const messageClass = email === auth.currentUser.email ? 'sent' : 'received';
-
   
   if(messageClass ==='sent'){
     return (
