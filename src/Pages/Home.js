@@ -53,7 +53,7 @@ const Home = (props) => {
             <BucketAnimation/>
           </div>  
         </header>
-        <section style={{position:'absolute',zIndex:'3', top:'10%', left:'70%'}}> 
+        <section style={{position:'absolute',zIndex:'3', top:'10%', right:'10%'}}> 
             {user ? <div></div>:<SignIn />}
             {/* <SignIn /> */}
         </section>

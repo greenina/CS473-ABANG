@@ -14,7 +14,7 @@ const lottieOptions ={
 const BucketAnimation =() =>{
     return (
         <div>
-            <Lottie options={lottieOptions} style={{width:'1200px',height:'1200px'}}/>
+            <Lottie options={lottieOptions} style={{ position: "absolute", width:'100%'}}/>
         </div>
     )
 }

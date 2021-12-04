@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Cantora+One&display=swap');
 
 .home_background{
-    display:"flex";
-    flex-direction:"column";
-    justify-content:"flex-end";
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
     background:#F0DB92;
-    height:120vh;
+    height:100vh;
     z-index:-2
 }
 
@@ -27,7 +27,8 @@
     z-index: 1;
     left: 50%;
     top: 40%;
-    transform: translate(-50%, -50%);
+    width: 80%;
+    transform: translateX(-50%);
 }
 
 .signinbuttonup{
