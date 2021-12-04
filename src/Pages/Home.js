@@ -27,7 +27,7 @@ const Home = (props) => {
     async function save(){
       console.log("saving~~")
       debugger;
-      db.collection('group').doc('groupB').get().then((doc)=>{
+      await db.collection('group').doc('groupB').get().then((doc)=>{
         const friends = doc.data().friends
         console.log("Friends", friends)
         if(friends.some(person => person.email === user.email)){
@@ -36,7 +36,7 @@ const Home = (props) => {
           updateDoc(db.collection('group').doc('groupB'), {friends: arrayUnion({email:user.email, name:user.displayName})})
         }
       })
-      window.location.href="/main"
+      await (()=>window.location.href="/main")
     }
     if(user){
 
