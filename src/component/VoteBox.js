@@ -6,9 +6,11 @@ import Checkbox from '@mui/material/Checkbox';
 import {db, auth} from '../firebase'
 import { arrayUnion, updateDoc } from "firebase/firestore";
 import { connect } from 'react-redux';
-import './VoteBox.css'
+import './VoteBox.css';
 import {useParams} from 'react-router-dom'
 import firebase from 'firebase/compat/app';
+import Clip from '../Icons/clip_navy.png';
+import { BrowserNotSupported } from "@mui/icons-material";
 
 
 const mapStateToProps = state =>({
@@ -135,9 +137,11 @@ const VoteBox = (props) => {
   if(!wishes) return null
 
   return (
-    <div id="vote_box">
-      <h1 id="vote_title">{voteName}</h1>
-
+    <div id="vote_box" className='vote_ing_background'>
+      <img src ={Clip} className='clip-ing-location'/>
+      <div className='paper-ing-back'></div>
+      <div className="set_vote_ing_title">{voteName}</div>
+      <div className='paper-box'>
       <FormGroup>
         {wishes.map((wish, i)=>{
           const changeChecked = () =>{
@@ -165,27 +169,30 @@ const VoteBox = (props) => {
 
           }
           return (
-            <div>
+            <div className='vote-ing-background'>
+              <div className="vote-ing-checkbox">
               <FormControlLabel 
                 control=
                 {<Checkbox 
                   checked={checked[i]} 
                   onChange={changeChecked}
                 />} 
-                label={wish} />
-              {checked[i]?<div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>:<div></div>}
+                label={wish}/>
+              {checked[i]?<div><input type="range" onChange={submitValue} className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>:<div></div>}
 
-              <input onChange = {submitComment}/>
+              <input onChange = {submitComment}  placeholder='Write the comment about item' className='comment_box'/>
+            </div>
             </div>
           )
         })}
       </FormGroup>
-      <button  onClick={Submit}>VOTE</button>
-
-      <button  onClick={getResult}>RESULT</button>
       
-      <div>{result}</div>
+      {/* <br/>
+      <button  onClick={getResult}>RESULT</button>
+      <div>{result}</div> */}
 
+    </div>
+    <button  onClick={Submit} className='vote-finish-button'>SUBMIT VOTE</button>
     </div>
   );
 };
