@@ -215,11 +215,11 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId, li
                       <div onClick={share} className="icon clickable"><img src={shareIcon} height='30px'/></div>
                       { showTooltip ? 
                           <Tooltip title="Already added to our bucket list!" arrow>
-                              <img src={cartIcon} className="img clickable" onClick={addBucket} /> 
+                              <div className="icon clickable" onClick={addBucket}><img src={cartIcon} height="30px" /></div>
                           </Tooltip> 
                       : 
-                          <img src={cartIcon} className="img clickable" onClick={addBucket} />
-                      }
+                        <div className="icon clickable" onClick={addBucket}><img src={cartIcon} height="30px" /></div>
+                    }
                   </div>
                 }
             </div>

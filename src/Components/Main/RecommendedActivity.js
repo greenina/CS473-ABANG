@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import "./ScrollList.css";
 
@@ -10,7 +10,22 @@ import firebase from 'firebase/compat/app';
 import {db, auth} from '../../firebase'
 import { Tooltip } from '@mui/material';
 
+import { arrayUnion, updateDoc } from "firebase/firestore"
+
 const ActivityItem = ({ text, href }) => {
+    const [bucketList, setBucketList] = useState([]);
+    const [showTooltip, setShowTooltip] = useState(false);
+
+    useEffect(() => {
+        db.collection("group").doc("groupB").get().then(async s => {
+            await s.data().bucket.forEach(i => {
+                i.get().then(x => {
+                    if(bucketList) bucketList.push(x.data().text)
+                })
+            })
+        })
+    }, [])
+
     const share = async () => {
         await db.collection('message2').add({
             isText:3,
@@ -23,12 +38,37 @@ const ActivityItem = ({ text, href }) => {
         window.location.href = "/chat"
         
     }
+
+    const addBucket = () => {
+        if(!bucketList.includes(text)) {
+            db.collection('bucket').add({
+                text: text,
+                cart: 0,
+                isDone: false,
+                isLock: true,
+                memories: [],
+            }).then(async snapshot => {
+                console.log(snapshot)
+                await updateDoc(db.collection('group').doc('groupB'), {bucket: arrayUnion(snapshot)})
+                await window.location.replace(`/ourpage/bucket`)
+            }) 
+        } else {
+            setShowTooltip(true)
+        }
+    }
+
+    if(!bucketList) return null
+
     return (
         <div className="scrolllist-item" >
             <div className="scrolllist-text">
-                <Tooltip title="Not a Core Feature(To be Implemented)" arrow>
-                <img src={shoppingCartIcon} className="img" /> 
-                </Tooltip>
+                { showTooltip ? 
+                    <Tooltip title="Already added to our bucket list!" arrow>
+                        <img src={shoppingCartIcon} className="img clickable" onClick={addBucket} /> 
+                    </Tooltip> 
+                : 
+                    <img src={shoppingCartIcon} className="img clickable" onClick={addBucket} />
+                }
                 <img src={shareIcon } onClick={share}/> 
                 <div onClick={() => window.location.href = href}>{ text }</div>
             </div>
