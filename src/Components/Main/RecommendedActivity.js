@@ -2,8 +2,8 @@ import React, {useState, useEffect} from "react";
 
 import "./ScrollList.css";
 
-import arrowUpIcon from "../../Icons/ArrowUpPurple.png";
-import arrowDownIcon from "../../Icons/ArrowDownPurple.png";
+import arrowUpIcon from "../../Icons/ArrowUpGreen.png";
+import arrowDownIcon from "../../Icons/ArrowDownGreen.png";
 import shareIcon from "../../Icons/Share.png";
 import shoppingCartIcon from "../../Icons/ShoppingCart.png";
 import firebase from 'firebase/compat/app';
