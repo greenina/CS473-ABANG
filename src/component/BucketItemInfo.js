@@ -2,8 +2,9 @@ import React, { useState , useEffect} from 'react';
 import '../App.css';
 import {db, auth} from '../firebase';
 import {doc, getDoc} from "firebase/firestore";
-import { arrayRemove, updateDoc } from "firebase/firestore";
+import { arrayUnion, arrayRemove, updateDoc } from "firebase/firestore";
 import MemoryList from "./MemoryList"
+import { Tooltip } from '@mui/material';
 
 import editIcon from "../Icons/EditButton.png"
 import checkIcon from "../Icons/Check.png"
@@ -22,6 +23,37 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId, li
   const [toggle, setToggle] = useState(false)
   const [done, setDone] = useState(null)
   const [open, setOpen] = useState(false)
+
+  const [bucketList, setBucketList] = useState([]);
+    const [showTooltip, setShowTooltip] = useState(false);
+
+    useEffect(() => {
+        db.collection("group").doc("groupB").get().then(async s => {
+            await s.data().bucket.forEach(i => {
+                i.get().then(x => {
+                    if(bucketList) bucketList.push(x.data().text)
+                })
+            })
+        })
+    }, [])
+
+    const addBucket = () => {
+        if(!bucketList.includes(todo)) {
+            db.collection('bucket').add({
+                text: todo,
+                cart: 0,
+                isDone: false,
+                isLock: true,
+                memories: [],
+            }).then(async snapshot => {
+                console.log(snapshot)
+                await updateDoc(db.collection('group').doc('groupB'), {bucket: arrayUnion(snapshot)})
+                await window.location.replace(`/ourpage/bucket`)
+            }) 
+        } else {
+            setShowTooltip(true)
+        }
+    }
 
 //   console.log(data)
 
@@ -181,7 +213,13 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId, li
                   :
                   <div className="icon-group">
                       <div onClick={share} className="icon clickable"><img src={shareIcon} height='30px'/></div>
-                      <div className="icon"><img src={cartIcon} height='30px'/></div>
+                      { showTooltip ? 
+                          <Tooltip title="Already added to our bucket list!" arrow>
+                              <img src={cartIcon} className="img clickable" onClick={addBucket} /> 
+                          </Tooltip> 
+                      : 
+                          <img src={cartIcon} className="img clickable" onClick={addBucket} />
+                      }
                   </div>
                 }
             </div>
