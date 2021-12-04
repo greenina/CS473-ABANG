@@ -6,8 +6,8 @@ import 'firebase/compat/auth';
 import BucketAnimation from "./BucketAnimation";
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {auth, db, SignOut} from '../firebase'
-import SignIn from '../Components/SignIn'
+import {auth, db, SignIn, SignOut} from '../firebase'
+// import SignIn from '../Components/SignIn'
 import Main from './Main'
 import {connect} from 'react-redux'
 import {setEmail} from '../store/modules/counter'
@@ -25,13 +25,22 @@ const Home = (props) => {
   const {email, setEmail} = props
   useEffect(()=>{
     async function save(){
-      await updateDoc(db.collection('group').doc('groupB'), {friends: arrayUnion({email:user.email, name:user.displayName})})
+      console.log("saving~~")
+      //console.log('friends',db.collection('group').doc('groupB').friends)
+      debugger;
+      await db.collection('group').doc('groupB').get().then((doc)=>{
+        const friends = doc.data().friends
+        console.log("Friends", friends)
+        if(friends.some(person => person.email === user.email)){
+          console.log("in friends list")
+        } else{
+          updateDoc(db.collection('group').doc('groupB'), {friends: arrayUnion({email:user.email, name:user.displayName})})
+        }
+      })
       await (()=>window.location.href="/main")
     }
     if(user){
-      // console.log("EMAIL",user.email)
-      // setEmail(user.email)
-      // window.location.href="/main"
+
       save()
     }
   },user)
@@ -45,8 +54,8 @@ const Home = (props) => {
           </div>  
         </header>
         <section style={{position:'absolute',zIndex:'3', top:'10%', left:'70%'}}> 
-            {/* {user ? <div></div>:<SignIn />} */}
-            <SignIn />
+            {user ? <div></div>:<SignIn />}
+            {/* <SignIn /> */}
         </section>
       </div>
 

@@ -38,7 +38,6 @@ function SignIn() {
   // // updateDoc(db.collection('group').doc('groupB'), {friends: arrayUnion({email:auth.currentUser.email, name:auth.currentUser.name})})
   }
 
-  console.log('provider');
   return (
     <div>
     <label for id="SignInButtonIcon"><img src={SignInButton} height='140px' onClick = {signInWithGoogle}/></label>
