@@ -122,17 +122,17 @@ function ChatMessage(props) {
       <p class="msg-box" style={{backgroundColor:"#FFFFFF"}}>
         {isText==3?
         <div>
-          <button className='share-name' style={{border:'10px', borderRadius:'10px', backgroundColor:'#FFFFFF',boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} onClick={()=>window.location.href = text.link}>{text.name}</button>
+          <button className='share-name clickable' style={{border:'10px', borderRadius:'10px', backgroundColor:'#FFFFFF',boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} onClick={()=>window.location.href = text.link}>{text.name}</button>
         </div>:
         (isText==1?text:
         (isText==2?
           <div>
-            <button style={{border:'0px', outline:'0px', backgroundColor:'#FFF'}} onClick={()=>window.location.href = "/vote/"+ ref}><img src ={GoToVote} height='150px'/></button>
+            <button className="clickable" style={{border:'0px', outline:'0px', backgroundColor:'#FFF'}} onClick={()=>window.location.href = "/vote/"+ ref}><img src ={GoToVote} height='150px'/></button>
             <center><div className='vote-name'>{text.name}</div></center>
           </div>
         :(isText==4?
           <div>
-            <button style={{border:'0px', outline:'0px', backgroundColor:'#FFF'}} onClick={()=>window.location.href = "/vote/"+ text.vid+"/result"}><img src ={VoteEnd} height='150px'/></button>
+            <button className="clickable" style={{border:'0px', outline:'0px', backgroundColor:'#FFF'}} onClick={()=>window.location.href = "/vote/"+ text.vid+"/result"}><img src ={VoteEnd} height='150px'/></button>
             <center><div className='vote-name'>{text.name}</div></center>
           </div>
         // <div>vid:<button onClick={()=>window.location.href = "/vote/"+ text.vid+"/result"}>{text.vid}</button></div>
@@ -150,14 +150,14 @@ function ChatMessage(props) {
       <div className = {'message ${messageClass}'} style={{display:"flex", justifyContent:"flex-start", alignItems:"center"}}>
       <img class="user-img" src = {photoURL} />
       <p class="msg-box" style={{backgroundColor:"#FFFDD0"}}>{isText==3?<div>
-      <button className='share-name' style={{border:'10px', borderRadius:'10px', backgroundColor:'#FFFFFF',boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} onClick={()=>window.location.href = text.link}>{text.name}</button>
+      <button className='share-name clickable' style={{border:'10px', borderRadius:'10px', backgroundColor:'#FFFFFF',boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} onClick={()=>window.location.href = text.link}>{text.name}</button>
     </div>:(isText==1?text:(isText==2?<div>
-      <button style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/"+ ref}><img src ={GoToVote} height='150px'/></button>
+      <button className="clickable" style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/"+ ref}><img src ={GoToVote} height='150px'/></button>
       <center><div className='vote-name'>{text.name}</div></center>
     </div>:
     (isText==4?
         <div>
-          <button style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/"+ text.vid+"/result"}><img src ={VoteEnd} height='150px'/></button>
+          <button className="clickable" style={{border:'0px', outline:'0px', backgroundColor:'#FFFDD0'}} onClick={()=>window.location.href = "/vote/"+ text.vid+"/result"}><img src ={VoteEnd} height='150px'/></button>
           <center><div className='vote-name'>{text.name}</div></center>
         </div>    
         :<div>"isText?"{isText}</div>)))}</p>
