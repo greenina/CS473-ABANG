@@ -1,0 +1,36 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url('https://fonts.googleapis.com/css2?family=Cantora+One&display=swap');
+
+.home_background{
+    display:"flex";
+    flex-direction:"column";
+    justify-content:"flex-end";
+    background:#F0DB92;
+    height:120vh;
+    z-index:-2
+}
+
+.backcircle{
+    width:500px;
+    height:500px;
+    background-color: #29394B;
+    border-radius:50%;
+    position:absolute;
+    z-index:1;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -65%);
+}
+
+.animation_position{
+    position:absolute;
+    z-index: 1;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+}
+
+.signinbuttonup{
+    position:absolute;
+    z-index:3;
+}

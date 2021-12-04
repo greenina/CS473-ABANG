@@ -22,6 +22,7 @@ const initialState = {
 export default function counter(state = initialState, action) {
   switch (action.type) {
     case SET_EMAIL:
+      console.log("EMAIL2",action.email)
       return{
           ...state,
           email: action.email

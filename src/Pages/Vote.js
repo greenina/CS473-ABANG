@@ -7,13 +7,12 @@ import { useParams } from "react-router";
 //VoteBox component안에 들어가야하는 props : group, email, group안의 어떤 vote? vote의 name or index?
 
 
-const Vote = (props) =>{
+const Vote = () =>{
   const { vid } = useParams();
-  const {voteRef} = props
 
   return(
     <div>
-      <VoteBox vid={vid} voteRef = {voteRef} />
+      <VoteBox vid={vid} />
     </div>
   )
 }

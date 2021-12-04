@@ -5,7 +5,7 @@ import 'firebase/compat/auth';
 import { arrayUnion, updateDoc } from "firebase/firestore";
 import { connect } from "react-redux";
 import {setEmail} from './store/modules/counter'
-
+import SignInButton from './Icons/SignInButton.png'
 
 
 const firebaseConfig = {
@@ -38,9 +38,11 @@ function SignIn() {
   // // updateDoc(db.collection('group').doc('groupB'), {friends: arrayUnion({email:auth.currentUser.email, name:auth.currentUser.name})})
   }
 
-  console.log('provider');
   return (
-    <button onClick = {signInWithGoogle}>Sign in with google.</button>
+    <div>
+    <label for id="SignInButtonIcon"><img src={SignInButton} onClick = {signInWithGoogle} height='140px'/></label>
+    <button id="SignInButtonIcon" onClick = {signInWithGoogle} style={{display:'none'}}>Sign in with google.</button>
+    </div>
   )
 }
 

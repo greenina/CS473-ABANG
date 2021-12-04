@@ -20,7 +20,7 @@ const GroupItem = ({name, hashtags, href}) => {
 const SimilarGroup = () => {
   return (
     <div className="shortlist-container" >
-        <div className="shortlist-name" style={{ color: "var(--browntext)", padding: "0 10px" }}>Similar Group</div>
+        <div className="shortlist-name" style={{ color: "#5C6348", padding: "0 10px" }}>Similar Group</div>
         <div className="shortlist-container-small">
             <GroupItem name="시끄러운 친구들" hashtags="#활동적 #액티비티" href="/theirpage/theirGroupA"/>
             <GroupItem name="우주최강 귀요미" hashtags="#아기자기 #쁘띠" href="/theirpage/theirGroupB"/>

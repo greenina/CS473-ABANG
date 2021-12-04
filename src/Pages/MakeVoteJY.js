@@ -7,6 +7,8 @@ import {db, auth} from '../firebase'
 import { arrayUnion, updateDoc } from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from 'firebase/compat/app';
+import './MakeVote.css';
+import Clip from '../Icons/clip_navy.png';
 
 import OptionList from "../Components/Vote/OptionList";
 
@@ -88,12 +90,16 @@ const MakeVote = (props)=>{
 
     if(!bucketList) return null
     return(
-        <div>
+        <div className='vote_background'>
+            <div className='paper-back'></div>
+            <img src ={Clip} className='clip-location'/>
+            <div className='paper-box'>
             {/* <FormGroup> */}
                 <OptionList data={bucketList} setChecked={setChecked} checked={checked} setTitle={setTitle} Submit={Submit} options={options} setOptions={setOptions}/>
             {/* </FormGroup> */}
             {/* <input onChange = {submitTitle}/> */}
             {/* <button onClick={Submit}>MAKE</button> */}
+            </div>
         </div>
     )
 }

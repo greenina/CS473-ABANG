@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import {useState} from 'react'; 
 import {db, auth} from '../../firebase'
+import '../../Pages/MakeVote.css';
 
 import OptionItem from "./OptionItem"
 
@@ -18,11 +19,12 @@ const OptionList = ({ data, setChecked, checked, setTitle, Submit, options, setO
     if(!bucketlist) return null
     return(
         <div>
+            <input onChange = {submitTitle} className="set_vote_title" placeholder='Write title of new vote!'/>
             {bucketlist.map((data, i) => (
-                <OptionItem data={data} i={i} setChecked={setChecked} checked={checked} setTitle={setTitle} options={options} setOptions={setOptions}/>
+                <li className='list-text'><OptionItem data={data} i={i} setChecked={setChecked} checked={checked} setTitle={setTitle} options={options} setOptions={setOptions}/>
+                </li>
             ))}
-            <input onChange = {submitTitle}/>
-            <button  onClick={Submit}>MAKE</button>
+            <button  onClick={Submit} className='vote-make-button'>MAKE NEW VOTE</button>
         </div>
       )
 }

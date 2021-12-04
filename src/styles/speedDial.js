@@ -81,7 +81,7 @@ export default function PlaygroundSpeedDial() {
           open={open}
           hidden={hidden}
           icon={<StyledSpeedDialIcon icon={<MenuIcon/>} openIcon={<MenuIcon/>}/>} 
-          FabProps={{size:"small", id:'menuIcon',style: {backgroundColor:"#C4DCDF", outlineColor:'white',outlineWidth:'4px', outlineStyle:'solid'}}} 
+          FabProps={{size:"small", id:'menuIcon',style: {backgroundColor:"#B8C9C6", outlineColor:'white', outlineWidth:'4px', outlineStyle:'solid'}}} 
           direction={"down"}
           style={{padding:0, margin:0}}
         >
