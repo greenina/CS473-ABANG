@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import './VoteBox.css'
 import {useParams} from 'react-router-dom'
 import firebase from 'firebase/compat/app';
+import { Range, getTrackBackground } from "react-range";
 
 
 const mapStateToProps = state =>({
@@ -146,23 +147,18 @@ const VoteBox = (props) => {
           setChecked(arr)
           }
 
-          const submitValue = (e) =>{
-            console.log("values1",value)
+          const submitValue = (values) =>{
             var arr = value
-            arr[i] = parseInt(e.target.value)
+            //arr[i] = parseInt(e.target.value)
+            arr[i] = parseInt(values[0])
             console.log(arr)
             setValue(Array.from(arr, item => typeof item === 'undefined' ? 0 : item))
-            console.log("values2",value)
           }
           const submitComment = (e) =>{
-            console.log("comment1",comment)
-            console.log("SUBMITCOMMENT")
             var arr = comment
             arr[i] = e.target.value
             console.log(arr)
             setComment(Array.from(arr, item => typeof item === 'undefined' ? "" : item))
-            console.log("comment2",comment)
-
           }
           return (
             <div>
@@ -173,7 +169,40 @@ const VoteBox = (props) => {
                   onChange={changeChecked}
                 />} 
                 label={wish} />
-              {checked[i]?<div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>:<div></div>}
+              {checked[i]?
+              // <div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div> 
+              <Range
+                step={0.1}
+                min={0}
+                max={100}
+                values={50}
+                onChange={(values) => submitValue(values)}
+                renderTrack={({ props, children }) => (
+                  <div
+                    {...props}
+                    style={{
+                      ...props.style,
+                      height: '6px',
+                      width: '100%',
+                      backgroundColor: '#ccc'
+                    }}
+                  >
+                    {children}
+                  </div>
+                )}
+                renderThumb={({ props }) => (
+                  <div
+                    {...props}
+                    style={{
+                      ...props.style,
+                      height: '42px',
+                      width: '42px',
+                      backgroundColor: '#999'
+                    }}
+                  />
+                )}
+              />
+              :<div></div>}
 
               <input onChange = {submitComment}/>
             </div>

@@ -20,7 +20,7 @@ const Home = () => {
 
   useEffect(()=>{
     if(user){
-      window.location.href="/main"
+      // window.location.href="/main"
       console.log('hi');
     }
   },user)
@@ -34,7 +34,8 @@ const Home = () => {
           </div>  
         </header>
         <section style={{position:'absolute',zIndex:'3', top:'10%', left:'70%'}}> 
-            {user ? <div></div>:<SignIn />}
+            {/* {user ? <div></div>:<SignIn />} */}
+            <SignIn />
         </section>
       </div>
 

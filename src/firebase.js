@@ -41,8 +41,8 @@ function SignIn() {
   console.log('provider');
   return (
     <div>
-    <label for id="SignInButtonIcon"><img src={SignInButton} height='140px'/></label>
-    <button id="SignInButtonIcon" onClick = {signInWithGoogle} style={{display:'none'}}>Sign in with google.</button>
+    <label for id="SignInButtonIcon"><img src={SignInButton} height='140px' onClick = {signInWithGoogle}/></label>
+    {/* <button id="SignInButtonIcon" onClick = {signInWithGoogle} style={{display:'none'}}>Sign in with google.</button> */}
     </div>
   )
 }
