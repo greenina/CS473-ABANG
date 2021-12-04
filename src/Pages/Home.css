@@ -1,11 +1,11 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url('https://fonts.googleapis.com/css2?family=Cantora+One&display=swap');
 
-.background{
+.home_background{
     display:"flex";
     flex-direction:"column";
     justify-content:"flex-end";
-    background:#F8D07E;
+    background:#F0DB92;
     height:120vh;
     z-index:-2
 }

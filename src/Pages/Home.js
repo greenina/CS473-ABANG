@@ -27,7 +27,7 @@ const Home = (props) => {
     async function save(){
       console.log("saving~~")
       debugger;
-      await db.collection('group').doc('groupB').get().then((doc)=>{
+      db.collection('group').doc('groupB').get().then((doc)=>{
         const friends = doc.data().friends
         console.log("Friends", friends)
         if(friends.some(person => person.email === user.email)){
@@ -36,7 +36,8 @@ const Home = (props) => {
           updateDoc(db.collection('group').doc('groupB'), {friends: arrayUnion({email:user.email, name:user.displayName})})
         }
       })
-      await (()=>window.location.href="/main")
+      // await (()=>window.location.href="/main")
+      window.location.href="/main"
     }
     if(user){
 
@@ -46,7 +47,7 @@ const Home = (props) => {
 
 
   return (
-      <div className='background'>
+      <div className='home_background'>
         <header className="backcircle">  
           <div className='animation_position'>
             <BucketAnimation/>

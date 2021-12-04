@@ -1,0 +1,91 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url('https://fonts.googleapis.com/css2?family=Cantora+One&display=swap');
+
+.vote_background{
+    display:"flex";
+    flex-direction:"column";
+    justify-content:"flex-end";
+    background-color:#90A886;
+    height:120vh;
+    z-index:-1
+}
+
+.set_vote_title{
+    display:"inline-box";
+    border-radius:20px;
+    width:50%;
+    height:40px;
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size:20px;
+    text-align: center;
+    align-items: center;
+    margin-top: 10%;
+    margin-left: 25%;
+    margin-bottom: 5px;
+    background-color: #DBD9C3;
+    color: #68694A;
+}
+
+.paper-box{
+    display: inline-block;
+    width: 60%;
+    height: 60%;
+    border-radius: 5px;
+    background-color: #DBD9C3;
+    position:absolute;
+    z-index:2;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -65%);
+    box-shadow: 10px 5px 5px rgba(#68694A, 0.5) ;
+}
+.list-text{
+    list-style: none;
+    padding:0px; 
+    margin-left:15%; 
+    margin-top:5%;
+    border-bottom: 2px solid;
+    border-color: #999B6E;
+    height: auto;
+    width: 70%;
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size:20px;
+    color:#68694A;
+    z-index: 3;
+}
+
+.paper-back{
+    display: inline-block;
+    width: 60%;
+    height: 60%;
+    border-radius: 5px;
+    background-color: #77785F;
+    position:absolute;
+    z-index:2;
+    left: 53%;
+    top: 58%;
+    transform: translate(-50%, -65%);
+}
+
+.vote-make-button {
+    display: inline-block;
+    background-color: #77785F;
+    border-radius: 10px;
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size:13px;
+    padding: 10px;
+    box-shadow: 10px, 10px, 5px, rgba(255,255,255,0.7);
+    border-width: 0px;
+    color:#e5e6d5;
+    z-index: 3;
+    margin-left: 40%;
+    margin-top:10%;
+}
+
+.clip-location{
+    position:absolute;
+    z-index:5;
+    height:12%;
+    left: 23%;
+    top: 9.5%;
+}

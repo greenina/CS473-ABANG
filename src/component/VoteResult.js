@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import { db } from '../firebase'
+import './VoteResult.css'
+import XButton from '../Icons/X.png';
+import Clip from '../Icons/clip_navy.png';
 
 const VoteResult = ({ voteRef }) => {
     const { vid } = useParams()  
@@ -52,22 +55,29 @@ const VoteResult = ({ voteRef }) => {
     if(!wishes) return null
 
     return (
-        <div id="vote_box">
-            <button onClick={() => window.location.href = "/chat"}>Close Button</button>
-            <div>{voteName} Results~~~</div>
+        <div id="vote_box" className='vote_result_background'>
+            <div className='paper-result-back'/>
+            <div className='paper-box'>
+            <img src={XButton} height='40px' className='button_location' onClick={() => window.location.href = "/chat"}/>
+            <div className='vote-result-title'> {voteName} Results</div>
             {wishes.map((wish, i)=>{
                 return (
-                    <div>
+                    <div className='number-container'>
                         <b>{wish}</b> <br/>
-                        이 수치를 가지고 이쁘게 bar로 꾸며주자 {preferenceSum[i]}/{userNum*100} <br/>
+                        <span className='number' style={{"--width":preferenceSum[i]/userNum/100}}>
+                        <span className='block'/>
+                        <span className='total-point'>{preferenceSum[i]}</span>  
+                        </span>
+                        <br/>
                         {comments[i] && comments[i].map(comment => {
                             return (
-                                <div>익명의 코멘트~~ : {comment}</div>
+                                <div className='anonymous_comment_box'><span>Anonymous comment:</span>{comment}</div>
                             )
                         })}
                     </div>
                 )
             })}
+        </div>
         </div>
     );
 };

@@ -1,7 +1,115 @@
-#vote_title{
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url('https://fonts.googleapis.com/css2?family=Cantora+One&display=swap');
 
+.vote_ing_background{
+    display:"flex";
+    flex-direction:"column";
+    justify-content:"flex-end";
+    background-color:#90A886;
+    height:120vh;
 }
-/* #vote_box{
-    background-color: #F4CCCC;
-    height: 80%;
-} */
+
+.content-container {
+    position: absolute;
+    width: 90%;
+    top: 40px;
+    left: 50%;
+    bottom: 70px;
+    transform: translateX(-50%);
+    background-color: #A8C19D;
+    border-radius: 20px 20px 0 0;
+    padding: 30px 10px 10px;
+    overflow-y: scroll;
+    box-shadow: inset -2px 0px 4px rgba(0, 0, 0, 0.15), inset 2px 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+
+.paper-box{
+    display: inline-block;
+    width: 60%;
+    height: 60%;
+    border-radius: 5px;
+    background-color: #DBD9C3;
+    position:absolute;
+    z-index:2;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -65%);
+    box-shadow: 10px 5px 5px rgba(#68694A, 0.5) ;
+    overflow-y: scroll;
+}
+
+.paper-ing-back{
+    display: inline-block;
+    width: 60%;
+    height: 60%;
+    border-radius: 5px;
+    background-color: #77785F;
+    position:absolute;
+    z-index:2;
+    left: 53%;
+    top: 58%;
+    transform: translate(-50%, -65%);
+}
+
+.set_vote_ing_title{
+    position:absolute;
+    display: inline-block;
+    width:60%;
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size:25px;
+    text-align: center;
+    color: #68694A;
+    margin-top: 23%;
+    margin-left: 20%;
+    z-index: 5;
+    background-color:#DBD9C3 ;
+}
+
+.comment_box{
+    font-family: 'Jeju Gothic', sans-serif;
+    width:60%;
+    margin-left: 7%;
+    background-color:#DBD9C3;
+    color: #68694A;
+    margin-bottom: -20px;
+}
+
+.vote-finish-button {
+    position:absolute;
+    display: inline-block;
+    width: 10%;
+    background-color: #77785F;
+    border-radius: 10px;
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size:13px;
+    padding: 10px;
+    box-shadow: 10px, 10px, 5px, rgba(255,255,255,0.7);
+    border-width: 0px;
+    color:#e5e6d5;
+    margin-left: 68%;
+    margin-top:77%;
+    margin-bottom:100px;
+    z-index:7;
+}
+
+.vote-ing-checkbox{
+    margin-left: 10%;
+    margin-top:15%;
+    font-family: 'Jeju Gothic', sans-serif;
+    color: #68694A;
+}
+
+.input-range__slider{
+    margin-left: 7%;
+    margin-top: -5px;
+    font-family: 'Jeju Gothic', sans-serif;
+}
+
+.clip-ing-location{
+    position:absolute;
+    z-index:7;
+    height:12%;
+    left: 23%;
+    top: 9.5%;
+}

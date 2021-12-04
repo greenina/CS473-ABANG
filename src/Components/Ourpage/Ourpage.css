@@ -4,8 +4,8 @@
 .ourpage {
     width: 100vw;
     height: calc(100vh - 40px);
-    background-color: var(--lightyellow);
-    color: var(--browntext);
+    background-color: #DFD89C;
+    color: #4F6148;
     overflow: scroll;
     padding-bottom: 40px;
 }
@@ -20,14 +20,11 @@
     width: calc(100% - 20px);
 }
 
-.group-image {
-    /* height: 200px; */
-}
 
 .group-name {
-    background-color: var(--lightyellow);
+    background-color: #DFD89C;
     font-weight: bold;
-    color: var(--browntext);
+    color: #A99152;
     /* height:42px; */
     font-family: 'Jeju Gothic', sans-serif;
     font-size:20px;

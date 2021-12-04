@@ -6,11 +6,13 @@ import Checkbox from '@mui/material/Checkbox';
 import {db, auth} from '../firebase'
 import { arrayUnion, updateDoc } from "firebase/firestore";
 import { connect } from 'react-redux';
-import './VoteBox.css'
+import './VoteBox.css';
 import {useParams} from 'react-router-dom'
 import firebase from 'firebase/compat/app';
 import {Range, getTrackBackground} from 'react-range'
 import { useAuthState } from 'react-firebase-hooks/auth';
+import Clip from '../Icons/clip_navy.png';
+import { BrowserNotSupported } from "@mui/icons-material";
 
 
 
@@ -134,9 +136,11 @@ const VoteBox = (props) => {
   if(!wishes) return null
 
   return (
-    <div id="vote_box">
-      <h1 id="vote_title">{voteName}</h1>
-
+    <div id="vote_box" className='vote_ing_background'>
+      <img src ={Clip} className='clip-ing-location'/>
+      <div className='paper-ing-back'></div>
+      <div className="set_vote_ing_title">{voteName}</div>
+      <div className='paper-box'>
       <FormGroup>
         {wishes.map((wish, i)=>{
           const changeChecked = () =>{
@@ -159,7 +163,8 @@ const VoteBox = (props) => {
             setComment(Array.from(arr, item => typeof item === 'undefined' ? "" : item))
           }
           return (
-            <div>
+            <div className='vote-ing-background'>
+              <div className="vote-ing-checkbox">
               <FormControlLabel 
                 control=
                 {<Checkbox 
@@ -234,16 +239,19 @@ const VoteBox = (props) => {
               </div>
               :<div></div>}
 
-              <input onChange = {submitComment}/>
+              <input onChange = {submitComment}  placeholder='Write the comment about item' className='comment_box'/>
+            </div>
             </div>
           )
         })}
       </FormGroup>
-      <button  onClick={Submit}>VOTE</button>
-      <button  onClick={getResult}>RESULT</button>
       
-      <div>{result}</div>
+      {/* <br/>
+      <button  onClick={getResult}>RESULT</button>
+      <div>{result}</div> */}
 
+    </div>
+    <button  onClick={Submit} className='vote-finish-button'>SUBMIT VOTE</button>
     </div>
   );
 };

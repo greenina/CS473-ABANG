@@ -5,9 +5,9 @@
     display: inline-block;
     margin-top: 10px;
     width: calc(100% - 40px);
-    color: var(--purpletext);
+    color: #4F6148;
     padding: 20px;
-    background-color: var(--purple);
+    background-color: #90A886;
     border-radius: 10px;
     box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
 }

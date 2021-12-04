@@ -21,7 +21,7 @@
 .shortlist-item {
     position: relative;
     width: calc(100% - 20px);
-    background-color: var(--yellow);
+    background-color: #DFD89C;
     border-radius: 10px;
     margin-top: 10px;
     padding: 10px;
@@ -33,7 +33,7 @@
     position: relative;
     width: calc(100% - 30px);
     /* height : 210px; */
-    background-color: var(--yellow);
+    background-color: #DFD89C;
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
@@ -112,7 +112,7 @@
 .shortlist-name {
     font-size: 25px;
     font-family: 'Cantora One', sans-serif;
-    color: var(--browntext);
+    color: #5C6348;
 }
 
 .shortlist-groupname {
