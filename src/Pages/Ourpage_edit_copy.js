@@ -24,6 +24,7 @@ class Ourpage_Edit extends Component {
                     <br/>
                     <GroupInfo/>
                 </div>
+                <NavBar />
             </div>
         )
     }
