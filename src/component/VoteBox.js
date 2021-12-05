@@ -178,7 +178,7 @@ const VoteBox = (props) => {
                 // <div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>
                 <div>
                   <Range
-                  step={0.1}
+                  step={1}
                   min={0}
                   max={100}
                   values={[value[i]]}
@@ -189,7 +189,7 @@ const VoteBox = (props) => {
                 onTouchStart={props.onTouchStart}
                 style={{
                   ...props.style,
-                  height: "36px",
+                  height: "50px",
                   display: "flex",
                   width: "100%"
                 }}

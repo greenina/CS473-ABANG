@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { db } from '../firebase'
 import './VoteResult.css'
 import XButton from '../Icons/X.png';
 import Clip from '../Icons/clip_navy.png';
+
+import closeButton from "../Icons/CloseButtonGreen.png"
+
 
 const VoteResult = ({ voteRef }) => {
     const { vid } = useParams()  
@@ -56,9 +60,11 @@ const VoteResult = ({ voteRef }) => {
 
     return (
         <div id="vote_box" className='vote_result_background'>
+            <Link to={`/chat`} className="close-button" style={{ left: "30px", top: "30px" }}><img src={closeButton} width="100%" /></Link>
+            <img src ={Clip} className='clip-ing-location'/>
             <div className='paper-result-back'/>
             <div className='paper-box'>
-            <img src={XButton} height='40px' className='button_location' onClick={() => window.location.href = "/chat"}/>
+            {/* <img src={XButton} height='40px' className='button_location' onClick={() => window.location.href = "/chat"}/> */}
             <div className='vote-result-title'> {voteName} Results</div>
             {wishes.map((wish, i)=>{
                 return (
@@ -66,7 +72,7 @@ const VoteResult = ({ voteRef }) => {
                         <div className='wish'>{wish}</div> <br/>
                         <span className='number' style={{"--width":preferenceSum[i]/userNum/100}}>
                         <span className='block'/>
-                        <span className='total-point'>{preferenceSum[i]}</span>  
+                            <span className='total-point'>{preferenceSum[i]}</span>  
                         </span>
                         <br/>
                         {comments[i] && comments[i].map(comment => {
