@@ -10,6 +10,7 @@ import Hashtags from "../Components/Ourpage/Hashtags";
 import BucketList from '../component/BucketList'
 import zIndex from '@material-ui/core/styles/zIndex';
 import "../Components/Ourpage/Ourpage.css"
+import GroupImage from "../Components/Ourpage/GroupImage";
 import { fontFamily } from '@mui/system';
 
 class Ourpage_Edit extends Component {
@@ -18,7 +19,8 @@ class Ourpage_Edit extends Component {
         return(
             <div className="ourpage">
                 <div className="ourpage-container">
-                    <DisplayImage/>
+                    {/* <DisplayImage/> */}
+                    <GroupImage />
                     <br/>
                     <GroupInfo/>
                 </div>

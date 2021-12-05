@@ -30,7 +30,7 @@ const Ourpage = () =>{
 
     return(
         <div className="ourpage">
-            <SignOut/>
+            {/* <SignOut/> */}
             <div className="ourpage-container">
                 <GroupImage />
                 {/* <DisplayImage/> */}
