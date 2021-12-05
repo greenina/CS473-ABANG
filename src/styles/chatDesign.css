@@ -200,9 +200,12 @@ body {
 }
 
 .rearrange-speeddial{
-    position: fixed;
-    top: 8px;
-    left:90vw;
+    position: absolute;
+    top: 9px;
+    right: 3px;
+    /* margin-top: ; */
+    /* top: 8px; */
+    /* left:90vw; */
 }
 
 .chat-group-name{
