@@ -67,10 +67,18 @@
     background-color:#DBD9C3 ;
 }
 
+.slider {
+    font-family: 'Jeju Gothic', sans-serif;
+    margin-left: 25px;
+    width:calc(70% - 5px);
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
 .comment_box{
     font-family: 'Jeju Gothic', sans-serif;
-    width:70%;
-    margin-left: 7%;
+    width:calc(70% - 25px);
+    margin-left: 25px;
     background-color:#DBD9C3;
     color: #68694A;
     margin-bottom: -20px;

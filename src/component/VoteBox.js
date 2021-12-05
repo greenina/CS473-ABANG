@@ -172,77 +172,80 @@ const VoteBox = (props) => {
                   {<Checkbox 
                     checked={checked[i]} 
                     onChange={changeChecked}
+                    style={{ color: "#68694A"}}
                   />} 
                   label={wish} />
-                {checked[i]?
-                // <div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>
-                <div>
-                  <Range
-                  step={1}
-                  min={0}
-                  max={100}
-                  values={[value[i]]}
-                  onChange={(values) => submitValue(values)}
-                  renderTrack={({ props, children }) => (
-              <div
-                onMouseDown={props.onMouseDown}
-                onTouchStart={props.onTouchStart}
-                style={{
-                  ...props.style,
-                  height: "50px",
-                  display: "flex",
-                  width: "100%"
-                }}
-              >
-                <div
-                  ref={props.ref}
-                  style={{
-                    height: "5px",
-                    width: "100%",
-                    borderRadius: "4px",
-                    background: getTrackBackground({
-                      values: [value[i]],
-                      colors: ["#548BF4", "#ccc"],
-                      min: 0,
-                      max: 100
-                    }),
-                    alignSelf: "center"
-                  }}
-                >
-                  {children}
+                  {checked[i]?
+                    // <div><input type="range" onChange={submitValue}  className="input-range__slider" min="0" max="100" step=".1" defaultValue="0" /></div>
+                    <div className="slider">
+                      <Range
+                        step={1}
+                        min={0}
+                        max={100}
+                        values={[value[i]]}
+                        onChange={(values) => submitValue(values)}
+                        renderTrack={({ props, children }) => (
+                          <div
+                            onMouseDown={props.onMouseDown}
+                            onTouchStart={props.onTouchStart}
+                            style={{
+                              ...props.style,
+                              height: "30px",
+                              display: "flex",
+                              width: "100%",
+                            }}
+                          >
+                            <div
+                              ref={props.ref}
+                              style={{
+                                height: "10px",
+                                width: "100%",
+                                borderRadius: "5px",
+                                background: getTrackBackground({
+                                  values: [value[i]],
+                                  colors: ["#68694A", "#ccc"],
+                                  min: 0,
+                                  max: 100
+                                }),
+                                alignSelf: "center"
+                              }}
+                            >
+                              {children}
+                            </div>
+                          </div>
+                        )}
+                        renderThumb={({ props, isDragged }) => (
+                          <div
+                            {...props}
+                            style={{
+                              ...props.style,
+                              height: "15px",
+                              width: "15px",
+                              borderRadius: "7px",
+                              backgroundColor: "#FFF",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              boxShadow: "0px 2px 6px #AAA"
+                            }}
+                          >
+                            <div
+                              style={{
+                                // height: "16px",
+                                // width: "2px",
+                                // backgroundColor: isDragged ? "#68694A" : "#CCC"
+                              }}
+                            />
+                          </div>
+                        )}
+                      />
+                      {value[i].toFixed(1)}
+                    </div>
+                  :
+                    <div></div>
+                  }
+                  <input onChange = {submitComment}  placeholder='Write a comment' className='comment_box'/>
                 </div>
-              </div>
-                  )}
-                  renderThumb={({ props, isDragged }) => (
-              <div
-                {...props}
-                style={{
-                  ...props.style,
-                  height: "42px",
-                  width: "42px",
-                  borderRadius: "4px",
-                  backgroundColor: "#FFF",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  boxShadow: "0px 2px 6px #AAA"
-                }}
-              >
-                <div
-                  style={{
-                    height: "16px",
-                    width: "5px",
-                    backgroundColor: isDragged ? "#548BF4" : "#CCC"
-                  }}
-                />
-              </div>
-            )}
-                />{value[i].toFixed(1)}
-                </div>
-                :<div></div>}
-
-                <input onChange = {submitComment}  placeholder='Write the comment about item' className='comment_box'/>
-              </div>
               </div>
             )
           })}
