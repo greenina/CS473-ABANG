@@ -24,7 +24,7 @@
 .group-name {
     background-color: #DFD89C;
     font-weight: bold;
-    color: #A99152;
+    color: #93793a;
     /* height:42px; */
     font-family: 'Jeju Gothic', sans-serif;
     font-size:20px;
@@ -68,6 +68,7 @@
 .group-introduction-text {
     font-family: 'Jeju Gothic', sans-serif;
     font-size:18px;
+    color: #93793a;
 }
 
 .group-introduction .header {
@@ -76,6 +77,7 @@
     font-weight: bold;
     font-size:25px;
     margin-top:-40px;
+    color: #93793a;
     font-family: 'Cantora One', sans-serif;
 }
 
