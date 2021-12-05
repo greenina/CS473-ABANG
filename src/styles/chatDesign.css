@@ -18,11 +18,11 @@ body {
 @import url('https://fonts.googleapis.com/css2?family=Cantora+One&display=swap');
 
 .background{
-    display:"flex";
-    flex-direction:"column";
-    justify-content:"flex-end";
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
     background:#B8C9C6;
-    height:"80vh";
+    height: calc(100vh - 80px);
     z-index:-1
 }
 
@@ -165,6 +165,12 @@ body {
     outline-color:white;
     outline-width:4px;
     outline-style:solid;
+}
+
+.plain-text {
+    font-family: 'Jeju Gothic', sans-serif;
+    color: var(--browntext);
+    margin: 10px;
 }
 
 .chat-box {

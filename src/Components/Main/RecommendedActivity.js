@@ -69,8 +69,8 @@ const ActivityItem = ({ text, href }) => {
                 : 
                     <img src={shoppingCartIcon} className="img clickable" onClick={addBucket} />
                 }
-                <img src={shareIcon } onClick={share}/> 
-                <div onClick={() => window.location.href = href}>{ text }</div>
+                <img className="clickable" src={shareIcon } onClick={share}/> 
+                <div className="clickable" onClick={() => window.location.href = href}>{ text }</div>
             </div>
         </div>
     );
@@ -86,6 +86,7 @@ const RecommendedActivity = () => {
             <ActivityItem text="남산 타워" href="/bucket/8KfLFCkk7efxo0KhdhQs"/>
             <ActivityItem text="유튜브 브이로그" href="/bucket/IGT7Za1piAYputJwo4fq"/>
             <ActivityItem text="시베리아 횡단 열차" href="/bucket/WZMwjBLbnD1sG9tBnMCM"/>
+            <ActivityItem text="공포 테마 방탈출" href="/bucket/SAuzhnSueD05Hsldy9US" />
         </div>
         <img src={arrowDownIcon} className="scrolllist-arrow" />
     </div>

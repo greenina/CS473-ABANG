@@ -102,6 +102,7 @@ return (
             defaultValue={memory.date}
             inputRef={inputRef}
             style={{ marginLeft: "10px" }} 
+            className="clickable"
         />
 
         <textarea
@@ -132,7 +133,7 @@ return (
         <div className="comments-header">Comments</div>
         <CommentList comments={memory.comments} old_comment={comment} handleCommentChange={handleCommentChange} />
       </div>
-      <button onClick={handleSubmit} className="save-button">
+      <button onClick={handleSubmit} className="save-button clickable">
         Save
       </button>
     </div>

@@ -68,8 +68,8 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId }) 
             {/* <span onClick={() => setOpen(!open)} style={style}>{todo}</span>  */}
             {todo}
                   <div className="icon-group">
-                      <div className="icon"><img src={shareIcon} height='30px'/></div>
-                      <div className="icon"><img src={cartIcon} height='30px'/></div>
+                      <div className="icon clickable"><img src={shareIcon} height='30px'/></div>
+                      <div className="icon clickable"><img src={cartIcon} height='30px'/></div>
                   </div>
             </div>
             { open ?

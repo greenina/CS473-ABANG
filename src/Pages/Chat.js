@@ -133,7 +133,7 @@ function ChatMessage(props) {
         <div>
           <button className='share-name clickable' style={{border:'10px', borderRadius:'10px', backgroundColor:'#FFFFFF',boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} onClick={()=>window.location.href = text.link}>{text.name}</button>
         </div>:
-        (isText==1?text:
+        (isText==1?<div className="plain-text">{text}</div>:
         (isText==2?
           <div>
             <center><button className="clickable" style={{border:'0px', outline:'0px', backgroundColor:'#FFF'}} onClick={()=>window.location.href = "/vote/"+ ref}><img src ={GoToVote} height='150px'/></button>
@@ -160,7 +160,7 @@ function ChatMessage(props) {
       <img class="user-img" src = {photoURL} />
       <p class="msg-box" style={{backgroundColor:"#F8E6A7"}}>{isText==3?<div>
       <button className='share-name clickable' style={{border:'10px', borderRadius:'10px', backgroundColor:'#FFFFFF',boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.25) "}} onClick={()=>window.location.href = text.link}>{text.name}</button>
-    </div>:(isText==1?text:(isText==2?<div>
+    </div>:(isText==1?<div className="plain-text">{text}</div>:(isText==2?<div>
       <center><button className="clickable" style={{border:'0px', outline:'0px', backgroundColor:'#F8E6A7'}} onClick={()=>window.location.href = "/vote/"+ ref}><img src ={GoToVote} height='150px'/></button>
       <div className='vote-name'>{text.name}</div></center>
     </div>:

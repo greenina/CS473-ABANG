@@ -61,8 +61,8 @@ const ActivityItem = ({ text, hashtags, href }) => {
             style={{ backgroundColor: "var(--lightgray)", verticalAlign: "top" }}>
             <img src={hitIcon} style={{height:'30px', width:'40px'}}/>
             <div style={{ display: "inline-block", width: "calc(100% - 50px)", verticalAlign: "top" }}>
-                <div className="shortlist-text-big" onClick={() => window.location.href=href}>{ text }</div>
-                <div className="shortlist-text" onClick={() => window.location.href=href}>{ hashtags }</div>   
+                <div className="shortlist-text-big clickable" onClick={() => window.location.href=href}>{ text }</div>
+                <div className="shortlist-text clickable" onClick={() => window.location.href=href}>{ hashtags }</div>   
                 
 
                 { showTooltip ? 
