@@ -149,6 +149,9 @@ const VoteBox = (props) => {
             var arr = [...checked]
             arr[i] = !arr[i]
             setChecked(arr)
+            var val = value
+            val[i] = 100
+            setValue(val)
             }
 
             const submitValue = (values) =>{

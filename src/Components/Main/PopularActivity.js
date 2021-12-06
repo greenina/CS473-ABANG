@@ -82,10 +82,10 @@ const PopularActivity = () => {
   return (
     <div className="shortlist-container">
         <div className="shortlist-name">Popular Activity</div>
-        <ActivityItem text="오징어 게임 보기" id="j0P5GlThHZxr3RvqnOgL" hashtags="#456 #오징어" href="/bucket/j0P5GlThHZxr3RvqnOgL" />
-        <ActivityItem text="Hey Mama 커버 댄스 찍기" id="8qjn3iUMyakN9eTtJShm" hashtags="#스우파 #멋짐" href="/bucket/8qjn3iUMyakN9eTtJShm" />
-        <ActivityItem text="스포츠몬스터 뿌시기" id="XhbwVznGZ3IEtLWtodg6" hashtags="#인싸" href="/bucket/XhbwVznGZ3IEtLWtodg6" />
-        <ActivityItem text="파티룸에서 연말파티" id="hGTpf97UiIBFVaM9aO9Z" hashtags="#연말 #양주 #신남" href="/bucket/hGTpf97UiIBFVaM9aO9Z" />
+        <ActivityItem text="Watch Squid Game Together" id="j0P5GlThHZxr3RvqnOgL" hashtags="#🦑🦑 #456 #Squid" href="/bucket/j0P5GlThHZxr3RvqnOgL" />
+        <ActivityItem text="Hey Mama Cover Dance" id="8qjn3iUMyakN9eTtJShm" hashtags="#StreetWomenFighter #wOw👯‍♂️" href="/bucket/8qjn3iUMyakN9eTtJShm" />
+        <ActivityItem text="Go SportsMonster" id="XhbwVznGZ3IEtLWtodg6" hashtags="#activity #exercise🏃‍♀️"  href="/bucket/XhbwVznGZ3IEtLWtodg6" />
+        <ActivityItem text="Christmas Party in partyroom" id="hGTpf97UiIBFVaM9aO9Z" hashtags="#🌲christmas #alcohol🍷 #excited" href="/bucket/hGTpf97UiIBFVaM9aO9Z" />
         {/* <ActivityItem text="투다리 종강파티" hashtags="#달려 #볼링핀 #깡소주"/>
         <ActivityItem text="교복입고 롯데월드" hashtags="#회전목마 #교복"/> */}
     </div>
