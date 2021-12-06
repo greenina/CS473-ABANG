@@ -122,7 +122,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId, li
   const share = async () => {
         await db.collection('message2').add({
             isText:3,
-            text: {name:todo, link:link},
+            text: {name:todo, link:`/bucket/${link}`},
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             email:auth.currentUser.email,
             photoURL: auth.currentUser.photoURL
