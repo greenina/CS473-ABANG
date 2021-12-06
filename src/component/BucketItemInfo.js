@@ -191,7 +191,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId, li
 
     return(
         <div>
-            <div className="bucket-item" style={done ? { backgroundColor: "var(--green)"} : { backgroundColor: "var(--lightgray)" }}>
+            <div className="bucket-item" style={done ? { backgroundColor: "#DFDAA8"} : { backgroundColor: "var(--lightgray)" }}>
                 { !detail ? <input className="clickable" type="checkbox" id="unchecked" onClick={() => changeIsDone(id)} checked={done}/> : null }
                 {toggle ? (
                     <input
@@ -199,7 +199,7 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId, li
                         onChange={editTodo}
                         value={todo} 
                         name="text"
-                        style={{ boxShadow: "inset 0px 0.5px 6px rgba(0, 0, 0, 0.25)" }}
+                        style={{ boxShadow: "inset 0px 0.5px 6px rgba(0, 0, 0, 0.25)", backgroundColor: "var(--lightgray)" }}
                     />
                 ) : ( 
                 <span className="clickable" onClick={() => setOpen(!open)} style={style}>{todo}</span> 

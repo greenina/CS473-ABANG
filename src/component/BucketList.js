@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import BucketItemAdd from './BucketItemAdd';
 import BucketItem from './BucketItem';
 
-import closeButton from "../Icons/CloseButton.png"
-import arrowUpIcon from "../Icons/ArrowUpBlue.png";
-import arrowDownIcon from "../Icons/ArrowDownBlue.png";
+import closeButton from "../Icons/CloseButtonGreen.png"
+import arrowUpIcon from "../Icons/ArrowUpGreen.png";
+import arrowDownIcon from "../Icons/ArrowDownGreen.png";
 import {db} from '../firebase';
 
 import "../Components/Memory/Memory.css"
