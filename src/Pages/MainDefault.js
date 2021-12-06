@@ -14,9 +14,9 @@ const MainDefault = () => {
 
   return (
     <div className="main">
-        <SearchBar />
+        {/* <SearchBar /> */}
         <div className="content-container">
-            <div className="group-container">
+            <div className="group-container" style={{ marginTop: "-20px" }}>
               <SimilarGroup />
               <PopularActivity />
             </div>
