@@ -1,7 +1,10 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url('https://fonts.googleapis.com/css2?family=Cantora+One&display=swap');
+
 .memory {
     position: relative;
     padding: 30px;
-    background-color: var(--purple);
+    background-color: #95A689;
     /* width: 100%; */
     min-height: calc(100vh - 60px);
     line-height: 2em;
@@ -9,8 +12,9 @@
 
 .memory .header {
     text-align: center;
-    font-size: 18px;
-    color: var(--lightyellow);
+    font-family: 'Cantora One', sans-serif;
+    font-size: 25px;
+    color: #F8E8B0;
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -20,7 +24,7 @@
     box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     position: relative;
     padding: 15px;
-    background-color: var(--paleblue);
+    background-color: #788A6A;
     border-radius: 10px;
     height: calc(100vh - 140px);
 }
@@ -124,7 +128,7 @@
     font-weight: bold;
     padding: 5px;
     color: var(--browntext);
-    background-color: var(--darkgreen);
+    background-color: #d0ccaf;
     border-radius: 10px 10px 0 0;
 }
 
@@ -133,7 +137,7 @@
     box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     position: relative;
     padding: 15px;
-    background-color: var(--lightgreen);
+    background-color: #d8d6c3;
     border-radius: 0 0 10px 10px;
 }
 
@@ -141,14 +145,14 @@
     text-align: left;
     position: relative;
     padding: 20px;
-    background-color: var(--lightyellow);
+    background-color: #dfdaa9;
     color: var(--browntext);
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
 
 .memory-content input, .memory-content textarea {
     /* display: inline-block; */
-    background-color: var(--lightyellow);
+    background-color: #dfdaa9;
     color: var(--browntext);
 }
 
@@ -180,23 +184,25 @@
 
 .memory .text {
     width: 100%;
+    
 }
 
 .memory-comments {
     text-align: left;
-    color: var(--purpletext);
-    background-color: var(--lightpurple);
+    color: #767143;
+    background-color:  #CAC388;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
     margin-top: 15px;
     padding: 20px;
-    font-weight: bold;
+    font-family: 'Jeju Gothic', sans-serif;
 }
 
 .memory-comments input {
     /* display: inline-block; */
     margin-left: 10px;
-    background-color: var(--lightpurple);
-    color: var(--purpletext);
+    font-family: 'Jeju Gothic', sans-serif;
+    background-color: #CAC388;
+    color: #767143;
 }
 
 .save-button {
@@ -204,7 +210,7 @@
     font-size: 15px;
     text-align: center;
     margin-top: 10px;
-    background-color: var(--darkgreen);
+    background-color: #606f55;
     color: var(--yellow);
     border: none;
     padding: 10px 25px;
