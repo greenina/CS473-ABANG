@@ -35,6 +35,7 @@
 
 .bucket-container {
     /* border: solid 1px red; */
+    font-family: 'Jeju Gothic', sans-serif;
     margin-bottom: 10px;
     height: calc(100vh - 250px);
     overflow: scroll;
@@ -133,6 +134,7 @@
 }
 
 .memory-container {
+    font-family: 'Jeju Gothic', sans-serif;
     text-align: center;
     box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     position: relative;
