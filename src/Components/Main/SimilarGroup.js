@@ -4,17 +4,17 @@ import "./ShortList.css";
 
 //import profileIcon from "../../Icons/Profile.png";
 import groupImg from "../../Icons/Default_Image.png"
-import noisyfriends1 from '../../Icons/noisyfriends1.JPG'
-import night from '../../Icons/night.JPG'
-import cute from '../../Icons/cute.JPG'
-import code from '../../Icons/code.JPG'
+import noisyfriends1 from '../../Icons/noisyfriends1.png'
+import night from '../../Icons/night.png'
+import cute from '../../Icons/cute.png'
+import code from '../../Icons/code.png'
 import groupNameBox from "../../Icons/groupNameBox.png"
 import hashBox from "../../Icons/hashBox.png"
 
 const GroupItem = ({name, hashtags, href, imgLink}) => {
     return (
         <div className="shortlist-item-profile clickable" onClick={() => window.location.href = href}>
-            <img src={imgLink} height='150px' width='100%'/>
+            <img src={imgLink} width='100%'/>
             <div className="shortlist-text-groupname">{name}</div>
             <div className="shortlist-text-grouphash">{hashtags}</div>
         </div>
