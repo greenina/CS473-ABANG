@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import PictureList from "../Components/Memory/PictureList";
 import CommentList from "../Components/Memory/CommentList";
 
-import closeButton from "../Icons/CloseButton.png"
+import closeButton from "../Icons/CloseButtonGreen.png"
 import editButton from "../Icons/EditButton.png"
 
 import "../Components/Memory/Memory.css"

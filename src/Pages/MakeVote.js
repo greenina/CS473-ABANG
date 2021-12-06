@@ -104,7 +104,7 @@ const MakeVote = (props)=>{
                   <div style={{display:"flex", flexDirection:"column",justifyContent:"flex-end", width:"calc(100% - 20px)",background:"#EFF1EE",color:"#605A2A", marginBottom:"15px",borderRadius:10, paddingLeft:"10px", paddingRight:"10px"}}>
                     <FormControlLabel 
                     control=
-                    {<Checkbox checked={checked[i]} onChange={changeChecked}/>} 
+                    {<Checkbox checked={checked[i]} onChange={changeChecked} style={{ color: "#68694A"}}/>} 
                     label={option} />
                   </div>
                 )

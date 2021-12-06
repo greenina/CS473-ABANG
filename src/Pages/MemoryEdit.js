@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
-import closeButton from "../Icons/CloseButton.png"
+import closeButton from "../Icons/CloseButtonGreen.png"
 
 import MemoryForm from "../Components/Memory/MemoryForm"
 import { mockMemory } from "../Data/memory"

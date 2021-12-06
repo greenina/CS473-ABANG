@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import BucketItemAdd from './BucketItemAdd';
 import BucketItem from './TheirBucketItem';
 
-import closeButton from "../Icons/CloseButton.png"
+import closeButton from "../Icons/CloseButtonGreen.png"
 import arrowUpIcon from "../Icons/ArrowUpBlue.png";
 import arrowDownIcon from "../Icons/ArrowDownBlue.png";
 import {db} from '../firebase';

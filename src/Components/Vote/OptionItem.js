@@ -38,7 +38,7 @@ const OptionItem = ({ data, checked, i, setChecked, options, setOptions }) => {
         <div>
             <FormControlLabel 
                 control=
-                {<Checkbox checked={checked[i]} onChange={(i) => changeChecked(i)}/>} 
+                {<Checkbox checked={checked[i]} onChange={(i) => changeChecked(i)} style={{ color: "#68694A"}}/>} 
                 label={text} />
         </div>
     )

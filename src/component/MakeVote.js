@@ -65,7 +65,7 @@ const MakeVote = (props)=>{
                 return(
                     <FormControlLabel 
                     control=
-                    {<Checkbox checked={checked[i]} onChange={changeChecked}/>} 
+                    {<Checkbox checked={checked[i]} onChange={changeChecked} style={{ color: "#68694A"}}/>} 
                     label={option} />
                 )
             })}
