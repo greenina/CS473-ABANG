@@ -27,7 +27,7 @@ const SimilarGroup = () => {
         <div className="shortlist-name" style={{ color: "#5C6348", padding: "0 10px" }}>Similar Group</div>
         <div className="shortlist-container-small">
             <GroupItem imgLink={noisyfriends1} name="Noisy Girls🐥" hashtags="#super #active" href="/theirpage/theirGroupA"/>
-            <GroupItem imgLink={cute} name="CUTEST guys" hashtags="#small #><" href="/theirpage/theirGroupB"/>
+            <GroupItem imgLink={cute} name="CUTEST😆 guys" hashtags="#small #><" href="/theirpage/theirGroupB"/>
         </div>
         <div className="shortlist-container-small">
             <GroupItem imgLink ={night}name={"Bats🐱‍👤 & Wols"} hashtags="#Night #noSleep" href="/theirpage/theirGroupC"/>
