@@ -13,6 +13,8 @@ import {connect} from 'react-redux'
 import {setEmail} from '../store/modules/counter'
 import { arrayUnion, updateDoc } from "firebase/firestore";
 
+import "./Home.css"
+
 const mapStateToProps = (state) => ({
   email: state.counter.email
 });
@@ -48,11 +50,10 @@ const Home = (props) => {
 
   return (
       <div className='home_background'>
-        <header className="backcircle">  
-          <div className='animation_position'>
-            <BucketAnimation/>
-          </div>  
-        </header>
+        <div className="backcircle"></div> 
+        <div className='animation_position'>
+          <BucketAnimation/>
+        </div>  
         <section style={{position:'absolute',zIndex:'3', top:'10%', right:'10%'}}> 
             {user ? <div></div>:<SignIn />}
             {/* <SignIn /> */}
