@@ -85,12 +85,13 @@
 }
 
 .total-point{
+    position: relative;
     display: inline-block;
     font-family: 'Jeju Gothic', sans-serif;
     font-size:15px;
     color:#77785F;
-    margin-left:110%;
-    margin-top:7px;
+    margin-left:10px;
+    transform: translateY(-10px);
 }
 
 .wish{

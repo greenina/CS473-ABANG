@@ -70,10 +70,9 @@ const VoteResult = ({ voteRef }) => {
                 return (
                     <div className='number-container'>
                         <div className='wish'>{wish}</div> <br/>
-                        <span className='number' style={{"--width":preferenceSum[i]/userNum/100}}>
-                        <span className='block'/>
-                            <span className='total-point'>{preferenceSum[i]}</span>  
-                        </span>
+                        <div className='number' style={{"--width":preferenceSum[i]/userNum/100}}></div>
+                        {/* <span className='block'/> */}
+                        <div className='total-point'>{preferenceSum[i]}</div>  
                         <br/>
                         {comments[i] && comments[i].map(comment => {
                             return (
