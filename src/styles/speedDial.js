@@ -28,7 +28,7 @@ const actions = [
     <label for id="voteIcon"><voteIcon/></label> 
     <VoteIcon id="voteIcon" display='none'/></div>, name: 'Vote'},
   { icon: <HomeIcon />, name: 'Home'},
-  { icon: <WishlistIcon />, name: 'Wishlist'},
+  { icon: <WishlistIcon />, name: 'Bucketlist'},
 ];
 
 export default function PlaygroundSpeedDial() {
@@ -63,7 +63,7 @@ export default function PlaygroundSpeedDial() {
         return clickVote
       case 'Home':
         return clickHome
-      case 'Wishlist':
+      case 'Bucketlist':
         return clickWishlist
       default:
         console.log("not matched")
