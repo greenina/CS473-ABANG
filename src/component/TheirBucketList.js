@@ -5,8 +5,8 @@ import BucketItemAdd from './BucketItemAdd';
 import BucketItem from './TheirBucketItem';
 
 import closeButton from "../Icons/CloseButtonGreen.png"
-import arrowUpIcon from "../Icons/ArrowUpBlue.png";
-import arrowDownIcon from "../Icons/ArrowDownBlue.png";
+import arrowUpIcon from "../Icons/ArrowUpGreen.png";
+import arrowDownIcon from "../Icons/ArrowDownGreen.png";
 import {db} from '../firebase';
 
 import "../Components/Memory/Memory.css"

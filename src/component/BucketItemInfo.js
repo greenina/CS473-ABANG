@@ -5,6 +5,8 @@ import {doc, getDoc} from "firebase/firestore";
 import { arrayUnion, arrayRemove, updateDoc } from "firebase/firestore";
 import MemoryList from "./MemoryList"
 import { Tooltip } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 import editIcon from "../Icons/EditButton.png"
 import checkIcon from "../Icons/Check.png"
@@ -192,7 +194,11 @@ const BucketItemInfo = ({ data, onUpdate, onRemove, refresh, detail, groupId, li
     return(
         <div>
             <div className="bucket-item" style={done ? { backgroundColor: "#DFDAA8"} : { backgroundColor: "var(--lightgray)" }}>
-                { !detail ? <input className="clickable" type="checkbox" id="unchecked" onClick={() => changeIsDone(id)} checked={done}/> : null }
+                { !detail ? //<input className="clickable" type="checkbox" id="unchecked" onClick={() => changeIsDone(id)} checked={done}/>
+                    <div className="clickable" style={{ display: "inline-block" }}>
+                        <Checkbox checked={done} onChange={() => changeIsDone(id)} style={{ color: "#68694A"}}/>
+                    </div>
+                 : null }
                 {toggle ? (
                     <input
                         style={style}
