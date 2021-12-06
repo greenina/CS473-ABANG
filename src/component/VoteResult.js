@@ -86,6 +86,7 @@ const VoteResult = ({ voteRef }) => {
                     </div>
                 )
             })}
+            <div style={{ height: "50px" }}></div>
         </div>
         </div>
     );
