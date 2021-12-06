@@ -54,10 +54,10 @@ const Home = (props) => {
         <div className='animation_position'>
           <BucketAnimation/>
         </div>  
-        <section style={{position:'absolute',zIndex:'3', top:'10%', right:'10%'}}> 
-            {user ? <div></div>:<SignIn />}
+        <div style={{position:'absolute',zIndex:'10', top:'10%', right:'10%', cursor: "pointer"}}> 
+            {user ? <div></div>:<div><SignIn /></div>}
             {/* <SignIn /> */}
-        </section>
+        </div>
       </div>
 
     );
