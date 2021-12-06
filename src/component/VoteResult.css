@@ -89,9 +89,10 @@
     display: inline-block;
     font-family: 'Jeju Gothic', sans-serif;
     font-size:15px;
-    color:#77785F;
-    margin-left:10px;
-    transform: translateY(-10px);
+    color: #d7d8b2;
+    margin-left:-10px;
+    transform: translate(-100%, -10px);
+    z-index: 10;
 }
 
 .wish{
